@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FY2027 Workforce Appropriations Toolkit</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f5f5;color:#333;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a365d 0%,#2d5a8c 100%);color:#fff;padding:40px 20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.header h1{font-size:2.2em;margin-bottom:8px}
+.header p{font-size:1.05em;opacity:.95}
+.container{max-width:1200px;margin:30px auto;padding:0 20px}
+.urgency-banner{background:#d4a843;color:#1a365d;padding:18px;border-radius:8px;margin-bottom:25px;font-weight:bold;text-align:center;font-size:1.05em}
+.disclaimer{background:#fff3cd;border:1px solid #ffc107;color:#856404;padding:12px 18px;border-radius:6px;margin-bottom:20px;font-size:.9em}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:25px;border-bottom:2px solid #d4a843}
+.tab-btn{background:#f0f0f0;border:none;padding:11px 22px;cursor:pointer;font-size:.95em;border-radius:4px 4px 0 0;transition:all .3s;color:#1a365d;font-weight:500}
+.tab-btn.active{background:#1a365d;color:#fff}
+.tab-btn:hover:not(.active){background:#d4a843;color:#1a365d}
+.tab-content{display:none;background:#fff;padding:28px;border-radius:0 0 8px 8px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.tab-content.active{display:block}
+.section-title{font-size:1.7em;color:#1a365d;margin-bottom:18px;border-bottom:3px solid #d4a843;padding-bottom:8px}
+.info-box{background:#f9f9f9;border-left:4px solid #d4a843;padding:18px;margin:18px 0;border-radius:4px}
+.ftable{width:100%;border-collapse:collapse;margin:18px 0;background:#fff}
+.ftable th{background:#1a365d;color:#fff;padding:11px;text-align:left;font-size:.92em}
+.ftable td{padding:9px 11px;border-bottom:1px solid #ddd;font-size:.92em}
+.ftable tr:hover{background:#f5f5f5}
+.search-box{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;align-items:center}
+.search-box input,.search-box select{padding:9px 14px;border:1px solid #ddd;border-radius:4px;font-size:.95em}
+.search-box input{flex:1;min-width:150px}
+.sbtn{padding:9px 18px;background:#1a365d;color:#fff;border:none;border-radius:4px;cursor:pointer;font-weight:bold;transition:background .3s}
+.sbtn:hover{background:#2d5a8c}
+.sbtn.gold{background:#d4a843;color:#1a365d}
+.sbtn.gold:hover{background:#c19a2d}
+.district-results{max-height:550px;overflow-y:auto;border:1px solid #ddd;border-radius:4px}
+.dcard{padding:16px 18px;border-bottom:1px solid #eee;background:#fff;cursor:pointer;transition:all .2s}
+.dcard:hover{background:#f8f6f0;border-left:4px solid #d4a843}
+.dcard h3{color:#1a365d;margin-bottom:6px;font-size:1.05em}
+.dcard .meta{font-size:.88em;color:#666;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:18px 0}
+.stat-box{background:#fff;padding:16px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,.08);border-top:4px solid #1a365d}
+.stat-box h4{color:#1a365d;font-size:.85em;margin-bottom:8px}
+.stat-val{font-size:1.6em;font-weight:bold;color:#d4a843}
+.template-text{background:#f9f9f9;border:1px solid #ddd;padding:18px;border-radius:4px;margin:16px 0;line-height:1.75;font-size:.95em;white-space:pre-wrap}
+textarea{width:100%;min-height:300px;padding:14px;border:1px solid #ddd;border-radius:4px;font-family:'Courier New',monospace;font-size:.92em;line-height:1.6}
+.checklist{list-style:none;margin:18px 0}
+.checklist li{padding:11px 14px;margin:8px 0;background:#fff;border-radius:4px;display:flex;align-items:flex-start;border:1px solid #ddd;gap:12px}
+.checklist input[type="checkbox"]{margin-top:3px;width:18px;height:18px;cursor:pointer;flex-shrink:0}
+.deadline{background:#1a365d;color:#fff;padding:18px;border-radius:8px;text-align:center;margin:18px 0;font-size:1.2em;font-weight:bold}
+h3.sub{color:#1a365d;margin:28px 0 14px}
+h4.sub{color:#1a365d;margin:22px 0 10px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.form-grid label{display:block;font-weight:600;margin-bottom:4px;font-size:.9em;color:#1a365d}
+.form-grid input{width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;font-size:.95em}
+.btn-group{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.result-count{font-size:.9em;color:#666;margin-bottom:8px}
+@media print{.tabs,.search-box,.btn-group,.tab-btn,.urgency-banner,.disclaimer{display:none!important}.tab-content{display:block!important;box-shadow:none}.header{page-break-after:avoid}}
+@media(max-width:768px){.header h1{font-size:1.6em}.stats-grid{grid-template-columns:1fr}.tabs{flex-direction:column}.dcard .meta{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>FY2027 Workforce Appropriations Toolkit</h1>
+<p>Coordinated Programmatic Funding Request Resource for Local Workforce Development Boards</p>
+</div>
+
+<div class="container">
+<div class="urgency-banner">
+DEADLINE: Member offices accepting programmatic funding requests through <u>Friday, March 6, 2026</u>. Committee deadline: <u>Friday, March 20, 2026</u>.
+</div>
+
+<div class="disclaimer">
+<strong>Data Note:</strong> District-level data is derived from U.S. Census Bureau American Community Survey (ACS) 5-Year Estimates at the Congressional District level: SNAP participation (Table S2201), Medicaid/public coverage (Table S2704), occupational employment (Table S2401), and poverty rates (Table S1701). District-level estimates are calibrated to validated national totals from CBO (8.8M SNAP, 18.5M Medicaid individuals subject to work requirements) and Brookings Institution (37.1M workers in AI-exposed occupations). Representative names are sourced from the Office of the Clerk, U.S. House of Representatives (119th Congress). Local boards should verify data against their own records before finalizing submissions.
+</div>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab(event,'funding')">Funding History</button>
+<button class="tab-btn" onclick="openTab(event,'districts')">District Lookup</button>
+<button class="tab-btn" onclick="openTab(event,'templates')">Advocacy Templates</button>
+<button class="tab-btn" onclick="openTab(event,'generator')">Customization Tool</button>
+<button class="tab-btn" onclick="openTab(event,'tracker')">Coordination Tracker</button>
+</div>
+
+<!-- FUNDING HISTORY -->
+<div id="funding" class="tab-content active">
+<h2 class="section-title">WIOA Title I Funding History & Recommended Ask</h2>
+
+<h3 class="sub">FY2027 Recommended Funding Request</h3>
+<table class="ftable">
+<thead><tr><th>Program</th><th>FY2026 Enacted</th><th>FY2027 Request</th><th>Rationale</th></tr></thead>
+<tbody>
+<tr><td><strong>Adult</strong></td><td>$875,649,000</td><td><strong style="color:#1a6b1a">$1,500,000,000</strong></td><td>SNAP work requirements + Workforce Pell coordination</td></tr>
+<tr><td><strong>Youth</strong></td><td>$948,130,000</td><td><strong style="color:#1a6b1a">$1,500,000,000</strong></td><td>Workforce Pell launch + House zeroed in FY25/FY26</td></tr>
+<tr><td><strong>Dislocated Worker</strong></td><td>$1,095,553,000</td><td><strong style="color:#1a6b1a">$1,500,000,000</strong></td><td>AI displacement + Medicaid work requirements</td></tr>
+</tbody>
+</table>
+
+<div class="info-box">
+<h4>Why Dislocated Worker Funding Must Increase</h4>
+<p style="margin-top:8px">Four converging factors create unprecedented demand on the Dislocated Worker program:</p>
+<p style="margin-top:8px"><strong>1. AI-Driven Displacement:</strong> Brookings estimates 37.1 million U.S. workers hold occupations in the top quartile of AI exposure. McKinsey estimates 12 million workers may need to change occupations by 2030. The St. Louis Fed finds occupations with higher AI exposure experienced larger unemployment rate increases between 2022-2025.</p>
+<p style="margin-top:8px"><strong>2. SNAP Work Requirements (OBBBA):</strong> Expanded to ages 18-65 and parents with children 7+, effective November 1, 2025. CBO estimates 8.8 million individuals are subject to expanded SNAP work requirements (6.5 million non-dependent adults ages 18-65 and 2.3 million parents with children ages 7 and older) (CBO, August 2025). These individuals must document 80 hours/month — many will turn to workforce boards as the only available qualifying activity infrastructure.</p>
+<p style="margin-top:8px"><strong>3. Medicaid Work Requirements:</strong> Beginning January 1, 2027, CBO estimates 18.5 million Medicaid expansion enrollees ages 19-64 will be subject to 80-hour/month community engagement requirements effective January 1, 2027 (CBO). States must implement compliance verification at application and every six months.</p>
+<p style="margin-top:8px"><strong>4. Workforce Pell Coordination:</strong> Effective July 1, 2026, Pell Grant eligibility expands to short-term training (8-15 weeks). Workforce boards must coordinate with providers, ensure program quality, and deliver wrap-around services.</p>
+</div>
+
+<h3 class="sub">WIOA Title I Funding Trend (FY2016–FY2026)</h3>
+<canvas id="fundingChart" width="900" height="380" style="max-width:100%;background:#fff;border:1px solid #ddd;border-radius:6px;margin:18px 0;padding:12px"></canvas>
+<script>
+(function(){
+  const cv = document.getElementById('fundingChart');
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const pad = {top:50,right:30,bottom:70,left:90};
+  const cW = W - pad.left - pad.right;
+  const cH = H - pad.top - pad.bottom;
+
+  const years = ['FY16','FY17','FY18','FY19','FY20','FY21*','FY22*','FY23','FY24','FY25','FY26'];
+  const adult = [816.8,816.8,845.7,845.7,854.6,862.6,867.6,885.6,885.6,885.6,875.6];
+  const youth = [873.4,873.4,903.2,903.2,913.1,918.1,928.1,948.1,948.1,948.1,948.1];
+  const dw    = [1020.9,1020.9,1040.9,1040.9,1052.1,1065.6,1075.6,1095.6,1095.6,1095.6,1095.6];
+
+  const minV = 0;
+  const maxV = 1200;
+  const range = maxV - minV;
+  const n = years.length;
+
+  function yPos(v){ return pad.top + cH - ((v - minV) / range) * cH; }
+  function xPos(i){ return pad.left + (i / (n-1)) * cW; }
+
+  // Background
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0,0,W,H);
+
+  // Grid lines
+  ctx.strokeStyle = '#e8e8e8';
+  ctx.lineWidth = 1;
+  for(let v = 0; v <= 1200; v += 100){
+    const y = yPos(v);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+  }
+
+  // Y-axis labels
+  ctx.fillStyle = '#666';
+  ctx.font = '12px Segoe UI, sans-serif';
+  ctx.textAlign = 'right';
+  for(let v = 0; v <= 1200; v += 200){
+    ctx.fillText('$' + v + 'M', pad.left - 8, yPos(v) + 4);
+  }
+
+  // X-axis labels
+  ctx.textAlign = 'center';
+  ctx.font = '11px Segoe UI, sans-serif';
+  for(let i = 0; i < n; i++){
+    ctx.fillText(years[i], xPos(i), H - pad.bottom + 20);
+  }
+
+  function drawLine(data, color, lw){
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lw;
+    ctx.beginPath();
+    for(let i = 0; i < n; i++){
+      const x = xPos(i), y = yPos(data[i]);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    for(let i = 0; i < n; i++){
+      ctx.beginPath();
+      ctx.arc(xPos(i), yPos(data[i]), 4, 0, Math.PI*2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+  }
+
+  drawLine(dw, '#c00', 2.5);
+  drawLine(youth, '#d4a843', 2.5);
+  drawLine(adult, '#2d8a5e', 2.5);
+
+  // End-of-line value labels
+  ctx.font = 'bold 11px Segoe UI, sans-serif';
+  ctx.textAlign = 'left';
+  const lx = xPos(n-1) + 8;
+  ctx.fillStyle = '#c00'; ctx.fillText('DW: $' + dw[n-1].toFixed(1) + 'M', lx - 60, yPos(dw[n-1]) - 10);
+  ctx.fillStyle = '#d4a843'; ctx.fillText('Youth: $' + youth[n-1].toFixed(1) + 'M', lx - 60, yPos(youth[n-1]) - 10);
+  ctx.fillStyle = '#2d8a5e'; ctx.fillText('Adult: $' + adult[n-1].toFixed(1) + 'M', lx - 60, yPos(adult[n-1]) + 18);
+
+  // Title
+  ctx.fillStyle = '#1a365d';
+  ctx.font = 'bold 15px Segoe UI, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('WIOA Title I Formula Grants by Program (Millions)', W/2, 24);
+
+  // Legend
+  const legY = H - 22;
+  const legItems = [
+    {label:'Dislocated Worker', color:'#c00'},
+    {label:'Youth', color:'#d4a843'},
+    {label:'Adult', color:'#2d8a5e'}
+  ];
+  ctx.font = '12px Segoe UI, sans-serif';
+  let lxp = W/2 - 160;
+  legItems.forEach(item => {
+    ctx.fillStyle = item.color;
+    ctx.fillRect(lxp, legY - 8, 14, 10);
+    ctx.fillStyle = '#333';
+    ctx.textAlign = 'left';
+    ctx.fillText(item.label, lxp + 18, legY);
+    lxp += item.label.length * 7.5 + 36;
+  });
+
+})();
+</script>
+
+<h3 class="sub">10-Year WIOA Title I Enacted Funding History (Formula Grants)</h3>
+<div class="info-box"><p><strong>Key takeaway:</strong> WIOA Title I formula funding has been essentially flat for a decade, failing to keep pace with inflation, population growth, or the growing complexity of workforce challenges. In real (inflation-adjusted) terms, the system has experienced a significant decline in purchasing power even as new federally-mandated responsibilities (SNAP/Medicaid work requirements, Workforce Pell coordination) dramatically expand the population it must serve.</p></div>
+
+<table class="ftable" style="font-size:.88em">
+<thead><tr><th>Fiscal Year</th><th>Adult</th><th>Youth</th><th>DW (Formula)</th><th>Total Formula</th></tr></thead>
+<tbody>
+<tr><td>FY2016</td><td>$816,836,000</td><td>$873,416,000</td><td>$1,020,860,000</td><td>$2,711,112,000</td></tr>
+<tr><td>FY2017</td><td>$816,836,000</td><td>$873,416,000</td><td>$1,020,860,000</td><td>$2,711,112,000</td></tr>
+<tr><td>FY2018</td><td>$845,651,000</td><td>$903,242,000</td><td>$1,040,860,000</td><td>$2,789,753,000</td></tr>
+<tr><td>FY2019</td><td>$845,651,000</td><td>$903,242,000</td><td>$1,040,860,000</td><td>$2,789,753,000</td></tr>
+<tr><td>FY2020</td><td>$854,649,000</td><td>$913,130,000</td><td>$1,052,053,000</td><td>$2,819,832,000</td></tr>
+<tr><td>FY2021*</td><td>$862,649,000</td><td>$918,130,000</td><td>$1,065,553,000</td><td>$2,846,332,000</td></tr>
+<tr><td>FY2022*</td><td>$867,649,000</td><td>$928,130,000</td><td>$1,075,553,000</td><td>$2,871,332,000</td></tr>
+<tr style="background:#e8f4e8"><td><strong>FY2023</strong></td><td><strong>$885,649,000</strong></td><td><strong>$948,130,000</strong></td><td><strong>$1,095,553,000</strong></td><td><strong>$2,929,332,000</strong></td></tr>
+<tr><td>FY2024</td><td>$885,649,000</td><td>$948,130,000</td><td>$1,095,553,000</td><td>$2,929,332,000</td></tr>
+<tr><td>FY2025 (CR)</td><td>$885,649,000</td><td>$948,130,000</td><td>$1,095,553,000</td><td>$2,929,332,000</td></tr>
+<tr style="background:#fff8e1"><td><strong>FY2026 (Enacted)</strong></td><td><strong>$875,649,000</strong></td><td><strong>$948,130,000</strong></td><td><strong>$1,095,553,000</strong></td><td><strong>$2,919,332,000</strong></td></tr>
+</tbody>
+</table>
+<p style="font-size:.82em;color:#666;margin-top:6px"><em>Sources: DOL ETA TEGLs, Federal Register allotment notices (PY2023-PY2025), CRS Report R44252 (FY2015-FY2020), CRS IF11530. DW figures are formula grants only (excludes National Reserve). *FY2021-FY2022 figures are best estimates from available appropriations data; all other years are confirmed enacted levels. Note: FY2026 Adult decreased $10M from FY2025.</em></p>
+
+
+
+
+
+
+
+<h3 class="sub">HR 1 (OBBBA) Impact: Populations Newly Subject to Work Requirements</h3>
+<div class="info-box" style="border-left-color:#c00">
+<h4 style="color:#c00">NEW DEMAND ON THE WORKFORCE SYSTEM</h4>
+<p style="margin-top:8px">The One Big Beautiful Bill Act (signed July 4, 2025) created two major new work requirement mandates that dramatically expand the population the workforce system must serve — without providing any additional WIOA funding:</p>
+
+<p style="margin-top:12px"><strong>SNAP Work Requirements (Effective November 1, 2025):</strong></p>
+<p>CBO estimates <strong>8.8 million individuals are subject to expanded SNAP work requirements</strong>: 6.5 million non-dependent adults ages 18-65 and 2.3 million parents with children ages 7 and older (CBO, August 2025, based on SNAP Quality Control data FY2023). Newly subject populations include:</p>
+<p style="margin-left:16px">— Non-disabled adults ages <strong>55-64</strong> without dependent children (previously exempt)<br>
+— Parents/caregivers whose youngest child is <strong>ages 7-17</strong> (age 6 and under remain exempt)<br>
+— <strong>Veterans, people experiencing homelessness, and former foster youth</strong> ages 18-24 (exemptions stripped)<br>
+— Waiver threshold raised to <strong>10% unemployment</strong> (from ~6%), eliminating area waivers in most districts</p>
+<p style="margin-top:4px">All must document <strong>80 hours/month</strong> of work, training, or approved activities to maintain benefits.</p>
+
+<p style="margin-top:12px"><strong>Medicaid Work Requirements (Effective January 1, 2027):</strong></p>
+<p>CBO estimates <strong>18.5 million Medicaid expansion enrollees ages 19-64</strong> will be subject to work requirements annually across 41 expansion states plus DC (CBO).</p>
+<p style="margin-left:16px">— Applies to expansion adults <strong>ages 19-64</strong> in 41 expansion states + DC + GA and WI waivers<br>
+— Requires <strong>80 hours/month</strong> of work, education, training, or volunteering<br>
+— Verification at application and every 6 months (states may verify more frequently)<br>
+— Exempt: parents of children under 13, medically frail, pregnant/postpartum<br>
+— Non-compliant individuals <strong>barred from ACA Marketplace premium tax credits</strong></p>
+
+<p style="margin-top:12px;font-weight:bold;color:#c00">The workforce system is the only public infrastructure positioned to connect these millions of newly work-required individuals with qualifying employment and training activities at scale.</p>
+</div>
+
+<div class="info-box">
+<h4>Appropriations Request Form Information</h4>
+<p style="margin-top:8px"><strong>Relevant Subcommittee:</strong> Labor, HHS, Education</p>
+<p><strong>Agency:</strong> Department of Labor</p>
+<p><strong>Account:</strong> Training and Employment Services</p>
+<p><strong>Programs:</strong> Adult Employment and Training Activities; Youth Activities; Dislocated Worker Employment and Training Activities</p>
+<p><strong>DC Lobbyist Contact:</strong> Chris Andresen, Partner, Dutko Government Relations, 80 M St SE Suite 130, Washington, DC 20003</p>
+<p style="margin-top:8px"><em>Note: These are PROGRAMMATIC requests. Community Project Funding is a separate process.</em></p>
+</div>
+</div>
+
+<!-- DISTRICT LOOKUP -->
+<div id="districts" class="tab-content">
+<h2 class="section-title">Congressional District Lookup (All 435 Districts)</h2>
+
+<div class="info-box">
+<p>Select a state to see all Congressional Districts with their representative names and district data. Click any district to auto-populate the Customization Tool.</p>
+</div>
+
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div style="flex:0 0 260px">
+<label style="display:block;font-weight:600;margin-bottom:6px;font-size:.9em;color:#1a365d">Select a State:</label>
+<select id="stateDropdown" onchange="loadStateDistricts()" style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:4px;font-size:1em;background:#fff">
+<option value="">— Choose a state —</option>
+</select>
+<div style="margin-top:10px">
+<label style="display:block;font-weight:600;margin-bottom:6px;font-size:.9em;color:#1a365d">Filter by Party:</label>
+<select id="partyFilter" onchange="loadStateDistricts()" style="width:100%;padding:9px 14px;border:1px solid #ddd;border-radius:4px;font-size:.95em;background:#fff">
+<option value="">All Parties</option><option value="R">Republican</option><option value="D">Democrat</option>
+</select>
+</div>
+</div>
+<div style="flex:1;min-width:300px">
+<div id="resultCount" class="result-count" style="font-weight:600;margin-bottom:8px"></div>
+<div id="distResults" class="district-results"></div>
+</div>
+</div>
+</div>
+
+<!-- ADVOCACY TEMPLATES -->
+<div id="templates" class="tab-content">
+<h2 class="section-title">Advocacy Template Language</h2>
+
+<div class="info-box">
+<p>These templates are ready for use in appropriations request forms. Copy text directly or use the Customization Tool to auto-fill district-specific data. Most forms have a 150-250 word limit for program descriptions and 500-750 words for justifications.</p>
+</div>
+
+<h3 class="sub">Program Descriptions (150-250 words each)</h3>
+
+<h4 class="sub">WIOA Adult Program</h4>
+<div class="template-text">The WIOA Adult Program helps adults with barriers to employment gain new skills and find in-demand jobs in growth sectors. This funding is critical so that we can work locally with those individuals and connect them with employers. Services include career counseling and labor market information, skills assessments, occupational training aligned with in-demand industries, supportive services such as childcare and transportation assistance, and job placement and retention services. Local workforce development boards deliver these services through a network of America's Job Centers, utilizing partnerships with community colleges, training providers, and local employers. The Adult Program is the primary workforce development mechanism for helping low-income workers, displaced workers, and others facing employment barriers access pathways to self-sufficiency and career advancement. With the expansion of SNAP work requirements under the One Big Beautiful Bill Act — now covering ages 18-65 and including parents with children ages 7 and older — the Adult Program is the frontline resource helping newly work-required individuals connect to qualifying activities that meet their federal obligations while building real skills for the labor market.</div>
+
+<h4 class="sub">WIOA Youth Program</h4>
+<div class="template-text">The WIOA Youth Program serves the 16-24 population with an emphasis on out-of-school youth. Service strategies, developed by workforce providers, prepare youth for employment and/or post-secondary education through strong linkages between academic and occupational learning. Services include pre-apprenticeship training, paid work experience, occupational skills training, education aligned with in-demand industries, supportive services, mentoring, and comprehensive case management. The local workforce board works directly with employers to overcome barriers and provide employment and training for youth participants. With the launch of Workforce Pell Grants in July 2026, the Youth Program plays a critical coordination role — connecting young adults to newly Pell-eligible short-term training programs, providing career coaching that research shows is essential for student success, and ensuring that training investments lead to stackable credentials aligned with regional labor market demands. These services are delivered locally in the district through a network of America's Job Centers.</div>
+
+<h4 class="sub">WIOA Dislocated Worker Program</h4>
+<div class="template-text">The Dislocated Worker program provides information on locally available training programs and other services to assist workers who have been laid off or are about to be laid off. Specialists trained to work with these individuals gather information about their needs and begin to organize the services necessary to help them return to work. These services are delivered locally through the district at America's Job Centers. The Dislocated Worker program faces unprecedented demand driven by AI and automation disrupting industries across every Congressional District. Brookings Institution estimates 37.1 million U.S. workers hold occupations in the top quartile of AI exposure — creating a new and expanding category of displaced workers who need rapid retraining for the AI-era labor market. With the launch of Workforce Pell Grants in July 2026, the Dislocated Worker program must also coordinate access to newly Pell-eligible short-term retraining programs, provide career coaching, and deliver the supportive services essential for successful transitions. The Dislocated Worker program is the primary federal response mechanism for AI-driven displacement and requires increased funding.</div>
+
+<h3 class="sub">Justification Template (500-750 words — Customize with District Data)</h3>
+
+<h4 class="sub">Part A: SNAP Work Requirements Impact</h4>
+<div class="template-text">The One Big Beautiful Bill Act (H.R. 1), signed into law July 4, 2025, dramatically expanded SNAP work requirements effective November 1, 2025. The ABAWD age range was extended from 18-54 to 18-65, and parents with children ages 7 and older are now required to comply. The waiver threshold was raised to 10% unemployment, effectively eliminating area waivers in most communities. These individuals must document 80 hours per month of work, training, or approved work-related activities to maintain SNAP benefits.
+
+The Congressional Budget Office estimates 8.8 million individuals are subject to expanded SNAP work requirements nationally: 6.5 million non-dependent adults ages 18-65 and 2.3 million parents with children ages 7 and older (CBO, August 2025, based on SNAP Quality Control data FY2023). In [DISTRICT], an estimated [SNAP-AFFECTED-POPULATION] individuals are subject to these work requirements — including non-disabled adults ages 55-64, parents of school-age children, veterans, people experiencing homelessness, and former foster youth who previously held exemptions.
+
+Local workforce development boards and their network of America's Job Centers are the primary public infrastructure available to help these individuals identify and access qualifying activities — including job search assistance, occupational training, volunteer work coordination, and workfare placements. Without adequate WIOA Title I Adult funding, boards cannot expand capacity to meet this federally-created demand, forcing impossible choices between serving newly work-required SNAP populations and maintaining services for other job seekers and employers.
+
+Furthermore, the OBBBA shifts SNAP administrative cost-sharing from 50-50 federal-state to 75% state / 25% federal beginning in FY2028, increasing fiscal pressure on states and making efficient coordination between SNAP agencies and workforce boards even more critical.</div>
+
+<h4 class="sub">Part B: Medicaid Work Requirements Impact</h4>
+<div class="template-text">Beginning January 1, 2027, Medicaid expansion enrollees ages 19-64 must demonstrate 80 hours per month of community engagement activities including employment, job training, education, or volunteering. The Congressional Budget Office estimates 18.5 million Medicaid expansion enrollees ages 19-64 will be subject to these work requirements annually across 41 expansion states plus DC (CBO). Verification is required at application and every six months, with states permitted to verify more frequently.
+
+In [DISTRICT], an estimated [MEDICAID-AFFECTED-ADULTS] adults are enrolled through Medicaid expansion and will be subject to these requirements. Exemptions apply to parents of children under 13, medically frail individuals, and pregnant/postpartum individuals. HHS must issue guidance by June 1, 2026, leaving states just seven months to build administrative infrastructure.
+
+The public workforce system — through local boards and one-stop career centers — is the natural and essential partner to help individuals meet these requirements through: employment services and job placement; skills training and credentialing; activity tracking and compliance documentation coordination with state Medicaid agencies; and career coaching to move individuals toward self-sufficiency.
+
+Evidence from Arkansas's 2018-2019 pilot demonstrates the critical importance of adequate workforce infrastructure: over 18,000 people were unable to navigate the reporting system despite the majority actually working. Adequately funded workforce boards can serve as navigators, helping individuals document compliance while genuinely connecting them to employment — a win for individuals, employers, and the healthcare system.</div>
+
+<h4 class="sub">Part C: AI and Automation Workforce Impacts (Dislocated Worker Justification)</h4>
+<div class="template-text">Artificial intelligence and automation are transforming the American economy at an accelerating pace. Brookings Institution estimates 37.1 million U.S. workers hold occupations in the top quartile of AI exposure (Brookings, 2025). In [DISTRICT], approximately [AI-WORKERS] workers hold occupations classified as highly exposed to AI-driven automation, based on Treasury Department analysis of occupational employment data. The St. Louis Federal Reserve has documented that occupations with higher AI exposure experienced significantly larger unemployment rate increases between 2022-2025, confirming that AI-driven job displacement is already underway.
+
+This disruption demands increased Dislocated Worker funding for four reasons:
+
+1. SHIFTING DISLOCATED WORKER POPULATION: Unlike previous technological disruptions that primarily affected manufacturing, generative AI targets cognitive tasks performed by knowledge workers — expanding displacement across white-collar and service occupations simultaneously. McKinsey estimates 12 million U.S. workers may need to change occupations by 2030.
+
+2. INCUMBENT WORKFORCE RESKILLING: Workers need evolving skills as AI transforms their current jobs. Local boards partner with employers to deliver upskilling that keeps workers employed and businesses competitive.
+
+3. WORKFORCE PELL COORDINATION: With Workforce Pell launching July 2026, dislocated workers gain new access to Pell-eligible short-term retraining programs. Workforce boards must coordinate with providers, ensure program quality, and deliver the career coaching and supportive services that drive successful outcomes.
+
+4. AI-ENABLED WORKFORCE TOOLS: The workforce development system itself must deploy AI-powered tools that empower Career Coaches with real-time labor market data, career pathway mapping, and personalized career guidance. This requires technology investment at the local level.
+
+[DISTRICT] respectfully requests FY2027 Dislocated Worker funding of $1,500,000,000 (up from $1,095,553,000 enacted in FY2026) to enable rapid response capacity and proactive retraining for the AI-driven workforce transformation.</div>
+
+<h4 class="sub">Part D: Workforce Pell Grant Coordination</h4>
+<div class="template-text">Effective July 1, 2026, Pell Grant eligibility expands to qualifying short-term training programs (8-15 weeks in length) under the Workforce Pell provisions of the OBBBA. This landmark expansion creates the opportunity to connect more job seekers to affordable, industry-aligned training and portable credentials. However, research consistently demonstrates that financial access alone is insufficient — career coaching, labor market navigation, and wrap-around supports are essential for student success and positive employment outcomes.
+
+Local workforce development boards are uniquely positioned to provide this coordination infrastructure. Boards must: identify and connect eligible participants to Pell-eligible training programs; ensure programs meet quality criteria including the 70% completion threshold and positive earnings outcomes; provide real-time career pathway information and labor market intelligence; deliver supportive services (career coaching, childcare, transportation) that improve persistence and completion; and coordinate with community colleges and training providers to align programs with regional employer demand.
+
+WIOA Title I funding is the engine that powers this coordination capacity. Without adequate funding, the promise of Workforce Pell risks becoming a poorly coordinated expansion that fails to deliver returns for students, employers, or taxpayers.</div>
+
+<h4 class="sub">Part E: The Funding Ask</h4>
+<div class="template-text">[BOARD-NAME] respectfully requests that the Appropriations Committee approve FY2027 funding for WIOA Title I programs under the Department of Labor's Training and Employment Services account at the following levels:
+
+• Adult Employment and Training Activities: $1,500,000,000
+• Youth Activities: $1,500,000,000
+• Dislocated Worker Employment and Training Activities: $1,500,000,000
+
+This represents a necessary increase across all three programs, driven by:
+(1) Accelerating AI and automation displacement across all industries and skill levels;
+(2) New SNAP work requirements expanding the population requiring workforce services;
+(3) Medicaid work requirements (effective January 1, 2027) creating additional demand for employment services and activity verification; and
+(4) Workforce Pell implementation requiring coordination infrastructure at the local level.
+
+The workforce development system cannot simultaneously absorb these new federally-mandated responsibilities AND maintain current service levels without increased investment. Congress created these new demands through the One Big Beautiful Bill Act — Congress must also fund the system that will deliver on those mandates.
+
+Similar requests have been submitted to the offices of: [LIST OTHER OFFICES]</div>
+</div>
+
+<!-- CUSTOMIZATION TOOL -->
+<div id="generator" class="tab-content">
+<h2 class="section-title">Request Customization Tool</h2>
+
+<div class="info-box">
+<p>Enter your board information and district data below. Click a district in the District Lookup tab to auto-populate fields. The tool generates customized justification text ready for your appropriations request form.</p>
+</div>
+
+<div style="background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;border:1px solid #ddd">
+<h3 class="sub" style="margin-top:0">Your Board Information</h3>
+<div class="form-grid">
+<div><label>Board Name:</label><input type="text" id="boardName" placeholder="e.g., Workforce Investment Board of Tulare County"></div>
+<div><label>Contact Name:</label><input type="text" id="contactName"></div>
+<div><label>Contact Email:</label><input type="text" id="contactEmail"></div>
+<div><label>Contact Phone:</label><input type="text" id="contactPhone"></div>
+</div>
+
+<h3 class="sub">District Information</h3>
+<div class="form-grid">
+<div><label>State:</label><input type="text" id="fState" maxlength="2" placeholder="e.g., CA"></div>
+<div><label>District Number:</label><input type="text" id="fDist" placeholder="e.g., 22"></div>
+<div><label>Representative Name:</label><input type="text" id="fRep" placeholder="e.g., David Valadao"></div>
+<div><label>District Population:</label><input type="number" id="fPop" placeholder="e.g., 760000"></div>
+</div>
+
+<h3 class="sub">Impact Data (Use district estimates or your own local data)</h3>
+<div class="form-grid">
+<div><label>Individuals Subject to SNAP Work Requirements (CBO):</label><input type="number" id="fSnap" placeholder="e.g., 15000"></div>
+<div><label>Individuals Subject to Medicaid Work Requirements (CBO):</label><input type="number" id="fMedicaid" placeholder="e.g., 25000"></div>
+
+<div><label>AI Automation Exposure (%):</label><input type="number" id="fAI" placeholder="e.g., 44"></div>
+<div><label>Top Industries (comma-separated):</label><input type="text" id="fIndustries" placeholder="e.g., Agriculture, Manufacturing, Healthcare"></div>
+</div>
+
+<h3 class="sub">Other Offices Receiving This Request</h3>
+<div class="form-grid">
+<div style="grid-column:1/-1"><label>List other offices (comma-separated):</label><input type="text" id="fOtherOffices" placeholder="e.g., Office of Sen. Feinstein, Office of Rep. Costa"></div>
+</div>
+
+<div class="btn-group" style="margin-top:22px">
+<button class="sbtn" onclick="generateText()">Generate Customized Justification</button>
+<button class="sbtn gold" onclick="clearForm()">Clear Form</button>
+</div>
+</div>
+
+<div id="customOutput" style="display:none">
+<h3 class="sub">Your Customized Justification Text</h3>
+<p style="margin-bottom:10px;font-size:.9em;color:#666">Edit the text below as needed, then copy or print.</p>
+<textarea id="customTA"></textarea>
+<div class="btn-group">
+<button class="sbtn" onclick="copyText()">Copy to Clipboard</button>
+<button class="sbtn gold" onclick="window.print()">Print</button>
+</div>
+</div>
+</div>
+
+<!-- COORDINATION TRACKER -->
+<div id="tracker" class="tab-content">
+<h2 class="section-title">Coordination Tracker & Deadlines</h2>
+
+<div class="deadline">
+Member offices accepting requests: Through Friday, March 6, 2026<br>
+Appropriations Committee deadline: COB Friday, March 20, 2026
+</div>
+
+<h3 class="sub">Appropriations Request Form Information</h3>
+<div class="info-box">
+<p><strong>Relevant Subcommittee:</strong> Labor, HHS, Education</p>
+<p><strong>Agency:</strong> Department of Labor</p>
+<p><strong>Account:</strong> Training and Employment Services</p>
+<p><strong>Request Type:</strong> PROGRAMMATIC (not Community Project Funding)</p>
+<p><strong>DC Lobbyist:</strong> Chris Andresen, Partner, Dutko Government Relations, 80 M St SE Suite 130, Washington, DC 20003</p>
+</div>
+
+<h3 class="sub">Action Checklist</h3>
+<ul class="checklist">
+<li><input type="checkbox"><span><strong>1. Identify Your Representative(s):</strong> Use the District Lookup tab to confirm which district(s) your board serves and the current Representative.</span></li>
+<li><input type="checkbox"><span><strong>2. Locate the Request Form:</strong> Visit your Representative's website — look for "FY27 Appropriations Request" under the "Services" tab. Example: <em>mcdonaldrivet.house.gov/services/fy27-appropriations-requests</em></span></li>
+<li><input type="checkbox"><span><strong>3. Prepare Your Request:</strong> Use the Advocacy Templates and Customization Tool to draft your program descriptions (150-250 words) and justification (500-750 words).</span></li>
+<li><input type="checkbox"><span><strong>4. Submit by March 6:</strong> Complete and submit your request through your Representative's online form or designated email.</span></li>
+<li><input type="checkbox"><span><strong>5. Coordinate with Other Offices:</strong> If your board serves multiple districts, submit to each Representative. Note other offices on each form — it demonstrates coordinated support.</span></li>
+<li><input type="checkbox"><span><strong>6. Follow Up with DC Staff:</strong> Within 3-5 business days, call the DC office and ask for the Labor/HHS appropriations staffer. Confirm receipt and offer to provide additional information.</span></li>
+<li><input type="checkbox"><span><strong>7. Report Back:</strong> Track your submissions and share with your state workforce association and Chris Andresen for national coordination tracking.</span></li>
+<li><input type="checkbox"><span><strong>8. Prepare for Possible Hearing Testimony:</strong> Some subcommittees invite testimony. Have a 2-3 minute oral version of your justification ready.</span></li>
+</ul>
+
+<h3 class="sub">Sample DC Office Contact Script</h3>
+<div class="template-text">"Hello, I am calling from [Board Name], the local workforce development board serving [District] in [State]. We submitted a programmatic funding request for FY2027 for WIOA Title I programs — Adult, Youth, and Dislocated Worker — through your online appropriations request system on [date]. I wanted to confirm receipt and offer to provide any additional information the [Representative's Name] team may need as the Labor-HHS subcommittee moves forward. May I speak with the staffer handling Labor-HHS appropriations requests?"</div>
+
+<h3 class="sub">Coordination Notes</h3>
+<div style="background:#fff;padding:18px;border-radius:8px;border:1px solid #ddd">
+<p style="margin-bottom:12px;font-size:.9em">Track your submissions, contacts, and follow-ups:</p>
+<textarea id="coordNotes" placeholder="Record dates, contacts, submission confirmations, and follow-up activities..." style="min-height:180px"></textarea>
+<div class="btn-group" style="margin-top:12px">
+<button class="sbtn gold" onclick="saveNotes()">Save Notes (Browser Storage)</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<div style="text-align:center;padding:20px;color:#999;font-size:.85em">
+FY2027 Workforce Appropriations Toolkit — Prepared for coordinated national advocacy by local workforce development boards.<br>
+Data sources: U.S. Census Bureau ACS 5-Year Estimates (Tables S2201, S2704, S2401, S1701), Congressional Budget Office (August 2025), Brookings Institution, DOL ETA, Office of the Clerk U.S. House of Representatives. For questions, contact your state workforce association or Chris Andresen at Dutko Government Relations.
+</div>
+
+<script>
+const districts = [
+{state:'AK',district:1,rep:'Nicholas J. Begich',party:'R',population:704133,snapSubject:16049,medicaidSubject:54745,poverty:10.2,aiWorkers:72328},
+{state:'AL',district:1,rep:'Barry Moore',party:'R',population:713431,snapSubject:21942,medicaidSubject:0,poverty:14.8,aiWorkers:60597},
+{state:'AL',district:2,rep:'Shomari Figures',party:'D',population:694978,snapSubject:24840,medicaidSubject:0,poverty:16.8,aiWorkers:58304},
+{state:'AL',district:3,rep:'Mike Rogers',party:'R',population:707551,snapSubject:23901,medicaidSubject:0,poverty:17.0,aiWorkers:57880},
+{state:'AL',district:4,rep:'Robert B. Aderholt',party:'R',population:713903,snapSubject:22535,medicaidSubject:0,poverty:16.3,aiWorkers:53383},
+{state:'AL',district:5,rep:'Dale W. Strong',party:'R',population:721574,snapSubject:15705,medicaidSubject:0,poverty:11.4,aiWorkers:92146},
+{state:'AL',district:6,rep:'Gary J. Palmer',party:'R',population:707891,snapSubject:13544,medicaidSubject:0,poverty:10.4,aiWorkers:87482},
+{state:'AL',district:7,rep:'Terri A. Sewell',party:'D',population:710538,snapSubject:34654,medicaidSubject:0,poverty:23.1,aiWorkers:55037},
+{state:'AR',district:1,rep:'Eric A. Rick Crawford',party:'R',population:731359,snapSubject:23976,medicaidSubject:77093,poverty:18.6,aiWorkers:52022},
+{state:'AR',district:2,rep:'J. French Hill',party:'R',population:744854,snapSubject:16494,medicaidSubject:63374,poverty:14.3,aiWorkers:83313},
+{state:'AR',district:3,rep:'Steve Womack',party:'R',population:764629,snapSubject:11043,medicaidSubject:56244,poverty:12.5,aiWorkers:80006},
+{state:'AR',district:4,rep:'Bruce Westerman',party:'R',population:736864,snapSubject:21638,medicaidSubject:77056,poverty:18.8,aiWorkers:47916},
+{state:'AZ',district:1,rep:'David Schweikert',party:'R',population:796454,snapSubject:10561,medicaidSubject:52910,poverty:8.9,aiWorkers:129484},
+{state:'AZ',district:2,rep:'Elijah Crane',party:'R',population:792814,snapSubject:23165,medicaidSubject:76925,poverty:17.1,aiWorkers:59552},
+{state:'AZ',district:3,rep:'Yassamin Ansari',party:'D',population:794871,snapSubject:27103,medicaidSubject:67297,poverty:19.7,aiWorkers:59682},
+{state:'AZ',district:4,rep:'Greg Stanton',party:'D',population:799635,snapSubject:14200,medicaidSubject:52283,poverty:12.4,aiWorkers:105301},
+{state:'AZ',district:5,rep:'Andy Biggs',party:'R',population:811684,snapSubject:7870,medicaidSubject:45757,poverty:5.9,aiWorkers:114294},
+{state:'AZ',district:6,rep:'Juan Ciscomani',party:'R',population:774021,snapSubject:17015,medicaidSubject:70722,poverty:10.3,aiWorkers:86135},
+{state:'AZ',district:7,rep:'Adelita S. Grijalva',party:'D',population:782303,snapSubject:32818,medicaidSubject:73446,poverty:19.5,aiWorkers:55602},
+{state:'AZ',district:8,rep:'Abraham J. Hamadeh',party:'R',population:790335,snapSubject:15297,medicaidSubject:63766,poverty:10.6,aiWorkers:89710},
+{state:'AZ',district:9,rep:'Paul A. Gosar',party:'R',population:812844,snapSubject:18276,medicaidSubject:68478,poverty:10.9,aiWorkers:68566},
+{state:'CA',district:1,rep:'VACANT',party:'-',population:746351,snapSubject:23543,medicaidSubject:76953,poverty:15.4,aiWorkers:58658},
+{state:'CA',district:2,rep:'Jared Huffman',party:'D',population:748613,snapSubject:16685,medicaidSubject:67146,poverty:10.9,aiWorkers:86288},
+{state:'CA',district:3,rep:'Kevin Kiley',party:'R',population:761376,snapSubject:10434,medicaidSubject:58717,poverty:7.9,aiWorkers:100482},
+{state:'CA',district:4,rep:'Mike Thompson',party:'D',population:750426,snapSubject:15925,medicaidSubject:60389,poverty:11.3,aiWorkers:79475},
+{state:'CA',district:5,rep:'Tom McClintock',party:'R',population:754652,snapSubject:15895,medicaidSubject:65631,poverty:9.9,aiWorkers:75376},
+{state:'CA',district:6,rep:'Ami Bera',party:'D',population:752397,snapSubject:24167,medicaidSubject:67800,poverty:13.3,aiWorkers:77113},
+{state:'CA',district:7,rep:'Doris O. Matsui',party:'D',population:751957,snapSubject:21564,medicaidSubject:63664,poverty:13.0,aiWorkers:88336},
+{state:'CA',district:8,rep:'John Garamendi',party:'D',population:744847,snapSubject:18006,medicaidSubject:61813,poverty:11.0,aiWorkers:70996},
+{state:'CA',district:9,rep:'Josh Harder',party:'D',population:757731,snapSubject:20924,medicaidSubject:67328,poverty:12.6,aiWorkers:59628},
+{state:'CA',district:10,rep:'Mark DeSaulnier',party:'D',population:751566,snapSubject:7771,medicaidSubject:44888,poverty:6.2,aiWorkers:124196},
+{state:'CA',district:11,rep:'Nancy Pelosi',party:'D',population:719966,snapSubject:18067,medicaidSubject:44811,poverty:10.8,aiWorkers:165772},
+{state:'CA',district:12,rep:'Lateefah Simon',party:'D',population:742524,snapSubject:19523,medicaidSubject:53373,poverty:12.6,aiWorkers:114753},
+{state:'CA',district:13,rep:'Adam Gray',party:'D',population:764602,snapSubject:26298,medicaidSubject:82039,poverty:18.7,aiWorkers:36822},
+{state:'CA',district:14,rep:'Eric Swalwell',party:'D',population:739348,snapSubject:9534,medicaidSubject:44778,poverty:6.9,aiWorkers:122047},
+{state:'CA',district:15,rep:'Kevin Mullin',party:'D',population:739004,snapSubject:9057,medicaidSubject:47390,poverty:7.1,aiWorkers:122775},
+{state:'CA',district:16,rep:'Sam T. Liccardo',party:'D',population:741859,snapSubject:7177,medicaidSubject:42442,poverty:6.2,aiWorkers:142569},
+{state:'CA',district:17,rep:'Ro Khanna',party:'D',population:740937,snapSubject:7114,medicaidSubject:34626,poverty:6.3,aiWorkers:182003},
+{state:'CA',district:18,rep:'Zoe Lofgren',party:'D',population:745175,snapSubject:14493,medicaidSubject:64182,poverty:11.5,aiWorkers:63992},
+{state:'CA',district:19,rep:'Jimmy Panetta',party:'D',population:739237,snapSubject:9650,medicaidSubject:51742,poverty:8.2,aiWorkers:105893},
+{state:'CA',district:20,rep:'Vince Fong',party:'R',population:757378,snapSubject:20345,medicaidSubject:61900,poverty:11.4,aiWorkers:72771},
+{state:'CA',district:21,rep:'Jim Costa',party:'D',population:750069,snapSubject:35725,medicaidSubject:88025,poverty:22.4,aiWorkers:40968},
+{state:'CA',district:22,rep:'David G. Valadao',party:'R',population:754136,snapSubject:31926,medicaidSubject:90241,poverty:22.6,aiWorkers:28498},
+{state:'CA',district:23,rep:'Jay Obernolte',party:'R',population:740991,snapSubject:25677,medicaidSubject:76245,poverty:16.1,aiWorkers:50659},
+{state:'CA',district:24,rep:'Salud O. Carbajal',party:'D',population:745456,snapSubject:14095,medicaidSubject:61707,poverty:13.4,aiWorkers:78473},
+{state:'CA',district:25,rep:'Raul Ruiz',party:'D',population:756760,snapSubject:29531,medicaidSubject:87383,poverty:16.0,aiWorkers:40698},
+{state:'CA',district:26,rep:'Julia Brownley',party:'D',population:746568,snapSubject:10872,medicaidSubject:55541,poverty:8.6,aiWorkers:82713},
+{state:'CA',district:27,rep:'George Whitesides',party:'D',population:735189,snapSubject:16327,medicaidSubject:55311,poverty:11.0,aiWorkers:72111},
+{state:'CA',district:28,rep:'Judy Chu',party:'D',population:740072,snapSubject:11373,medicaidSubject:55833,poverty:9.8,aiWorkers:102478},
+{state:'CA',district:29,rep:'Luz M. Rivas',party:'D',population:733751,snapSubject:22905,medicaidSubject:70887,poverty:16.6,aiWorkers:57179},
+{state:'CA',district:30,rep:'Laura Friedman',party:'D',population:740282,snapSubject:23211,medicaidSubject:54453,poverty:12.9,aiWorkers:106214},
+{state:'CA',district:31,rep:'Gilbert Ray Cisneros',party:'D',population:736855,snapSubject:16971,medicaidSubject:64084,poverty:11.4,aiWorkers:63979},
+{state:'CA',district:32,rep:'Brad Sherman',party:'D',population:759483,snapSubject:13022,medicaidSubject:53796,poverty:10.3,aiWorkers:109024},
+{state:'CA',district:33,rep:'Pete Aguilar',party:'D',population:751137,snapSubject:20744,medicaidSubject:66742,poverty:13.6,aiWorkers:54749},
+{state:'CA',district:34,rep:'Jimmy Gomez',party:'D',population:740863,snapSubject:30571,medicaidSubject:72971,poverty:20.9,aiWorkers:59651},
+{state:'CA',district:35,rep:'Norma J. Torres',party:'D',population:752966,snapSubject:16596,medicaidSubject:61224,poverty:11.9,aiWorkers:59681},
+{state:'CA',district:36,rep:'Ted Lieu',party:'D',population:733839,snapSubject:8853,medicaidSubject:40446,poverty:8.4,aiWorkers:133029},
+{state:'CA',district:37,rep:'Sydney Kamlager-Dove',party:'D',population:744232,snapSubject:29550,medicaidSubject:76890,poverty:20.7,aiWorkers:61779},
+{state:'CA',district:38,rep:'Linda T. Sánchez',party:'D',population:741217,snapSubject:12889,medicaidSubject:57784,poverty:9.6,aiWorkers:72629},
+{state:'CA',district:39,rep:'Mark Takano',party:'D',population:755939,snapSubject:15576,medicaidSubject:64317,poverty:12.2,aiWorkers:51815},
+{state:'CA',district:40,rep:'Young Kim',party:'R',population:752021,snapSubject:7164,medicaidSubject:46176,poverty:6.7,aiWorkers:116214},
+{state:'CA',district:41,rep:'Ken Calvert',party:'R',population:774047,snapSubject:12499,medicaidSubject:64074,poverty:9.2,aiWorkers:73549},
+{state:'CA',district:42,rep:'Robert Garcia',party:'D',population:740500,snapSubject:21599,medicaidSubject:67504,poverty:15.4,aiWorkers:62225},
+{state:'CA',district:43,rep:'Maxine Waters',party:'D',population:731613,snapSubject:26602,medicaidSubject:73134,poverty:16.6,aiWorkers:51200},
+{state:'CA',district:44,rep:'Nanette Diaz Barragán',party:'D',population:741435,snapSubject:20771,medicaidSubject:66813,poverty:13.5,aiWorkers:55428},
+{state:'CA',district:45,rep:'Derek Tran',party:'D',population:747288,snapSubject:13539,medicaidSubject:59979,poverty:10.0,aiWorkers:89699},
+{state:'CA',district:46,rep:'J. Luis Correa',party:'D',population:749303,snapSubject:17460,medicaidSubject:66579,poverty:12.6,aiWorkers:60742},
+{state:'CA',district:47,rep:'Dave Min',party:'D',population:751384,snapSubject:8726,medicaidSubject:44404,poverty:9.2,aiWorkers:130751},
+{state:'CA',district:48,rep:'Darrell Issa',party:'R',population:748263,snapSubject:11531,medicaidSubject:55510,poverty:8.3,aiWorkers:82074},
+{state:'CA',district:49,rep:'Mike Levin',party:'D',population:721570,snapSubject:7791,medicaidSubject:46574,poverty:7.4,aiWorkers:96846},
+{state:'CA',district:50,rep:'Scott H. Peters',party:'D',population:723680,snapSubject:10564,medicaidSubject:42161,poverty:9.6,aiWorkers:137878},
+{state:'CA',district:51,rep:'Sara Jacobs',party:'D',population:741277,snapSubject:16222,medicaidSubject:52506,poverty:11.1,aiWorkers:109641},
+{state:'CA',district:52,rep:'Juan Vargas',party:'D',population:729606,snapSubject:20457,medicaidSubject:61771,poverty:12.5,aiWorkers:61300},
+{state:'CO',district:1,rep:'Diana DeGette',party:'D',population:712528,snapSubject:16150,medicaidSubject:45990,poverty:11.2,aiWorkers:134460},
+{state:'CO',district:2,rep:'Joe Neguse',party:'D',population:716476,snapSubject:9849,medicaidSubject:40690,poverty:11.1,aiWorkers:115337},
+{state:'CO',district:3,rep:'Jeff Hurd',party:'R',population:716403,snapSubject:22731,medicaidSubject:68310,poverty:13.0,aiWorkers:68681},
+{state:'CO',district:4,rep:'Lauren Boebert',party:'R',population:731886,snapSubject:9176,medicaidSubject:42639,poverty:6.3,aiWorkers:112849},
+{state:'CO',district:5,rep:'Jeff Crank',party:'R',population:688092,snapSubject:14370,medicaidSubject:51191,poverty:8.6,aiWorkers:90973},
+{state:'CO',district:6,rep:'Jason Crow',party:'D',population:717744,snapSubject:12808,medicaidSubject:47530,poverty:8.7,aiWorkers:101524},
+{state:'CO',district:7,rep:'Brittany Pettersen',party:'D',population:705893,snapSubject:10681,medicaidSubject:46450,poverty:7.3,aiWorkers:117999},
+{state:'CO',district:8,rep:'Gabe Evans',party:'R',population:724781,snapSubject:14124,medicaidSubject:49971,poverty:9.1,aiWorkers:78170},
+{state:'CT',district:1,rep:'John B. Larson',party:'D',population:709931,snapSubject:24728,medicaidSubject:57130,poverty:10.6,aiWorkers:95863},
+{state:'CT',district:2,rep:'Joe Courtney',party:'D',population:699406,snapSubject:15489,medicaidSubject:53645,poverty:8.4,aiWorkers:90831},
+{state:'CT',district:3,rep:'Rosa L. DeLauro',party:'D',population:713197,snapSubject:21244,medicaidSubject:57991,poverty:10.4,aiWorkers:90641},
+{state:'CT',district:4,rep:'James A. Himes',party:'D',population:718733,snapSubject:14734,medicaidSubject:48801,poverty:9.8,aiWorkers:101922},
+{state:'CT',district:5,rep:'Jahana Hayes',party:'D',population:714436,snapSubject:21278,medicaidSubject:59588,poverty:11.0,aiWorkers:87380},
+{state:'DE',district:1,rep:'Sarah McBride',party:'D',population:992298,snapSubject:25302,medicaidSubject:83180,poverty:10.7,aiWorkers:114507},
+{state:'FL',district:1,rep:'Jimmy Patronis',party:'R',population:738713,snapSubject:19495,medicaidSubject:0,poverty:11.3,aiWorkers:76610},
+{state:'FL',district:2,rep:'Neal P. Dunn',party:'R',population:740957,snapSubject:25387,medicaidSubject:0,poverty:16.5,aiWorkers:74810},
+{state:'FL',district:3,rep:'Kat Cammack',party:'R',population:746506,snapSubject:23291,medicaidSubject:0,poverty:17.1,aiWorkers:72177},
+{state:'FL',district:4,rep:'Aaron Bean',party:'R',population:768485,snapSubject:26849,medicaidSubject:0,poverty:14.6,aiWorkers:72081},
+{state:'FL',district:5,rep:'John H. Rutherford',party:'R',population:776958,snapSubject:14965,medicaidSubject:0,poverty:9.8,aiWorkers:111008},
+{state:'FL',district:6,rep:'Randy Fine',party:'R',population:786871,snapSubject:25583,medicaidSubject:0,poverty:14.1,aiWorkers:59290},
+{state:'FL',district:7,rep:'Cory Mills',party:'R',population:774688,snapSubject:17825,medicaidSubject:0,poverty:9.5,aiWorkers:94371},
+{state:'FL',district:8,rep:'Mike Haridopolos',party:'R',population:777572,snapSubject:17103,medicaidSubject:0,poverty:10.2,aiWorkers:85320},
+{state:'FL',district:9,rep:'Darren Soto',party:'D',population:775265,snapSubject:23860,medicaidSubject:0,poverty:11.8,aiWorkers:77967},
+{state:'FL',district:10,rep:'Maxwell Frost',party:'D',population:777860,snapSubject:27891,medicaidSubject:0,poverty:15.7,aiWorkers:89390},
+{state:'FL',district:11,rep:'Daniel Webster',party:'R',population:782473,snapSubject:15019,medicaidSubject:0,poverty:9.3,aiWorkers:79142},
+{state:'FL',district:12,rep:'Gus M. Bilirakis',party:'R',population:784940,snapSubject:22879,medicaidSubject:0,poverty:12.5,aiWorkers:69846},
+{state:'FL',district:13,rep:'Anna Paulina Luna',party:'R',population:756224,snapSubject:16501,medicaidSubject:0,poverty:11.2,aiWorkers:91011},
+{state:'FL',district:14,rep:'Kathy Castor',party:'D',population:767426,snapSubject:26595,medicaidSubject:0,poverty:13.2,aiWorkers:106053},
+{state:'FL',district:15,rep:'Laurel M. Lee',party:'R',population:791818,snapSubject:22407,medicaidSubject:0,poverty:14.1,aiWorkers:89950},
+{state:'FL',district:16,rep:'Vern Buchanan',party:'R',population:789648,snapSubject:15494,medicaidSubject:0,poverty:10.1,aiWorkers:84786},
+{state:'FL',district:17,rep:'W. Gregory Steube',party:'R',population:795568,snapSubject:14787,medicaidSubject:0,poverty:9.8,aiWorkers:65952},
+{state:'FL',district:18,rep:'Scott Franklin',party:'R',population:784772,snapSubject:26898,medicaidSubject:0,poverty:16.4,aiWorkers:55465},
+{state:'FL',district:19,rep:'Byron Donalds',party:'R',population:781028,snapSubject:12692,medicaidSubject:0,poverty:10.6,aiWorkers:72802},
+{state:'FL',district:20,rep:'Sheila Cherfilus-McCormick',party:'D',population:767532,snapSubject:34183,medicaidSubject:0,poverty:16.6,aiWorkers:63730},
+{state:'FL',district:21,rep:'Brian J. Mast',party:'R',population:784337,snapSubject:16301,medicaidSubject:0,poverty:10.0,aiWorkers:80653},
+{state:'FL',district:22,rep:'Lois Frankel',party:'D',population:767709,snapSubject:18638,medicaidSubject:0,poverty:11.2,aiWorkers:78768},
+{state:'FL',district:23,rep:'Jared Moskowitz',party:'D',population:759425,snapSubject:13974,medicaidSubject:0,poverty:10.0,aiWorkers:98376},
+{state:'FL',district:24,rep:'Frederica S. Wilson',party:'D',population:771959,snapSubject:38270,medicaidSubject:0,poverty:16.7,aiWorkers:69702},
+{state:'FL',district:25,rep:'Debbie Wasserman Schultz',party:'D',population:765749,snapSubject:18389,medicaidSubject:0,poverty:10.8,aiWorkers:99443},
+{state:'FL',district:26,rep:'Mario Diaz-Balart',party:'R',population:775350,snapSubject:38326,medicaidSubject:0,poverty:14.2,aiWorkers:70079},
+{state:'FL',district:27,rep:'Maria Elvira Salazar',party:'R',population:746004,snapSubject:31430,medicaidSubject:0,poverty:13.1,aiWorkers:94656},
+{state:'FL',district:28,rep:'Carlos A. Gimenez',party:'R',population:755751,snapSubject:29547,medicaidSubject:0,poverty:13.8,aiWorkers:73594},
+{state:'GA',district:1,rep:'Earl L. Buddy Carter',party:'R',population:747054,snapSubject:23419,medicaidSubject:0,poverty:14.9,aiWorkers:63214},
+{state:'GA',district:2,rep:'Sanford D. Bishop',party:'D',population:724516,snapSubject:38284,medicaidSubject:0,poverty:22.1,aiWorkers:54525},
+{state:'GA',district:3,rep:'Brian Jack',party:'R',population:766254,snapSubject:21083,medicaidSubject:0,poverty:12.5,aiWorkers:71275},
+{state:'GA',district:4,rep:'Henry C. Hank Johnson',party:'D',population:765202,snapSubject:21768,medicaidSubject:0,poverty:13.5,aiWorkers:93528},
+{state:'GA',district:5,rep:'Nikema Williams',party:'D',population:749191,snapSubject:29085,medicaidSubject:0,poverty:16.6,aiWorkers:122472},
+{state:'GA',district:6,rep:'Lucy McBath',party:'D',population:773761,snapSubject:5093,medicaidSubject:0,poverty:5.8,aiWorkers:137071},
+{state:'GA',district:7,rep:'Richard McCormick',party:'R',population:767964,snapSubject:11762,medicaidSubject:0,poverty:10.7,aiWorkers:96138},
+{state:'GA',district:8,rep:'Austin Scott',party:'R',population:739362,snapSubject:26388,medicaidSubject:0,poverty:18.1,aiWorkers:59871},
+{state:'GA',district:9,rep:'Andrew S. Clyde',party:'R',population:769390,snapSubject:14188,medicaidSubject:0,poverty:11.4,aiWorkers:74514},
+{state:'GA',district:10,rep:'Mike Collins',party:'R',population:778677,snapSubject:17677,medicaidSubject:0,poverty:13.5,aiWorkers:72927},
+{state:'GA',district:11,rep:'Barry Loudermilk',party:'R',population:773056,snapSubject:10473,medicaidSubject:0,poverty:8.8,aiWorkers:106427},
+{state:'GA',district:12,rep:'Rick W. Allen',party:'R',population:737422,snapSubject:27286,medicaidSubject:0,poverty:17.5,aiWorkers:61762},
+{state:'GA',district:13,rep:'David Scott',party:'D',population:769961,snapSubject:24052,medicaidSubject:0,poverty:12.6,aiWorkers:76909},
+{state:'GA',district:14,rep:'Marjorie Taylor Greene',party:'R',population:765709,snapSubject:18575,medicaidSubject:0,poverty:11.7,aiWorkers:64530},
+{state:'HI',district:1,rep:'Ed Case',party:'D',population:689887,snapSubject:14164,medicaidSubject:52047,poverty:8.9,aiWorkers:78554},
+{state:'HI',district:2,rep:'Jill N. Tokuda',party:'D',population:696221,snapSubject:18156,medicaidSubject:59674,poverty:11.0,aiWorkers:58938},
+{state:'IA',district:1,rep:'Mariannette Miller-Meeks',party:'R',population:785266,snapSubject:19013,medicaidSubject:59736,poverty:11.9,aiWorkers:89346},
+{state:'IA',district:2,rep:'Ashley Hinson',party:'R',population:785500,snapSubject:16606,medicaidSubject:61730,poverty:10.4,aiWorkers:83899},
+{state:'IA',district:3,rep:'Zachary Nunn',party:'R',population:796715,snapSubject:19335,medicaidSubject:58270,poverty:10.3,aiWorkers:105570},
+{state:'IA',district:4,rep:'Randy Feenstra',party:'R',population:782135,snapSubject:15404,medicaidSubject:62285,poverty:11.4,aiWorkers:74478},
+{state:'ID',district:1,rep:'Russ Fulcher',party:'R',population:943877,snapSubject:14750,medicaidSubject:70220,poverty:9.8,aiWorkers:92500},
+{state:'ID',district:2,rep:'Michael K. Simpson',party:'R',population:922908,snapSubject:17201,medicaidSubject:66532,poverty:11.5,aiWorkers:94867},
+{state:'IL',district:1,rep:'Jonathan L. Jackson',party:'D',population:743437,snapSubject:38186,medicaidSubject:61852,poverty:15.3,aiWorkers:71917},
+{state:'IL',district:2,rep:'Robin L. Kelly',party:'D',population:733378,snapSubject:37872,medicaidSubject:70236,poverty:17.8,aiWorkers:55278},
+{state:'IL',district:3,rep:'Delia C. Ramirez',party:'D',population:735704,snapSubject:21561,medicaidSubject:48874,poverty:11.7,aiWorkers:83963},
+{state:'IL',district:4,rep:'Jesús G. Chuy García',party:'D',population:722821,snapSubject:23833,medicaidSubject:56501,poverty:13.0,aiWorkers:55450},
+{state:'IL',district:5,rep:'Mike Quigley',party:'D',population:741267,snapSubject:10710,medicaidSubject:35263,poverty:7.1,aiWorkers:151131},
+{state:'IL',district:6,rep:'Sean Casten',party:'D',population:741401,snapSubject:13465,medicaidSubject:47543,poverty:7.3,aiWorkers:97555},
+{state:'IL',district:7,rep:'Danny K. Davis',party:'D',population:733230,snapSubject:39461,medicaidSubject:57315,poverty:18.4,aiWorkers:116707},
+{state:'IL',district:8,rep:'Raja Krishnamoorthi',party:'D',population:745168,snapSubject:14644,medicaidSubject:45442,poverty:7.5,aiWorkers:97759},
+{state:'IL',district:9,rep:'Janice D. Schakowsky',party:'D',population:733069,snapSubject:17856,medicaidSubject:46241,poverty:10.6,aiWorkers:116177},
+{state:'IL',district:10,rep:'Bradley Scott Schneider',party:'D',population:733582,snapSubject:14284,medicaidSubject:45966,poverty:8.2,aiWorkers:96570},
+{state:'IL',district:11,rep:'Bill Foster',party:'D',population:745547,snapSubject:13924,medicaidSubject:42653,poverty:7.0,aiWorkers:103614},
+{state:'IL',district:12,rep:'Mike Bost',party:'R',population:723976,snapSubject:26486,medicaidSubject:62508,poverty:12.9,aiWorkers:65805},
+{state:'IL',district:13,rep:'Nikki Budzinski',party:'D',population:737315,snapSubject:31173,medicaidSubject:61342,poverty:17.0,aiWorkers:75254},
+{state:'IL',district:14,rep:'Lauren Underwood',party:'D',population:750478,snapSubject:18927,medicaidSubject:47182,poverty:9.2,aiWorkers:82599},
+{state:'IL',district:15,rep:'Mary E. Miller',party:'R',population:730290,snapSubject:21140,medicaidSubject:58768,poverty:10.5,aiWorkers:71054},
+{state:'IL',district:16,rep:'Darin LaHood',party:'R',population:741685,snapSubject:16293,medicaidSubject:53002,poverty:8.4,aiWorkers:84137},
+{state:'IL',district:17,rep:'Eric Sorensen',party:'D',population:730150,snapSubject:36270,medicaidSubject:66255,poverty:17.7,aiWorkers:61279},
+{state:'IN',district:1,rep:'Frank J. Mrvan',party:'D',population:743617,snapSubject:19122,medicaidSubject:59685,poverty:13.4,aiWorkers:65723},
+{state:'IN',district:2,rep:'Rudy Yakym',party:'R',population:741999,snapSubject:13980,medicaidSubject:55823,poverty:12.9,aiWorkers:62541},
+{state:'IN',district:3,rep:'Marlin A. Stutzman',party:'R',population:750189,snapSubject:14391,medicaidSubject:54710,poverty:11.1,aiWorkers:69294},
+{state:'IN',district:4,rep:'James R. Baird',party:'R',population:751301,snapSubject:10546,medicaidSubject:46919,poverty:10.4,aiWorkers:80224},
+{state:'IN',district:5,rep:'Victoria Spartz',party:'R',population:753764,snapSubject:14688,medicaidSubject:51811,poverty:10.2,aiWorkers:98909},
+{state:'IN',district:6,rep:'Jefferson Shreve',party:'R',population:745783,snapSubject:14546,medicaidSubject:55483,poverty:10.6,aiWorkers:83247},
+{state:'IN',district:7,rep:'André Carson',party:'D',population:742221,snapSubject:23990,medicaidSubject:60506,poverty:16.2,aiWorkers:85520},
+{state:'IN',district:8,rep:'Mark B. Messmer',party:'R',population:738548,snapSubject:17154,medicaidSubject:59742,poverty:13.2,aiWorkers:66523},
+{state:'IN',district:9,rep:'Erin Houchin',party:'R',population:747489,snapSubject:13436,medicaidSubject:54200,poverty:11.8,aiWorkers:75449},
+{state:'KS',district:1,rep:'Tracey Mann',party:'R',population:711767,snapSubject:11242,medicaidSubject:0,poverty:13.0,aiWorkers:70326},
+{state:'KS',district:2,rep:'Derek Schmidt',party:'R',population:711072,snapSubject:15661,medicaidSubject:0,poverty:13.7,aiWorkers:64907},
+{state:'KS',district:3,rep:'Sharice Davids',party:'D',population:732405,snapSubject:5167,medicaidSubject:0,poverty:6.4,aiWorkers:124696},
+{state:'KS',district:4,rep:'Ron Estes',party:'R',population:720555,snapSubject:15449,medicaidSubject:0,poverty:13.1,aiWorkers:71415},
+{state:'KY',district:1,rep:'James Comer',party:'R',population:730471,snapSubject:22379,medicaidSubject:72101,poverty:17.1,aiWorkers:56162},
+{state:'KY',district:2,rep:'Brett Guthrie',party:'R',population:746379,snapSubject:19651,medicaidSubject:67884,poverty:14.7,aiWorkers:63880},
+{state:'KY',district:3,rep:'Morgan McGarvey',party:'D',population:734683,snapSubject:20056,medicaidSubject:64972,poverty:15.0,aiWorkers:84239},
+{state:'KY',district:4,rep:'Thomas Massie',party:'R',population:745557,snapSubject:14260,medicaidSubject:56403,poverty:10.8,aiWorkers:83483},
+{state:'KY',district:5,rep:'Harold Rogers',party:'R',population:726790,snapSubject:37739,medicaidSubject:89862,poverty:24.7,aiWorkers:44584},
+{state:'KY',district:6,rep:'Andy Barr',party:'R',population:745453,snapSubject:19318,medicaidSubject:61394,poverty:14.8,aiWorkers:83978},
+{state:'LA',district:1,rep:'Steve Scalise',party:'R',population:757007,snapSubject:18934,medicaidSubject:64567,poverty:13.6,aiWorkers:85188},
+{state:'LA',district:2,rep:'Troy A. Carter',party:'D',population:749740,snapSubject:37814,medicaidSubject:78874,poverty:22.6,aiWorkers:65040},
+{state:'LA',district:3,rep:'Clay Higgins',party:'R',population:760388,snapSubject:28300,medicaidSubject:70911,poverty:18.8,aiWorkers:65102},
+{state:'LA',district:4,rep:'Mike Johnson',party:'R',population:739654,snapSubject:33428,medicaidSubject:79673,poverty:21.7,aiWorkers:54636},
+{state:'LA',district:5,rep:'Julia Letlow',party:'R',population:735840,snapSubject:35610,medicaidSubject:81266,poverty:23.4,aiWorkers:54065},
+{state:'LA',district:6,rep:'Cleo Fields',party:'D',population:780442,snapSubject:20523,medicaidSubject:58879,poverty:13.6,aiWorkers:84253},
+{state:'MA',district:1,rep:'Richard E. Neal',party:'D',population:768357,snapSubject:37724,medicaidSubject:74874,poverty:13.1,aiWorkers:80081},
+{state:'MA',district:2,rep:'James P. McGovern',party:'D',population:768860,snapSubject:24993,medicaidSubject:58166,poverty:10.8,aiWorkers:109429},
+{state:'MA',district:3,rep:'Lori Trahan',party:'D',population:766741,snapSubject:29638,medicaidSubject:63951,poverty:9.8,aiWorkers:102915},
+{state:'MA',district:4,rep:'Jake Auchincloss',party:'D',population:774707,snapSubject:21197,medicaidSubject:53413,poverty:8.1,aiWorkers:124716},
+{state:'MA',district:5,rep:'Katherine M. Clark',party:'D',population:767903,snapSubject:14801,medicaidSubject:49082,poverty:7.8,aiWorkers:146733},
+{state:'MA',district:6,rep:'Seth Moulton',party:'D',population:772172,snapSubject:18178,medicaidSubject:55504,poverty:7.0,aiWorkers:121879},
+{state:'MA',district:7,rep:'Ayanna Pressley',party:'D',population:764906,snapSubject:35015,medicaidSubject:60913,poverty:17.0,aiWorkers:126587},
+{state:'MA',district:8,rep:'Stephen F. Lynch',party:'D',population:770260,snapSubject:22137,medicaidSubject:54237,poverty:8.5,aiWorkers:137982},
+{state:'MA',district:9,rep:'William R. Keating',party:'D',population:772984,snapSubject:21266,medicaidSubject:68360,poverty:8.0,aiWorkers:94138},
+{state:'MD',district:1,rep:'Andy Harris',party:'R',population:766135,snapSubject:19769,medicaidSubject:61653,poverty:9.5,aiWorkers:94380},
+{state:'MD',district:2,rep:'Johnny Olszewski',party:'D',population:761825,snapSubject:14929,medicaidSubject:52365,poverty:8.4,aiWorkers:115078},
+{state:'MD',district:3,rep:'Sarah Elfreth',party:'D',population:760667,snapSubject:10894,medicaidSubject:44315,poverty:5.4,aiWorkers:135892},
+{state:'MD',district:4,rep:'Glenn Ivey',party:'D',population:753129,snapSubject:20610,medicaidSubject:57923,poverty:11.9,aiWorkers:84062},
+{state:'MD',district:5,rep:'Steny H. Hoyer',party:'D',population:761144,snapSubject:12222,medicaidSubject:45300,poverty:5.4,aiWorkers:122123},
+{state:'MD',district:6,rep:'April McClain Delaney',party:'D',population:767736,snapSubject:19282,medicaidSubject:53415,poverty:9.1,aiWorkers:111413},
+{state:'MD',district:7,rep:'Kweisi Mfume',party:'D',population:748511,snapSubject:42627,medicaidSubject:72940,poverty:18.7,aiWorkers:84702},
+{state:'MD',district:8,rep:'Jamie Raskin',party:'D',population:760271,snapSubject:10901,medicaidSubject:47638,poverty:6.7,aiWorkers:136963},
+{state:'ME',district:1,rep:'Chellie Pingree',party:'D',population:680967,snapSubject:14203,medicaidSubject:50090,poverty:8.1,aiWorkers:90216},
+{state:'ME',district:2,rep:'Jared F. Golden',party:'D',population:678840,snapSubject:26744,medicaidSubject:63021,poverty:13.5,aiWorkers:64684},
+{state:'MI',district:1,rep:'Jack Bergman',party:'R',population:765701,snapSubject:22379,medicaidSubject:75899,poverty:12.6,aiWorkers:63541},
+{state:'MI',district:2,rep:'John R. Moolenaar',party:'R',population:764745,snapSubject:22155,medicaidSubject:66990,poverty:13.0,aiWorkers:61116},
+{state:'MI',district:3,rep:'Hillary J. Scholten',party:'D',population:765442,snapSubject:19815,medicaidSubject:55501,poverty:11.7,aiWorkers:91335},
+{state:'MI',district:4,rep:'Bill Huizenga',party:'R',population:769612,snapSubject:19224,medicaidSubject:57578,poverty:12.2,aiWorkers:81029},
+{state:'MI',district:5,rep:'Tim Walberg',party:'R',population:757640,snapSubject:20079,medicaidSubject:64780,poverty:12.0,aiWorkers:66012},
+{state:'MI',district:6,rep:'Debbie Dingell',party:'D',population:761523,snapSubject:12395,medicaidSubject:46440,poverty:9.9,aiWorkers:121314},
+{state:'MI',district:7,rep:'Tom Barrett',party:'R',population:769636,snapSubject:16614,medicaidSubject:53547,poverty:10.4,aiWorkers:93054},
+{state:'MI',district:8,rep:'Kristen McDonald Rivet',party:'D',population:764058,snapSubject:33322,medicaidSubject:75576,poverty:15.7,aiWorkers:68114},
+{state:'MI',district:9,rep:'Lisa C. McClain',party:'R',population:768489,snapSubject:16239,medicaidSubject:57333,poverty:8.7,aiWorkers:84466},
+{state:'MI',district:10,rep:'John James',party:'R',population:764957,snapSubject:23229,medicaidSubject:62199,poverty:10.0,aiWorkers:87410},
+{state:'MI',district:11,rep:'Haley M. Stevens',party:'D',population:769163,snapSubject:16262,medicaidSubject:50774,poverty:8.7,aiWorkers:132482},
+{state:'MI',district:12,rep:'Rashida Tlaib',party:'D',population:762191,snapSubject:40231,medicaidSubject:80822,poverty:19.8,aiWorkers:67186},
+{state:'MI',district:13,rep:'Shri Thanedar',party:'D',population:761141,snapSubject:48634,medicaidSubject:85815,poverty:25.0,aiWorkers:54745},
+{state:'MN',district:1,rep:'Brad Finstad',party:'R',population:702718,snapSubject:12622,medicaidSubject:52131,poverty:10.1,aiWorkers:86072},
+{state:'MN',district:2,rep:'Angie Craig',party:'D',population:717116,snapSubject:7719,medicaidSubject:42229,poverty:5.2,aiWorkers:105480},
+{state:'MN',district:3,rep:'Kelly Morrison',party:'D',population:702814,snapSubject:8302,medicaidSubject:43449,poverty:6.5,aiWorkers:119015},
+{state:'MN',district:4,rep:'Betty McCollum',party:'D',population:699483,snapSubject:15822,medicaidSubject:52624,poverty:10.8,aiWorkers:99129},
+{state:'MN',district:5,rep:'Ilhan Omar',party:'D',population:700222,snapSubject:19655,medicaidSubject:49892,poverty:13.5,aiWorkers:116356},
+{state:'MN',district:6,rep:'Tom Emmer',party:'R',population:718857,snapSubject:8560,medicaidSubject:42783,poverty:6.4,aiWorkers:94316},
+{state:'MN',district:7,rep:'Michelle Fischbach',party:'R',population:704151,snapSubject:13908,medicaidSubject:59026,poverty:10.2,aiWorkers:67525},
+{state:'MN',district:8,rep:'Pete Stauber',party:'R',population:707527,snapSubject:15455,medicaidSubject:62423,poverty:11.0,aiWorkers:70507},
+{state:'MO',district:1,rep:'Wesley Bell',party:'D',population:750146,snapSubject:30578,medicaidSubject:54864,poverty:16.4,aiWorkers:94812},
+{state:'MO',district:2,rep:'Ann Wagner',party:'R',population:757985,snapSubject:6748,medicaidSubject:41776,poverty:5.7,aiWorkers:119769},
+{state:'MO',district:3,rep:'Robert F. Onder',party:'R',population:761901,snapSubject:10792,medicaidSubject:46144,poverty:9.8,aiWorkers:95550},
+{state:'MO',district:4,rep:'Mark Alford',party:'R',population:752878,snapSubject:17413,medicaidSubject:56799,poverty:13.2,aiWorkers:67181},
+{state:'MO',district:5,rep:'Emanuel Cleaver',party:'D',population:762852,snapSubject:19953,medicaidSubject:50198,poverty:14.1,aiWorkers:90616},
+{state:'MO',district:6,rep:'Sam Graves',party:'R',population:752410,snapSubject:14183,medicaidSubject:50772,poverty:11.7,aiWorkers:73237},
+{state:'MO',district:7,rep:'Eric Burlison',party:'R',population:769451,snapSubject:20333,medicaidSubject:58695,poverty:14.7,aiWorkers:70232},
+{state:'MO',district:8,rep:'Jason Smith',party:'R',population:755166,snapSubject:24878,medicaidSubject:62827,poverty:15.5,aiWorkers:61605},
+{state:'MS',district:1,rep:'Trent Kelly',party:'R',population:731714,snapSubject:17186,medicaidSubject:0,poverty:15.2,aiWorkers:60891},
+{state:'MS',district:2,rep:'Bennie G. Thompson',party:'D',population:705551,snapSubject:31601,medicaidSubject:0,poverty:25.9,aiWorkers:45772},
+{state:'MS',district:3,rep:'Michael Guest',party:'R',population:722733,snapSubject:19468,medicaidSubject:0,poverty:18.2,aiWorkers:65407},
+{state:'MS',district:4,rep:'Mike Ezell',party:'R',population:724447,snapSubject:22459,medicaidSubject:0,poverty:17.2,aiWorkers:61581},
+{state:'MT',district:1,rep:'Ryan K. Zinke',party:'R',population:550349,snapSubject:10754,medicaidSubject:45672,poverty:12.0,aiWorkers:60815},
+{state:'MT',district:2,rep:'Troy Downing',party:'R',population:537827,snapSubject:11392,medicaidSubject:47338,poverty:12.1,aiWorkers:58260},
+{state:'NC',district:1,rep:'Donald G. Davis',party:'D',population:733820,snapSubject:35213,medicaidSubject:65665,poverty:18.2,aiWorkers:61143},
+{state:'NC',district:2,rep:'Deborah K. Ross',party:'D',population:750808,snapSubject:9689,medicaidSubject:35559,poverty:7.6,aiWorkers:143113},
+{state:'NC',district:3,rep:'Gregory F. Murphy',party:'R',population:695551,snapSubject:23995,medicaidSubject:60054,poverty:14.1,aiWorkers:56764},
+{state:'NC',district:4,rep:'Valerie P. Foushee',party:'D',population:741240,snapSubject:18163,medicaidSubject:48310,poverty:13.1,aiWorkers:106272},
+{state:'NC',district:5,rep:'Virginia Foxx',party:'R',population:740149,snapSubject:24163,medicaidSubject:60182,poverty:15.2,aiWorkers:68515},
+{state:'NC',district:6,rep:'Addison P. McDowell',party:'R',population:743062,snapSubject:26520,medicaidSubject:57460,poverty:15.2,aiWorkers:75243},
+{state:'NC',district:7,rep:'David Rouzer',party:'R',population:750977,snapSubject:29097,medicaidSubject:65941,poverty:15.7,aiWorkers:68433},
+{state:'NC',district:8,rep:'Mark Harris',party:'R',population:747442,snapSubject:22480,medicaidSubject:56546,poverty:12.9,aiWorkers:73465},
+{state:'NC',district:9,rep:'Richard Hudson',party:'R',population:705596,snapSubject:25351,medicaidSubject:60330,poverty:15.2,aiWorkers:59984},
+{state:'NC',district:10,rep:'Pat Harrigan',party:'R',population:748790,snapSubject:22095,medicaidSubject:59002,poverty:12.9,aiWorkers:68522},
+{state:'NC',district:11,rep:'Chuck Edwards',party:'R',population:742740,snapSubject:19621,medicaidSubject:63817,poverty:13.0,aiWorkers:69589},
+{state:'NC',district:12,rep:'Alma S. Adams',party:'D',population:750211,snapSubject:16729,medicaidSubject:44807,poverty:10.7,aiWorkers:98325},
+{state:'NC',district:13,rep:'Brad Knott',party:'R',population:761758,snapSubject:18250,medicaidSubject:48689,poverty:10.7,aiWorkers:97406},
+{state:'NC',district:14,rep:'Tim Moore',party:'R',population:754560,snapSubject:17386,medicaidSubject:43011,poverty:10.2,aiWorkers:119273},
+{state:'ND',district:1,rep:'Julie Fedorchak',party:'R',population:761569,snapSubject:12219,medicaidSubject:44847,poverty:10.6,aiWorkers:90259},
+{state:'NE',district:1,rep:'Mike Flood',party:'R',population:645015,snapSubject:11278,medicaidSubject:38929,poverty:9.4,aiWorkers:78445},
+{state:'NE',district:2,rep:'Don Bacon',party:'R',population:650286,snapSubject:13136,medicaidSubject:38157,poverty:10.5,aiWorkers:92364},
+{state:'NE',district:3,rep:'Adrian Smith',party:'R',population:642241,snapSubject:12595,medicaidSubject:46837,poverty:11.0,aiWorkers:59628},
+{state:'NH',district:1,rep:'Chris Pappas',party:'D',population:686611,snapSubject:9707,medicaidSubject:45181,poverty:7.0,aiWorkers:97460},
+{state:'NH',district:2,rep:'Maggie Goodlander',party:'D',population:684892,snapSubject:9598,medicaidSubject:47938,poverty:7.3,aiWorkers:93336},
+{state:'NJ',district:1,rep:'Donald Norcross',party:'D',population:767260,snapSubject:19113,medicaidSubject:57241,poverty:10.9,aiWorkers:94211},
+{state:'NJ',district:2,rep:'Jefferson Van Drew',party:'R',population:764965,snapSubject:18712,medicaidSubject:65727,poverty:11.5,aiWorkers:71533},
+{state:'NJ',district:3,rep:'Herbert C. Conaway',party:'D',population:762566,snapSubject:7395,medicaidSubject:45545,poverty:6.1,aiWorkers:110598},
+{state:'NJ',district:4,rep:'Christopher H. Smith',party:'R',population:775188,snapSubject:10018,medicaidSubject:65143,poverty:9.4,aiWorkers:85609},
+{state:'NJ',district:5,rep:'Josh Gottheimer',party:'D',population:765845,snapSubject:7017,medicaidSubject:43494,poverty:5.6,aiWorkers:121354},
+{state:'NJ',district:6,rep:'Frank Pallone',party:'D',population:766854,snapSubject:14299,medicaidSubject:47729,poverty:9.7,aiWorkers:104457},
+{state:'NJ',district:7,rep:'Thomas H. Kean',party:'R',population:770629,snapSubject:6795,medicaidSubject:40535,poverty:4.8,aiWorkers:122908},
+{state:'NJ',district:8,rep:'Robert Menendez',party:'D',population:753975,snapSubject:25092,medicaidSubject:53564,poverty:15.1,aiWorkers:97210},
+{state:'NJ',district:9,rep:'Nellie Pou',party:'D',population:760405,snapSubject:23600,medicaidSubject:59439,poverty:13.1,aiWorkers:82334},
+{state:'NJ',district:10,rep:'LaMonica McIver',party:'D',population:756134,snapSubject:28628,medicaidSubject:63383,poverty:17.0,aiWorkers:73564},
+{state:'NJ',district:11,rep:'VACANT',party:'-',population:766329,snapSubject:6703,medicaidSubject:39185,poverty:5.1,aiWorkers:127113},
+{state:'NJ',district:12,rep:'Bonnie Watson Coleman',party:'D',population:764258,snapSubject:12522,medicaidSubject:48208,poverty:9.4,aiWorkers:111829},
+{state:'NM',district:1,rep:'Melanie A. Stansbury',party:'D',population:701736,snapSubject:27403,medicaidSubject:67206,poverty:14.0,aiWorkers:87122},
+{state:'NM',district:2,rep:'Gabe Vasquez',party:'D',population:688192,snapSubject:32587,medicaidSubject:77158,poverty:20.4,aiWorkers:51727},
+{state:'NM',district:3,rep:'Teresa Leger Fernandez',party:'D',population:687943,snapSubject:30541,medicaidSubject:77274,poverty:19.9,aiWorkers:54344},
+{state:'NV',district:1,rep:'Dina Titus',party:'D',population:758775,snapSubject:27268,medicaidSubject:61697,poverty:14.6,aiWorkers:55955},
+{state:'NV',district:2,rep:'Mark E. Amodei',party:'R',population:772217,snapSubject:18292,medicaidSubject:54860,poverty:10.6,aiWorkers:75551},
+{state:'NV',district:3,rep:'Susie Lee',party:'D',population:792624,snapSubject:16188,medicaidSubject:52987,poverty:11.5,aiWorkers:91470},
+{state:'NV',district:4,rep:'Steven Horsford',party:'D',population:779426,snapSubject:24227,medicaidSubject:63539,poverty:13.8,aiWorkers:53762},
+{state:'NY',district:1,rep:'Nick LaLota',party:'R',population:772516,snapSubject:7819,medicaidSubject:49539,poverty:6.0,aiWorkers:101030},
+{state:'NY',district:2,rep:'Andrew R. Garbarino',party:'R',population:770859,snapSubject:11853,medicaidSubject:51209,poverty:6.6,aiWorkers:81780},
+{state:'NY',district:3,rep:'Thomas R. Suozzi',party:'D',population:768095,snapSubject:7170,medicaidSubject:51831,poverty:5.7,aiWorkers:112009},
+{state:'NY',district:4,rep:'Laura Gillen',party:'D',population:767314,snapSubject:8410,medicaidSubject:50813,poverty:5.8,aiWorkers:95710},
+{state:'NY',district:5,rep:'Gregory W. Meeks',party:'D',population:786114,snapSubject:26127,medicaidSubject:73475,poverty:12.2,aiWorkers:66420},
+{state:'NY',district:6,rep:'Grace Meng',party:'D',population:733947,snapSubject:23094,medicaidSubject:69675,poverty:12.5,aiWorkers:85044},
+{state:'NY',district:7,rep:'Nydia M. Velázquez',party:'D',population:744182,snapSubject:30505,medicaidSubject:64409,poverty:17.0,aiWorkers:95826},
+{state:'NY',district:8,rep:'Hakeem S. Jeffries',party:'D',population:765175,snapSubject:49153,medicaidSubject:82903,poverty:22.1,aiWorkers:69855},
+{state:'NY',district:9,rep:'Yvette D. Clarke',party:'D',population:745411,snapSubject:35589,medicaidSubject:75919,poverty:17.7,aiWorkers:74973},
+{state:'NY',district:10,rep:'Daniel S. Goldman',party:'D',population:728115,snapSubject:26038,medicaidSubject:55084,poverty:15.3,aiWorkers:124826},
+{state:'NY',district:11,rep:'Nicole Malliotakis',party:'R',population:749054,snapSubject:23637,medicaidSubject:64987,poverty:12.8,aiWorkers:79948},
+{state:'NY',district:12,rep:'Jerrold Nadler',party:'D',population:714147,snapSubject:11875,medicaidSubject:40408,poverty:9.2,aiWorkers:171713},
+{state:'NY',district:13,rep:'Adriano Espaillat',party:'D',population:780528,snapSubject:55982,medicaidSubject:83421,poverty:25.0,aiWorkers:69498},
+{state:'NY',district:14,rep:'Alexandria Ocasio-Cortez',party:'D',population:711184,snapSubject:36120,medicaidSubject:73774,poverty:18.6,aiWorkers:57527},
+{state:'NY',district:15,rep:'Ritchie Torres',party:'D',population:744306,snapSubject:67738,medicaidSubject:94992,poverty:30.0,aiWorkers:43754},
+{state:'NY',district:16,rep:'George Latimer',party:'D',population:771225,snapSubject:21946,medicaidSubject:58183,poverty:11.2,aiWorkers:97600},
+{state:'NY',district:17,rep:'Michael Lawler',party:'R',population:765601,snapSubject:10858,medicaidSubject:60005,poverty:10.1,aiWorkers:97695},
+{state:'NY',district:18,rep:'Patrick Ryan',party:'D',population:765559,snapSubject:16081,medicaidSubject:62248,poverty:12.1,aiWorkers:80988},
+{state:'NY',district:19,rep:'Josh Riley',party:'D',population:762096,snapSubject:23633,medicaidSubject:71230,poverty:14.8,aiWorkers:74487},
+{state:'NY',district:20,rep:'Paul Tonko',party:'D',population:772602,snapSubject:20914,medicaidSubject:60230,poverty:11.6,aiWorkers:107134},
+{state:'NY',district:21,rep:'Elise M. Stefanik',party:'R',population:746956,snapSubject:23000,medicaidSubject:68875,poverty:12.4,aiWorkers:69140},
+{state:'NY',district:22,rep:'John W. Mannion',party:'D',population:757916,snapSubject:27003,medicaidSubject:68457,poverty:13.8,aiWorkers:85160},
+{state:'NY',district:23,rep:'Nicholas A. Langworthy',party:'R',population:762930,snapSubject:24730,medicaidSubject:68909,poverty:12.5,aiWorkers:78193},
+{state:'NY',district:24,rep:'Claudia Tenney',party:'R',population:756832,snapSubject:23900,medicaidSubject:68041,poverty:12.4,aiWorkers:69011},
+{state:'NY',district:25,rep:'Joseph D. Morelle',party:'D',population:764861,snapSubject:28084,medicaidSubject:65237,poverty:13.0,aiWorkers:99197},
+{state:'NY',district:26,rep:'Timothy M. Kennedy',party:'D',population:766721,snapSubject:36739,medicaidSubject:74233,poverty:16.8,aiWorkers:81413},
+{state:'OH',district:1,rep:'Greg Landsman',party:'D',population:775522,snapSubject:20839,medicaidSubject:51682,poverty:13.4,aiWorkers:114899},
+{state:'OH',district:2,rep:'David J. Taylor',party:'R',population:770142,snapSubject:28043,medicaidSubject:69399,poverty:15.0,aiWorkers:68110},
+{state:'OH',district:3,rep:'Joyce Beatty',party:'D',population:781498,snapSubject:21491,medicaidSubject:55192,poverty:15.9,aiWorkers:111542},
+{state:'OH',district:4,rep:'Jim Jordan',party:'R',population:772550,snapSubject:18297,medicaidSubject:56017,poverty:10.4,aiWorkers:85645},
+{state:'OH',district:5,rep:'Robert E. Latta',party:'R',population:775902,snapSubject:19037,medicaidSubject:59187,poverty:11.6,aiWorkers:74767},
+{state:'OH',district:6,rep:'Michael A. Rulli',party:'R',population:763814,snapSubject:28936,medicaidSubject:71390,poverty:15.0,aiWorkers:63098},
+{state:'OH',district:7,rep:'Max L. Miller',party:'R',population:774628,snapSubject:12489,medicaidSubject:52921,poverty:7.2,aiWorkers:102588},
+{state:'OH',district:8,rep:'Warren Davidson',party:'R',population:777916,snapSubject:16597,medicaidSubject:57384,poverty:11.2,aiWorkers:85721},
+{state:'OH',district:9,rep:'Marcy Kaptur',party:'D',population:773554,snapSubject:26401,medicaidSubject:65330,poverty:14.5,aiWorkers:73553},
+{state:'OH',district:10,rep:'Michael R. Turner',party:'R',population:771120,snapSubject:25901,medicaidSubject:65448,poverty:14.2,aiWorkers:85550},
+{state:'OH',district:11,rep:'Shontel M. Brown',party:'D',population:766872,snapSubject:46280,medicaidSubject:77783,poverty:21.8,aiWorkers:86002},
+{state:'OH',district:12,rep:'Troy Balderson',party:'R',population:784042,snapSubject:21514,medicaidSubject:59479,poverty:11.8,aiWorkers:78493},
+{state:'OH',district:13,rep:'Emilia Strong Sykes',party:'D',population:775653,snapSubject:26445,medicaidSubject:64857,poverty:12.7,aiWorkers:88545},
+{state:'OH',district:14,rep:'David P. Joyce',party:'R',population:774846,snapSubject:20465,medicaidSubject:63328,poverty:12.0,aiWorkers:77201},
+{state:'OH',district:15,rep:'Mike Carey',party:'R',population:774725,snapSubject:19518,medicaidSubject:55687,poverty:12.1,aiWorkers:99146},
+{state:'OK',district:1,rep:'Kevin Hern',party:'R',population:792687,snapSubject:22184,medicaidSubject:56148,poverty:13.8,aiWorkers:86070},
+{state:'OK',district:2,rep:'Josh Brecheen',party:'R',population:782024,snapSubject:30462,medicaidSubject:72437,poverty:18.2,aiWorkers:54969},
+{state:'OK',district:3,rep:'Frank D. Lucas',party:'R',population:774399,snapSubject:26397,medicaidSubject:61506,poverty:17.9,aiWorkers:56976},
+{state:'OK',district:4,rep:'Tom Cole',party:'R',population:770624,snapSubject:23062,medicaidSubject:58300,poverty:14.3,aiWorkers:73672},
+{state:'OK',district:5,rep:'Stephanie I. Bice',party:'R',population:787051,snapSubject:21250,medicaidSubject:53934,poverty:12.5,aiWorkers:96522},
+{state:'OR',district:1,rep:'Suzanne Bonamici',party:'D',population:701349,snapSubject:19655,medicaidSubject:46445,poverty:9.4,aiWorkers:111176},
+{state:'OR',district:2,rep:'Cliff Bentz',party:'R',population:694105,snapSubject:32917,medicaidSubject:74184,poverty:13.9,aiWorkers:55596},
+{state:'OR',district:3,rep:'Maxine Dexter',party:'D',population:693656,snapSubject:25144,medicaidSubject:52041,poverty:11.9,aiWorkers:93095},
+{state:'OR',district:4,rep:'Val T. Hoyle',party:'D',population:703108,snapSubject:31807,medicaidSubject:69400,poverty:15.7,aiWorkers:65010},
+{state:'OR',district:5,rep:'Janelle S. Bynum',party:'D',population:707151,snapSubject:19761,medicaidSubject:56906,poverty:9.4,aiWorkers:84413},
+{state:'OR',district:6,rep:'Andrea Salinas',party:'D',population:697577,snapSubject:24384,medicaidSubject:56428,poverty:11.1,aiWorkers:78349},
+{state:'PA',district:1,rep:'Brian K. Fitzpatrick',party:'R',population:757695,snapSubject:12201,medicaidSubject:48906,poverty:5.9,aiWorkers:113854},
+{state:'PA',district:2,rep:'Brendan F. Boyle',party:'D',population:744987,snapSubject:51463,medicaidSubject:77437,poverty:22.9,aiWorkers:70968},
+{state:'PA',district:3,rep:'Dwight Evans',party:'D',population:753959,snapSubject:46965,medicaidSubject:66045,poverty:21.0,aiWorkers:102781},
+{state:'PA',district:4,rep:'Madeleine Dean',party:'D',population:754915,snapSubject:10534,medicaidSubject:46828,poverty:6.3,aiWorkers:118093},
+{state:'PA',district:5,rep:'Mary Gay Scanlon',party:'D',population:754883,snapSubject:23660,medicaidSubject:55685,poverty:11.3,aiWorkers:99185},
+{state:'PA',district:6,rep:'Chrissy Houlahan',party:'D',population:765566,snapSubject:16673,medicaidSubject:50697,poverty:8.9,aiWorkers:113800},
+{state:'PA',district:7,rep:'Ryan Mackenzie',party:'R',population:761627,snapSubject:22930,medicaidSubject:60332,poverty:10.6,aiWorkers:81732},
+{state:'PA',district:8,rep:'Robert P. Bresnahan',party:'R',population:751272,snapSubject:31195,medicaidSubject:68014,poverty:14.0,aiWorkers:69469},
+{state:'PA',district:9,rep:'Daniel Meuser',party:'R',population:745956,snapSubject:23459,medicaidSubject:62843,poverty:11.6,aiWorkers:67580},
+{state:'PA',district:10,rep:'Scott Perry',party:'R',population:759765,snapSubject:19766,medicaidSubject:57478,poverty:10.0,aiWorkers:93629},
+{state:'PA',district:11,rep:'Lloyd Smucker',party:'R',population:760748,snapSubject:15177,medicaidSubject:54523,poverty:8.3,aiWorkers:82219},
+{state:'PA',district:12,rep:'Summer L. Lee',party:'D',population:753477,snapSubject:29640,medicaidSubject:58739,poverty:13.7,aiWorkers:109126},
+{state:'PA',district:13,rep:'John Joyce',party:'R',population:752423,snapSubject:24634,medicaidSubject:64334,poverty:11.0,aiWorkers:65119},
+{state:'PA',district:14,rep:'Guy Reschenthaler',party:'R',population:744713,snapSubject:30419,medicaidSubject:66640,poverty:11.9,aiWorkers:71234},
+{state:'PA',district:15,rep:'Glenn Thompson',party:'R',population:737483,snapSubject:24143,medicaidSubject:62129,poverty:13.2,aiWorkers:63234},
+{state:'PA',district:16,rep:'Mike Kelly',party:'R',population:749448,snapSubject:29882,medicaidSubject:65964,poverty:12.3,aiWorkers:75679},
+{state:'PA',district:17,rep:'Christopher R. Deluzio',party:'D',population:751618,snapSubject:19450,medicaidSubject:54657,poverty:7.9,aiWorkers:113157},
+{state:'RI',district:1,rep:'Gabe Amo',party:'D',population:534825,snapSubject:19259,medicaidSubject:43935,poverty:12.1,aiWorkers:61964},
+{state:'RI',district:2,rep:'Seth Magaziner',party:'D',population:543871,snapSubject:16706,medicaidSubject:41715,poverty:9.7,aiWorkers:68763},
+{state:'SC',district:1,rep:'Nancy Mace',party:'R',population:728525,snapSubject:9294,medicaidSubject:0,poverty:9.7,aiWorkers:85680},
+{state:'SC',district:2,rep:'Joe Wilson',party:'R',population:724953,snapSubject:17294,medicaidSubject:0,poverty:12.4,aiWorkers:80121},
+{state:'SC',district:3,rep:'Sheri Biggs',party:'R',population:729839,snapSubject:19649,medicaidSubject:0,poverty:15.5,aiWorkers:62710},
+{state:'SC',district:4,rep:'William R. Timmons IV',party:'R',population:740744,snapSubject:15371,medicaidSubject:0,poverty:12.5,aiWorkers:82519},
+{state:'SC',district:5,rep:'Ralph Norman',party:'R',population:733338,snapSubject:18662,medicaidSubject:0,poverty:12.9,aiWorkers:72160},
+{state:'SC',district:6,rep:'James E. Clyburn',party:'D',population:714507,snapSubject:26317,medicaidSubject:0,poverty:20.1,aiWorkers:63339},
+{state:'SC',district:7,rep:'Russell Fry',party:'R',population:741252,snapSubject:21045,medicaidSubject:0,poverty:16.5,aiWorkers:56478},
+{state:'SD',district:1,rep:'Dusty Johnson',party:'R',population:879723,snapSubject:17029,medicaidSubject:56782,poverty:12.0,aiWorkers:101973},
+{state:'TN',district:1,rep:'Diana Harshbarger',party:'R',population:764701,snapSubject:22586,medicaidSubject:0,poverty:15.8,aiWorkers:63364},
+{state:'TN',district:2,rep:'Tim Burchett',party:'R',population:775398,snapSubject:17470,medicaidSubject:0,poverty:12.3,aiWorkers:84309},
+{state:'TN',district:3,rep:'Charles J. Chuck Fleischmann',party:'R',population:768359,snapSubject:21657,medicaidSubject:0,poverty:13.5,aiWorkers:76953},
+{state:'TN',district:4,rep:'Scott DesJarlais',party:'R',population:777062,snapSubject:18355,medicaidSubject:0,poverty:12.6,aiWorkers:69438},
+{state:'TN',district:5,rep:'Andrew Ogles',party:'R',population:776248,snapSubject:9787,medicaidSubject:0,poverty:9.1,aiWorkers:110656},
+{state:'TN',district:6,rep:'John W. Rose',party:'R',population:770801,snapSubject:19614,medicaidSubject:0,poverty:13.9,aiWorkers:74380},
+{state:'TN',district:7,rep:'Matt Van Epps',party:'R',population:753987,snapSubject:17415,medicaidSubject:0,poverty:12.6,aiWorkers:86410},
+{state:'TN',district:8,rep:'David Kustoff',party:'R',population:748590,snapSubject:21502,medicaidSubject:0,poverty:13.5,aiWorkers:73120},
+{state:'TN',district:9,rep:'Steve Cohen',party:'D',population:752979,snapSubject:33984,medicaidSubject:0,poverty:20.8,aiWorkers:61255},
+{state:'TX',district:1,rep:'Nathaniel Moran',party:'R',population:755123,snapSubject:20884,medicaidSubject:0,poverty:15.5,aiWorkers:58845},
+{state:'TX',district:2,rep:'Dan Crenshaw',party:'R',population:782300,snapSubject:11965,medicaidSubject:0,poverty:9.0,aiWorkers:89616},
+{state:'TX',district:3,rep:'Keith Self',party:'R',population:806041,snapSubject:6439,medicaidSubject:0,poverty:6.1,aiWorkers:129862},
+{state:'TX',district:4,rep:'Pat Fallon',party:'R',population:788999,snapSubject:10540,medicaidSubject:0,poverty:8.6,aiWorkers:117135},
+{state:'TX',district:5,rep:'Lance Gooden',party:'R',population:780449,snapSubject:16420,medicaidSubject:0,poverty:11.1,aiWorkers:69922},
+{state:'TX',district:6,rep:'Jake Ellzey',party:'R',population:753841,snapSubject:14781,medicaidSubject:0,poverty:12.2,aiWorkers:69724},
+{state:'TX',district:7,rep:'Lizzie Fletcher',party:'D',population:786340,snapSubject:18964,medicaidSubject:0,poverty:14.3,aiWorkers:122038},
+{state:'TX',district:8,rep:'Morgan Luttrell',party:'R',population:793195,snapSubject:16068,medicaidSubject:0,poverty:10.9,aiWorkers:83327},
+{state:'TX',district:9,rep:'Al Green',party:'D',population:757466,snapSubject:26519,medicaidSubject:0,poverty:18.4,aiWorkers:76882},
+{state:'TX',district:10,rep:'Michael T. McCaul',party:'R',population:764847,snapSubject:12684,medicaidSubject:0,poverty:13.4,aiWorkers:92761},
+{state:'TX',district:11,rep:'August Pfluger',party:'R',population:744306,snapSubject:18329,medicaidSubject:0,poverty:13.3,aiWorkers:59599},
+{state:'TX',district:12,rep:'Craig A. Goldman',party:'R',population:777096,snapSubject:15317,medicaidSubject:0,poverty:9.8,aiWorkers:90260},
+{state:'TX',district:13,rep:'Ronny Jackson',party:'R',population:745115,snapSubject:16021,medicaidSubject:0,poverty:14.4,aiWorkers:65999},
+{state:'TX',district:14,rep:'Randy K. Weber',party:'R',population:742682,snapSubject:19970,medicaidSubject:0,poverty:12.9,aiWorkers:70426},
+{state:'TX',district:15,rep:'Monica De La Cruz',party:'R',population:763469,snapSubject:33724,medicaidSubject:0,poverty:23.8,aiWorkers:49527},
+{state:'TX',district:16,rep:'Veronica Escobar',party:'D',population:749967,snapSubject:30185,medicaidSubject:0,poverty:18.5,aiWorkers:59436},
+{state:'TX',district:17,rep:'Pete Sessions',party:'R',population:759934,snapSubject:21430,medicaidSubject:0,poverty:15.5,aiWorkers:70008},
+{state:'TX',district:18,rep:'Christian D. Menefee',party:'D',population:757471,snapSubject:29423,medicaidSubject:0,poverty:21.1,aiWorkers:69592},
+{state:'TX',district:19,rep:'Jodey C. Arrington',party:'R',population:737249,snapSubject:20679,medicaidSubject:0,poverty:15.6,aiWorkers:63803},
+{state:'TX',district:20,rep:'Joaquin Castro',party:'D',population:775170,snapSubject:28309,medicaidSubject:0,poverty:17.4,aiWorkers:72098},
+{state:'TX',district:21,rep:'Chip Roy',party:'R',population:781548,snapSubject:8989,medicaidSubject:0,poverty:8.1,aiWorkers:103832},
+{state:'TX',district:22,rep:'Troy E. Nehls',party:'R',population:801675,snapSubject:12201,medicaidSubject:0,poverty:7.9,aiWorkers:109089},
+{state:'TX',district:23,rep:'Tony Gonzales',party:'R',population:725618,snapSubject:21668,medicaidSubject:0,poverty:14.1,aiWorkers:71793},
+{state:'TX',district:24,rep:'Beth Van Duyne',party:'R',population:755150,snapSubject:6353,medicaidSubject:0,poverty:5.9,aiWorkers:119386},
+{state:'TX',district:25,rep:'Roger Williams',party:'R',population:786554,snapSubject:14258,medicaidSubject:0,poverty:11.2,aiWorkers:75399},
+{state:'TX',district:26,rep:'Brandon Gill',party:'R',population:799474,snapSubject:7778,medicaidSubject:0,poverty:6.3,aiWorkers:128644},
+{state:'TX',district:27,rep:'Michael Cloud',party:'R',population:751234,snapSubject:24113,medicaidSubject:0,poverty:16.1,aiWorkers:57733},
+{state:'TX',district:28,rep:'Henry Cuellar',party:'D',population:765819,snapSubject:30583,medicaidSubject:0,poverty:19.5,aiWorkers:51254},
+{state:'TX',district:29,rep:'Sylvia R. Garcia',party:'D',population:755460,snapSubject:30048,medicaidSubject:0,poverty:22.5,aiWorkers:36579},
+{state:'TX',district:30,rep:'Jasmine Crockett',party:'D',population:761641,snapSubject:24051,medicaidSubject:0,poverty:16.5,aiWorkers:79023},
+{state:'TX',district:31,rep:'John R. Carter',party:'R',population:775140,snapSubject:12050,medicaidSubject:0,poverty:8.5,aiWorkers:99334},
+{state:'TX',district:32,rep:'Julie Johnson',party:'D',population:761546,snapSubject:16391,medicaidSubject:0,poverty:14.1,aiWorkers:102080},
+{state:'TX',district:33,rep:'Marc A. Veasey',party:'D',population:771211,snapSubject:23265,medicaidSubject:0,poverty:17.6,aiWorkers:62346},
+{state:'TX',district:34,rep:'Vicente Gonzalez',party:'D',population:767463,snapSubject:38595,medicaidSubject:0,poverty:26.4,aiWorkers:40917},
+{state:'TX',district:35,rep:'Greg Casar',party:'D',population:775585,snapSubject:23343,medicaidSubject:0,poverty:16.5,aiWorkers:85918},
+{state:'TX',district:36,rep:'Brian Babin',party:'R',population:761437,snapSubject:20246,medicaidSubject:0,poverty:13.8,aiWorkers:67053},
+{state:'TX',district:37,rep:'Lloyd Doggett',party:'D',population:767171,snapSubject:9735,medicaidSubject:0,poverty:11.1,aiWorkers:155540},
+{state:'TX',district:38,rep:'Wesley Hunt',party:'R',population:773159,snapSubject:9427,medicaidSubject:0,poverty:8.5,aiWorkers:112267},
+{state:'UT',district:1,rep:'Blake D. Moore',party:'R',population:824868,snapSubject:8738,medicaidSubject:37165,poverty:8.6,aiWorkers:101204},
+{state:'UT',district:2,rep:'Celeste Maloy',party:'R',population:828612,snapSubject:10881,medicaidSubject:44801,poverty:9.7,aiWorkers:87016},
+{state:'UT',district:3,rep:'Mike Kennedy',party:'R',population:814071,snapSubject:7891,medicaidSubject:37020,poverty:9.6,aiWorkers:103968},
+{state:'UT',district:4,rep:'Burgess Owens',party:'R',population:836917,snapSubject:6691,medicaidSubject:31745,poverty:6.4,aiWorkers:101499},
+{state:'VA',district:1,rep:'Robert J. Wittman',party:'R',population:781522,snapSubject:9613,medicaidSubject:50771,poverty:6.5,aiWorkers:113157},
+{state:'VA',district:2,rep:'Jennifer A. Kiggans',party:'R',population:747936,snapSubject:13150,medicaidSubject:50000,poverty:8.5,aiWorkers:98017},
+{state:'VA',district:3,rep:'Robert C. Bobby Scott',party:'D',population:723212,snapSubject:27844,medicaidSubject:62745,poverty:15.2,aiWorkers:71733},
+{state:'VA',district:4,rep:'Jennifer L. McClellan',party:'D',population:764890,snapSubject:25184,medicaidSubject:62354,poverty:13.5,aiWorkers:85093},
+{state:'VA',district:5,rep:'John J. McGuire',party:'R',population:773749,snapSubject:21711,medicaidSubject:63238,poverty:12.9,aiWorkers:84207},
+{state:'VA',district:6,rep:'Ben Cline',party:'R',population:773582,snapSubject:17479,medicaidSubject:61928,poverty:12.1,aiWorkers:74645},
+{state:'VA',district:7,rep:'Eugene Simon Vindman',party:'D',population:779767,snapSubject:11245,medicaidSubject:48370,poverty:7.4,aiWorkers:104974},
+{state:'VA',district:8,rep:'Donald S. Beyer',party:'D',population:759319,snapSubject:9833,medicaidSubject:37394,poverty:7.7,aiWorkers:155345},
+{state:'VA',district:9,rep:'H. Morgan Griffith',party:'R',population:765618,snapSubject:25347,medicaidSubject:72040,poverty:16.2,aiWorkers:64762},
+{state:'VA',district:10,rep:'Suhas Subramanyam',party:'D',population:786456,snapSubject:6013,medicaidSubject:33457,poverty:4.7,aiWorkers:144343},
+{state:'VA',district:11,rep:'James R. Walkinshaw',party:'D',population:773090,snapSubject:4962,medicaidSubject:34184,poverty:5.1,aiWorkers:166539},
+{state:'VT',district:1,rep:'Becca Balint',party:'D',population:639109,snapSubject:16618,medicaidSubject:56654,poverty:10.3,aiWorkers:80458},
+{state:'WA',district:1,rep:'Suzan K. DelBene',party:'D',population:767321,snapSubject:9807,medicaidSubject:38271,poverty:6.2,aiWorkers:147275},
+{state:'WA',district:2,rep:'Rick Larsen',party:'D',population:761157,snapSubject:20255,medicaidSubject:61412,poverty:10.8,aiWorkers:83527},
+{state:'WA',district:3,rep:'Marie Gluesenkamp Perez',party:'D',population:774583,snapSubject:23871,medicaidSubject:64930,poverty:9.8,aiWorkers:77180},
+{state:'WA',district:4,rep:'Dan Newhouse',party:'R',population:770792,snapSubject:28070,medicaidSubject:72366,poverty:13.8,aiWorkers:60553},
+{state:'WA',district:5,rep:'Michael Baumgartner',party:'R',population:765301,snapSubject:27685,medicaidSubject:70246,poverty:12.9,aiWorkers:76391},
+{state:'WA',district:6,rep:'Emily Randall',party:'D',population:749400,snapSubject:21933,medicaidSubject:65960,poverty:9.9,aiWorkers:78640},
+{state:'WA',district:7,rep:'Pramila Jayapal',party:'D',population:763883,snapSubject:14698,medicaidSubject:38580,poverty:9.1,aiWorkers:179946},
+{state:'WA',district:8,rep:'Kim Schrier',party:'D',population:770061,snapSubject:10944,medicaidSubject:46154,poverty:6.1,aiWorkers:106192},
+{state:'WA',district:9,rep:'Adam Smith',party:'D',population:759108,snapSubject:22851,medicaidSubject:55678,poverty:10.7,aiWorkers:106966},
+{state:'WA',district:10,rep:'Marilyn Strickland',party:'D',population:741691,snapSubject:21878,medicaidSubject:58753,poverty:9.7,aiWorkers:78429},
+{state:'WI',district:1,rep:'Bryan Steil',party:'R',population:723990,snapSubject:20122,medicaidSubject:0,poverty:10.1,aiWorkers:75915},
+{state:'WI',district:2,rep:'Mark Pocan',party:'D',population:735244,snapSubject:14465,medicaidSubject:0,poverty:9.9,aiWorkers:121280},
+{state:'WI',district:3,rep:'Derrick Van Orden',party:'R',population:726529,snapSubject:18247,medicaidSubject:0,poverty:11.6,aiWorkers:73931},
+{state:'WI',district:4,rep:'Gwen Moore',party:'D',population:721552,snapSubject:41305,medicaidSubject:0,poverty:20.0,aiWorkers:73801},
+{state:'WI',district:5,rep:'Scott Fitzgerald',party:'R',population:735775,snapSubject:10013,medicaidSubject:0,poverty:6.0,aiWorkers:105692},
+{state:'WI',district:6,rep:'Glenn Grothman',party:'R',population:721383,snapSubject:16305,medicaidSubject:0,poverty:8.9,aiWorkers:73705},
+{state:'WI',district:7,rep:'Thomas P. Tiffany',party:'R',population:731693,snapSubject:18505,medicaidSubject:0,poverty:9.8,aiWorkers:70385},
+{state:'WI',district:8,rep:'Tony Wied',party:'R',population:731901,snapSubject:15860,medicaidSubject:0,poverty:8.5,aiWorkers:79846},
+{state:'WV',district:1,rep:'Carol D. Miller',party:'R',population:867306,snapSubject:41486,medicaidSubject:95967,poverty:18.7,aiWorkers:65764},
+{state:'WV',district:2,rep:'Riley M. Moore',party:'R',population:883424,snapSubject:31299,medicaidSubject:78867,poverty:14.6,aiWorkers:80216},
+{state:'WY',district:1,rep:'Harriet M. Hageman',party:'R',population:569723,snapSubject:6993,medicaidSubject:0,poverty:10.7,aiWorkers:57284}
+];
+
+const stateNames = {AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'};
+
+function openTab(evt,tabName){
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(tabName).classList.add('active');
+  evt.currentTarget.classList.add('active');
+}
+
+// CBO Aug 2025: 8.8M individuals subject to expanded SNAP work requirements (21% of ~42M participants)
+// CBO: 18.5M Medicaid expansion enrollees subject to work requirements
+// Brookings: 37.1M workers in top quartile of AI exposure (19% of workforce)
+// District data uses validated state-level rates applied proportionally
+
+function renderDistrict(d){
+  const atLarge = ['AK','DE','MT','ND','SD','VT','WY'];
+  const distLabel = atLarge.includes(d.state) ? 'At-Large' : d.district;
+  return `<div class="dcard" onclick="selectDist(this)" data-state="${d.state}" data-dist="${d.district}" data-rep="${d.rep}" data-pop="${d.population}" data-snap="${d.snapSubject}" data-med="${d.medicaidSubject}" data-ai="${d.aiWorkers}" data-poverty="${d.poverty}">
+    <h3>${d.state}-${distLabel} \u2014 Rep. ${d.rep} (${d.party})</h3>
+    <div class="meta">
+      <span><strong>Pop:</strong> ${d.population.toLocaleString()}</span>
+      <span><strong>SNAP Individuals Subject to Work Reqs:</strong> <strong style="color:#c00">${d.snapSubject.toLocaleString()}</strong></span>
+      <span><strong>Medicaid Individuals Subject to Work Reqs:</strong> ${d.medicaidSubject > 0 ? '<strong style="color:#c00">' + d.medicaidSubject.toLocaleString() + '</strong>' : 'Non-expansion state'}</span>
+      <span><strong>Workers in AI-Exposed Occupations:</strong> <strong style="color:#1a365d">${d.aiWorkers.toLocaleString()}</strong></span>
+      <span><strong>Poverty Rate:</strong> ${d.poverty}%</span>
+    </div>
+  </div>`;
+}
+
+function populateStateDropdown(){
+  const dd = document.getElementById('stateDropdown');
+  const seen = new Set();
+  districts.forEach(d => seen.add(d.state));
+  const sorted = [...seen].sort();
+  sorted.forEach(st => {
+    const opt = document.createElement('option');
+    opt.value = st;
+    opt.textContent = st + ' — ' + (stateNames[st] || st);
+    dd.appendChild(opt);
+  });
+}
+
+function loadStateDistricts(){
+  const st = document.getElementById('stateDropdown').value;
+  const py = document.getElementById('partyFilter').value;
+  const div = document.getElementById('distResults');
+  const cnt = document.getElementById('resultCount');
+  if(!st){
+    div.innerHTML = '<div style="padding:30px;text-align:center;color:#999">Select a state to view its Congressional Districts.</div>';
+    cnt.textContent = '';
+    return;
+  }
+  const atLarge = ['AK','DE','MT','ND','SD','VT','WY'];
+  let r = districts.filter(d => d.state === st && (!py || d.party === py));
+  r.sort((a,b) => a.district - b.district);
+  const stateName = stateNames[st] || st;
+  const totalDists = districts.filter(d => d.state === st).length;
+  cnt.innerHTML = '<strong>' + stateName + '</strong> — ' + r.length + ' of ' + totalDists + ' district(s)' + (atLarge.includes(st) ? ' (At-Large)' : '');
+  if(!r.length){
+    div.innerHTML = '<div style="padding:20px;text-align:center;color:#999">No districts match the selected filters.</div>';
+    return;
+  }
+  div.innerHTML = r.map(renderDistrict).join('');
+}
+
+// Initialize state dropdown on page load
+document.addEventListener('DOMContentLoaded', populateStateDropdown);
+
+function selectDist(el){
+  document.getElementById('fState').value = el.dataset.state;
+  document.getElementById('fDist').value = el.dataset.dist;
+  document.getElementById('fRep').value = el.dataset.rep;
+  document.getElementById('fPop').value = el.dataset.pop;
+  document.getElementById('fSnap').value = el.dataset.snap;
+  document.getElementById('fMedicaid').value = el.dataset.med;
+  document.getElementById('fAI').value = el.dataset.ai;
+  // Switch to generator tab
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('generator').classList.add('active');
+  document.querySelectorAll('.tab-btn')[3].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function generateText(){
+  const bn = document.getElementById('boardName').value || '[Board Name]';
+  const st = document.getElementById('fState').value || '[State]';
+  const dn = document.getElementById('fDist').value || '[District]';
+  const rp = document.getElementById('fRep').value || '[Representative]';
+  const pop = document.getElementById('fPop').value;
+  const snap = document.getElementById('fSnap').value;
+  const med = document.getElementById('fMedicaid').value;
+  const ai = document.getElementById('fAI').value || '0';
+  const others = document.getElementById('fOtherOffices').value || '[List other offices]';
+  const sn = stateNames[st] || st;
+  const distLabel = st + '-' + dn;
+
+  let txt = `PROGRAMMATIC FUNDING REQUEST — FY2027 APPROPRIATIONS
+Submitted by: ${bn}
+To: Office of Representative ${rp} (${distLabel})
+Subcommittee: Labor, HHS, Education
+Agency: Department of Labor
+Account: Training and Employment Services
+
+═══════════════════════════════════════════
+PROGRAM: Adult Employment and Training Activities
+FY2026 Enacted: $875,649,000 | FY2027 Request: $1,500,000,000
+═══════════════════════════════════════════
+
+The WIOA Adult Program helps adults with barriers to employment gain new skills and find in-demand jobs in growth sectors. This funding is critical so that we can work locally with those individuals and connect them with employers. Services include career counseling and labor market information, skills assessments, occupational training aligned with in-demand industries, supportive services, and job placement. These services are delivered locally in ${distLabel} through a network of America's Job Centers.
+
+JUSTIFICATION FOR INCREASE:
+
+1. SNAP WORK REQUIREMENTS: The One Big Beautiful Bill Act expanded SNAP work requirements to ages 18-65 and parents with children ages 7+. CBO estimates 8.8 million individuals nationally are subject to expanded work requirements (CBO, August 2025). In ${distLabel}, an estimated ${snap ? parseInt(snap).toLocaleString() : '[X]'} individuals are subject to SNAP work requirements documenting 80 hours/month of work activities. The Adult Program is the primary infrastructure helping these individuals access qualifying activities.
+
+2. MEDICAID WORK REQUIREMENTS: Beginning January 1, 2027, Medicaid expansion enrollees ages 19-64 must demonstrate 80 hours/month of community engagement activities. CBO estimates 18.5 million individuals nationally are subject to these requirements. ${med && parseInt(med) > 0 ? 'In ' + distLabel + ', an estimated ' + parseInt(med).toLocaleString() + ' individuals are subject to Medicaid work requirements.' : sn + ' has not expanded Medicaid, but workforce boards still serve individuals navigating healthcare access alongside employment barriers.'} The Adult Program delivers the employment services, job search assistance, and activity documentation these individuals need.
+
+3. WORKFORCE PELL COORDINATION: Effective July 1, 2026, Pell Grant eligibility expands to short-term training programs (8-15 weeks). This will significantly increase the number of individuals seeking training through the workforce system. The Adult Program must coordinate with training providers, ensure program quality, provide career pathway guidance, and deliver the supportive services essential for training success.
+
+═══════════════════════════════════════════
+PROGRAM: Youth Activities
+FY2026 Enacted: $948,130,000 | FY2027 Request: $1,500,000,000
+═══════════════════════════════════════════
+
+The WIOA Youth Program serves the 16-24 population with emphasis on out-of-school youth. Service strategies prepare youth for employment and post-secondary education through linkages between academic and occupational learning. The local workforce board works directly with employers to provide employment and training for youth participants.
+
+JUSTIFICATION FOR INCREASE:
+
+1. SNAP AND MEDICAID WORK REQUIREMENTS IMPACT ON YOUNG ADULTS: Young adults ages 18-24 are subject to the expanded SNAP work requirements, including former foster youth and young veterans whose exemptions were removed under the OBBBA. Medicaid work requirements will also apply to young adults ages 19-24 in expansion states. The Youth Program provides the career counseling, training, and case management these young people need to meet compliance requirements while building career pathways.
+
+2. WORKFORCE PELL COORDINATION: The July 2026 launch of Workforce Pell dramatically expands access to short-term training for young adults. The Youth Program plays a critical coordination role — connecting young adults to Pell-eligible training programs, providing career coaching that research shows is essential for student success, and ensuring training investments lead to stackable credentials aligned with labor market demands. This increased demand for training coordination requires increased investment.
+
+3. HOUSE ZEROED YOUTH FUNDING IN FY2025 AND FY2026: The House proposed eliminating Youth Activities funding entirely in both FY2025 and FY2026 appropriations. The Senate restored this funding both years. The Youth Program must be sustained and strengthened — not zeroed out — at the very moment when new work requirements and Workforce Pell are creating unprecedented demand for youth workforce services.
+
+═══════════════════════════════════════════
+PROGRAM: Dislocated Worker Employment and Training Activities
+FY2026 Enacted: $1,095,553,000 | FY2027 Request: $1,500,000,000
+═══════════════════════════════════════════
+
+The Dislocated Worker program provides reemployment services to workers who have been laid off or received notice of termination. In ${distLabel}, these services are delivered through America's Job Centers.
+
+JUSTIFICATION FOR INCREASE:
+
+1. AI AND AUTOMATION DISRUPTION: Brookings Institution estimates 37.1 million U.S. workers hold occupations in the top quartile of AI exposure. In ${distLabel}, approximately ${ai ? parseInt(ai).toLocaleString() : '[X]'} workers hold occupations classified as highly exposed to AI-driven automation (based on Brookings/Treasury Department analysis of occupational employment data). The St. Louis Federal Reserve documents that occupations with higher AI exposure experienced significantly larger unemployment increases between 2022-2025. Unlike previous technological disruptions, generative AI targets cognitive tasks across all skill levels, expanding the Dislocated Worker population beyond traditional manufacturing into white-collar and service occupations.
+
+2. WORKFORCE PELL COORDINATION: Workforce Pell (effective July 2026) creates new pathways for dislocated workers to access short-term retraining through Pell-eligible programs. Workforce boards must coordinate with training providers, ensure programs meet quality thresholds, and deliver the career coaching and supportive services that drive successful outcomes. This increased training coordination capacity requires increased funding.
+
+3. AI-ENABLED WORKFORCE TOOLS: The workforce system itself must deploy AI-powered tools that empower Career Coaches with real-time labor market data, career pathway mapping, and personalized career guidance. This requires technology investment at the local level to ensure the system can effectively serve workers displaced by the very technology it must now leverage.
+
+THE FUNDING ASK:
+
+${bn} respectfully requests FY2027 funding at the following levels:
+• Adult: $1,500,000,000 (up from $875,649,000 enacted FY2026)
+• Youth: $1,500,000,000 (up from $948,130,000 enacted FY2026)
+• Dislocated Worker: $1,500,000,000 (up from $1,095,553,000 enacted FY2026)
+
+Congress created unprecedented new demand on the workforce system through the One Big Beautiful Bill Act — including SNAP work requirements affecting 8.8 million individuals, Medicaid work requirements affecting 18.5 million individuals, and Workforce Pell implementation. Simultaneously, AI and automation are transforming 37.1 million workers' occupations. Congress must fund the system that will deliver on these mandates.
+
+Similar requests submitted to: ${others}`;
+
+  document.getElementById('customTA').value = txt;
+  document.getElementById('customOutput').style.display = 'block';
+  document.getElementById('customOutput').scrollIntoView({behavior:'smooth'});
+}
+
+function copyText(){
+  const ta = document.getElementById('customTA');
+  ta.select();
+  ta.setSelectionRange(0,99999);
+  navigator.clipboard.writeText(ta.value).then(()=>alert('Copied to clipboard!')).catch(()=>{document.execCommand('copy');alert('Copied!');});
+}
+
+function clearForm(){
+  ['boardName','contactName','contactEmail','contactPhone','fState','fDist','fRep','fPop','fSnap','fMedicaid','fAI','fOtherOffices'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('customOutput').style.display='none';
+}
+
+function saveNotes(){
+  try{localStorage.setItem('wioaNotes',document.getElementById('coordNotes').value);alert('Notes saved!');}catch(e){alert('Could not save — try copying your notes manually.');}
+}
+
+window.addEventListener('DOMContentLoaded',function(){
+  try{const n=localStorage.getItem('wioaNotes');if(n)document.getElementById('coordNotes').value=n;}catch(e){}
+});
+</script>
+</body>
+</html>
