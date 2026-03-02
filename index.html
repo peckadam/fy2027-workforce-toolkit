@@ -78,8 +78,8 @@ DEADLINE: Member offices accepting programmatic funding requests through <u>Frid
 <button class="tab-btn" onclick="openTab(event,'districts')">District Lookup</button>
 <button class="tab-btn" onclick="openTab(event,'templates')">Advocacy Templates</button>
 <button class="tab-btn" onclick="openTab(event,'generator')">Customization Tool</button>
-<button class="tab-btn" onclick="openTab(event,'tracker')">Coordination Tracker</button>
 <button class="tab-btn" onclick="openTab(event,'submit')">Submit Request</button>
+<button class="tab-btn" onclick="openTab(event,'tracker')">Coordination Tracker</button>
 </div>
 
 <!-- FUNDING HISTORY -->
@@ -106,7 +106,7 @@ DEADLINE: Member offices accepting programmatic funding requests through <u>Frid
 <p style="margin-top:12px;font-weight:bold;color:#c00">The workforce system is the only public infrastructure positioned to help 27.3 million newly work-required individuals navigate compliance, access qualifying activities, and connect with employers.</p>
 </div>
 
-<h3 class="sub">WIOA Title I Funding Trend (FY2016–FY2026)</h3>
+<h3 class="sub">WIOA Title I Adult Program Funding Trend (FY2012–FY2026)</h3>
 <canvas id="fundingChart" width="900" height="380" style="max-width:100%;background:#fff;border:1px solid #ddd;border-radius:6px;margin:18px 0;padding:12px"></canvas>
 <script>
 (function(){
@@ -117,36 +117,45 @@ DEADLINE: Member offices accepting programmatic funding requests through <u>Frid
   const cW = W - pad.left - pad.right;
   const cH = H - pad.top - pad.bottom;
 
-  const years = ['FY16','FY17','FY18','FY19','FY20','FY21*','FY22*','FY23','FY24','FY25','FY26'];
-  const adult = [816.8,816.8,845.7,845.7,854.6,862.6,867.6,885.6,885.6,885.6,875.6];
-  const youth = [873.4,873.4,903.2,903.2,913.1,918.1,928.1,948.1,948.1,948.1,948.1];
-  const dw    = [1020.9,1020.9,1040.9,1040.9,1052.1,1065.6,1075.6,1095.6,1095.6,1095.6,1095.6];
+  const years = ['FY12','FY13','FY14','FY15','FY16','FY17','FY18','FY19','FY20','FY21*','FY22*','FY23','FY24','FY25','FY26'];
+  const adult = [770.8,730.6,766.1,776.4,816.8,816.8,845.7,845.7,854.6,862.6,867.6,885.6,885.6,885.6,875.6];
 
-  const minV = 0;
-  const maxV = 1200;
+  const minV = 500;
+  const maxV = 1050;
   const range = maxV - minV;
   const n = years.length;
 
   function yPos(v){ return pad.top + cH - ((v - minV) / range) * cH; }
   function xPos(i){ return pad.left + (i / (n-1)) * cW; }
 
-  // Background
   ctx.fillStyle = '#fff';
   ctx.fillRect(0,0,W,H);
 
   // Grid lines
   ctx.strokeStyle = '#e8e8e8';
   ctx.lineWidth = 1;
-  for(let v = 0; v <= 1200; v += 100){
+  for(let v = 500; v <= 1050; v += 50){
     const y = yPos(v);
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
   }
+
+  // $1B request reference line
+  ctx.strokeStyle = '#1a6b1a';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([6,4]);
+  const reqY = yPos(1000);
+  ctx.beginPath(); ctx.moveTo(pad.left, reqY); ctx.lineTo(W - pad.right, reqY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#1a6b1a';
+  ctx.font = 'bold 11px Segoe UI, sans-serif';
+  ctx.textAlign = 'right';
+  ctx.fillText('FY27 Request: $1,000M', W - pad.right - 4, reqY - 6);
 
   // Y-axis labels
   ctx.fillStyle = '#666';
   ctx.font = '12px Segoe UI, sans-serif';
   ctx.textAlign = 'right';
-  for(let v = 0; v <= 1200; v += 200){
+  for(let v = 500; v <= 1050; v += 100){
     ctx.fillText('$' + v + 'M', pad.left - 8, yPos(v) + 4);
   }
 
@@ -157,82 +166,83 @@ DEADLINE: Member offices accepting programmatic funding requests through <u>Frid
     ctx.fillText(years[i], xPos(i), H - pad.bottom + 20);
   }
 
-  function drawLine(data, color, lw){
-    ctx.strokeStyle = color;
-    ctx.lineWidth = lw;
+  // Draw Adult line
+  ctx.strokeStyle = '#2d8a5e';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for(let i = 0; i < n; i++){
+    const x = xPos(i), y = yPos(adult[i]);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  for(let i = 0; i < n; i++){
     ctx.beginPath();
-    for(let i = 0; i < n; i++){
-      const x = xPos(i), y = yPos(data[i]);
-      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-    }
-    ctx.stroke();
-    for(let i = 0; i < n; i++){
-      ctx.beginPath();
-      ctx.arc(xPos(i), yPos(data[i]), 4, 0, Math.PI*2);
-      ctx.fillStyle = color;
-      ctx.fill();
-    }
+    ctx.arc(xPos(i), yPos(adult[i]), 4, 0, Math.PI*2);
+    ctx.fillStyle = '#2d8a5e';
+    ctx.fill();
   }
 
-  drawLine(dw, '#c00', 2.5);
-  drawLine(youth, '#d4a843', 2.5);
-  drawLine(adult, '#2d8a5e', 2.5);
-
-  // End-of-line value labels
+  // Start and end value labels
   ctx.font = 'bold 11px Segoe UI, sans-serif';
+  ctx.fillStyle = '#2d8a5e';
+  ctx.textAlign = 'right';
+  ctx.fillText('$' + adult[0].toFixed(1) + 'M', xPos(0) - 6, yPos(adult[0]) - 10);
   ctx.textAlign = 'left';
-  const lx = xPos(n-1) + 8;
-  ctx.fillStyle = '#c00'; ctx.fillText('DW: $' + dw[n-1].toFixed(1) + 'M', lx - 60, yPos(dw[n-1]) - 10);
-  ctx.fillStyle = '#d4a843'; ctx.fillText('Youth: $' + youth[n-1].toFixed(1) + 'M', lx - 60, yPos(youth[n-1]) - 10);
-  ctx.fillStyle = '#2d8a5e'; ctx.fillText('Adult: $' + adult[n-1].toFixed(1) + 'M', lx - 60, yPos(adult[n-1]) + 18);
+  ctx.fillText('$' + adult[n-1].toFixed(1) + 'M', xPos(n-1) + 6, yPos(adult[n-1]) + 16);
+
+  // Sequester annotation
+  ctx.fillStyle = '#c00';
+  ctx.font = '10px Segoe UI, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Sequester', xPos(1), yPos(adult[1]) + 16);
 
   // Title
   ctx.fillStyle = '#1a365d';
   ctx.font = 'bold 15px Segoe UI, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('WIOA Title I Formula Grants by Program (Millions)', W/2, 24);
+  ctx.fillText('WIOA Title I Adult Program Funding (Millions)', W/2, 24);
 
   // Legend
   const legY = H - 22;
-  const legItems = [
-    {label:'Dislocated Worker', color:'#c00'},
-    {label:'Youth', color:'#d4a843'},
-    {label:'Adult', color:'#2d8a5e'}
-  ];
   ctx.font = '12px Segoe UI, sans-serif';
-  let lxp = W/2 - 160;
-  legItems.forEach(item => {
-    ctx.fillStyle = item.color;
-    ctx.fillRect(lxp, legY - 8, 14, 10);
-    ctx.fillStyle = '#333';
-    ctx.textAlign = 'left';
-    ctx.fillText(item.label, lxp + 18, legY);
-    lxp += item.label.length * 7.5 + 36;
-  });
+  ctx.fillStyle = '#2d8a5e';
+  ctx.fillRect(W/2 - 100, legY - 8, 14, 10);
+  ctx.fillStyle = '#333';
+  ctx.textAlign = 'left';
+  ctx.fillText('Adult Enacted', W/2 - 82, legY);
+  ctx.fillStyle = '#1a6b1a';
+  ctx.fillRect(W/2 + 20, legY - 8, 14, 10);
+  ctx.fillStyle = '#333';
+  ctx.fillText('FY27 Request ($1B)', W/2 + 38, legY);
 
 })();
 </script>
 
-<h3 class="sub">10-Year WIOA Title I Enacted Funding History (Formula Grants)</h3>
-<div class="info-box"><p><strong>Key takeaway:</strong> WIOA Title I formula funding has been essentially flat for a decade, failing to keep pace with inflation, population growth, or the growing complexity of workforce challenges. In real (inflation-adjusted) terms, the system has experienced a significant decline in purchasing power even as new federally-mandated responsibilities (SNAP/Medicaid work requirements, Workforce Pell coordination) dramatically expand the population it must serve.</p></div>
+<h3 class="sub">15-Year WIOA Title I Adult Program Funding History</h3>
+<div class="info-box"><p><strong>Key takeaway:</strong> Adult program funding has been essentially flat for 15 years, rising just 13.6% from $770.8M (FY2012) to $875.6M (FY2026) — well below inflation over the same period. In real terms, the system's purchasing power has declined significantly even as new federally-mandated responsibilities (SNAP/Medicaid work requirements) dramatically expand the population it must serve. FY2013 sequestration cut the program to just $730.6M. The FY2027 request of $1,000,000,000 represents a 14.2% increase — a modest and necessary investment to meet legislated demand.</p></div>
 
 <table class="ftable" style="font-size:.88em">
-<thead><tr><th>Fiscal Year</th><th>Adult</th><th>Youth</th><th>DW (Formula)</th><th>Total Formula</th></tr></thead>
+<thead><tr><th>Fiscal Year</th><th>Adult Enacted</th><th>Notes</th></tr></thead>
 <tbody>
-<tr><td>FY2016</td><td>$816,836,000</td><td>$873,416,000</td><td>$1,020,860,000</td><td>$2,711,112,000</td></tr>
-<tr><td>FY2017</td><td>$816,836,000</td><td>$873,416,000</td><td>$1,020,860,000</td><td>$2,711,112,000</td></tr>
-<tr><td>FY2018</td><td>$845,651,000</td><td>$903,242,000</td><td>$1,040,860,000</td><td>$2,789,753,000</td></tr>
-<tr><td>FY2019</td><td>$845,651,000</td><td>$903,242,000</td><td>$1,040,860,000</td><td>$2,789,753,000</td></tr>
-<tr><td>FY2020</td><td>$854,649,000</td><td>$913,130,000</td><td>$1,052,053,000</td><td>$2,819,832,000</td></tr>
-<tr><td>FY2021*</td><td>$862,649,000</td><td>$918,130,000</td><td>$1,065,553,000</td><td>$2,846,332,000</td></tr>
-<tr><td>FY2022*</td><td>$867,649,000</td><td>$928,130,000</td><td>$1,075,553,000</td><td>$2,871,332,000</td></tr>
-<tr style="background:#e8f4e8"><td><strong>FY2023</strong></td><td><strong>$885,649,000</strong></td><td><strong>$948,130,000</strong></td><td><strong>$1,095,553,000</strong></td><td><strong>$2,929,332,000</strong></td></tr>
-<tr><td>FY2024</td><td>$885,649,000</td><td>$948,130,000</td><td>$1,095,553,000</td><td>$2,929,332,000</td></tr>
-<tr><td>FY2025 (CR)</td><td>$885,649,000</td><td>$948,130,000</td><td>$1,095,553,000</td><td>$2,929,332,000</td></tr>
-<tr style="background:#fff8e1"><td><strong>FY2026 (Enacted)</strong></td><td><strong>$875,649,000</strong></td><td><strong>$948,130,000</strong></td><td><strong>$1,095,553,000</strong></td><td><strong>$2,919,332,000</strong></td></tr>
+<tr><td>FY2012</td><td>$770,811,000</td><td>WIA; after 0.189% rescission</td></tr>
+<tr style="background:#fce4ec"><td>FY2013</td><td>$730,624,000</td><td>WIA; sequestration cut</td></tr>
+<tr><td>FY2014</td><td>$766,080,000</td><td>WIA; partial sequester restoration</td></tr>
+<tr><td>FY2015</td><td>$776,736,000</td><td>First year under WIOA</td></tr>
+<tr><td>FY2016</td><td>$816,836,000</td><td></td></tr>
+<tr><td>FY2017</td><td>$816,836,000</td><td>Flat funded</td></tr>
+<tr><td>FY2018</td><td>$845,651,000</td><td></td></tr>
+<tr><td>FY2019</td><td>$845,651,000</td><td>Flat funded</td></tr>
+<tr><td>FY2020</td><td>$854,649,000</td><td></td></tr>
+<tr><td>FY2021*</td><td>$862,649,000</td><td></td></tr>
+<tr><td>FY2022*</td><td>$867,649,000</td><td></td></tr>
+<tr style="background:#e8f4e8"><td><strong>FY2023</strong></td><td><strong>$885,649,000</strong></td><td>Highest enacted level</td></tr>
+<tr><td>FY2024</td><td>$885,649,000</td><td>Flat funded</td></tr>
+<tr><td>FY2025 (CR)</td><td>$885,649,000</td><td>Continuing Resolution</td></tr>
+<tr style="background:#fff8e1"><td><strong>FY2026 (Enacted)</strong></td><td><strong>$875,649,000</strong></td><td>$10M cut from FY2025</td></tr>
+<tr style="background:#e8f5e9"><td><strong>FY2027 (Request)</strong></td><td><strong style="color:#1a6b1a">$1,000,000,000</strong></td><td>+14.2% — SNAP/Medicaid work reqs</td></tr>
 </tbody>
 </table>
-<p style="font-size:.82em;color:#666;margin-top:6px"><em>Sources: DOL ETA TEGLs, Federal Register allotment notices (PY2023-PY2025), CRS Report R44252 (FY2015-FY2020), CRS IF11530. DW figures are formula grants only (excludes National Reserve). *FY2021-FY2022 figures are best estimates from available appropriations data; all other years are confirmed enacted levels. Note: FY2026 Adult decreased $10M from FY2025.</em></p>
+<p style="font-size:.82em;color:#666;margin-top:6px"><em>Sources: DOL ETA TEGLs, Federal Register allotment notices, CRS Report R44252, CRS IF11530. FY2012-FY2014 under WIA; FY2015+ under WIOA. *FY2021-FY2022 are best estimates from available appropriations data; all other years are confirmed enacted levels.</em></p>
 
 
 
@@ -1046,7 +1056,8 @@ function loadSubmitDistricts(){
     const distLabel = atLarge.includes(d.state) ? 'At-Large' : d.district;
     const hasReqUrl = d.reqUrl && d.reqUrl.length > 5;
     const hasUrl = d.url && d.url.length > 5;
-    const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(d.rep + ' FY2027 appropriations request form site:house.gov');
+    const memberDomain = d.url ? new URL(d.url).hostname : 'house.gov';
+    const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(d.rep + ' FY2027 appropriations request form site:' + memberDomain);
 
     let linksHtml = '';
     if(hasReqUrl){
@@ -1135,7 +1146,7 @@ Importantly, USDA data shows approximately 74% of non-disabled working-age SNAP 
 
 According to the Kaiser Family Foundation, approximately 64% of non-elderly Medicaid adults are already employed — 44% full-time, 20% part-time (KFF, 2024). The Urban Institute finds 91% of expansion adults ages 19-55 are working, in school, caregiving, or have health barriers (Urban Institute, April 2025). Evidence from Arkansas's 2018-2019 pilot shows the real risk: over 18,000 people lost coverage despite the majority actually working, because they could not navigate the reporting system. Adequately funded workforce boards prevent this outcome by serving as navigators — helping individuals document compliance while connecting them to sustainable employment.
 
-3. FLAT FUNDING IS A CUT: The FY2026 enacted level of $875.6 million represents virtually no real increase since FY2016 ($816.8 million) — a period during which costs have risen substantially and the Ohio experience shows flat top-line funding translated to 6-10% cuts in state allocations. Congress cannot simultaneously expand the system's mandate and starve its funding.
+3. FLAT FUNDING IS A CUT: The FY2026 enacted level of $875.6 million represents virtually no real increase since FY2016 ($816.8 million) — a period during which costs have risen substantially. Congress cannot simultaneously expand the system's mandate and starve its funding.
 
 We also note that AI and automation continue to accelerate workforce disruption, and the launch of Workforce Pell Grants (July 2026) will further increase demand for workforce coordination services — reinforcing the urgency of this investment.
 
