@@ -72,8 +72,11 @@ HOUSE DEADLINE: Member offices accepting programmatic funding requests through <
 SENATE DEADLINES: Vary by office — most between <u>mid-March and late April 2026</u>. Check each Senator's website for their specific deadline. Many offices close programmatic requests between March 18 and April 20.
 </div>
 
-<div class="disclaimer">
+<div class="disclaimer" id="houseDisclaimer">
 <strong>Data Note:</strong> District-level data is derived from U.S. Census Bureau American Community Survey (ACS) 5-Year Estimates at the Congressional District level: SNAP participation (Table S2201), Medicaid/public coverage (Table S2704), occupational employment (Table S2401), and poverty rates (Table S1701). District-level estimates are calibrated to validated national totals from CBO (8.8M SNAP, 18.5M Medicaid individuals subject to work requirements) and Brookings Institution (37.1M workers in AI-exposed occupations). Representative names are sourced from the Office of the Clerk, U.S. House of Representatives (119th Congress). Local boards should verify data against their own records before finalizing submissions.
+</div>
+<div class="disclaimer" id="senateDisclaimer" style="display:none">
+<strong>Data Note:</strong> Statewide impact data is aggregated from U.S. Census Bureau American Community Survey (ACS) 5-Year Estimates at the Congressional District level, summed to state totals: SNAP participation (Table S2201), Medicaid/public coverage (Table S2704), occupational employment (Table S2401), and poverty rates (Table S1701). State totals are calibrated to validated national totals from CBO (8.8M SNAP, 18.5M Medicaid individuals subject to work requirements) and Brookings Institution (37.1M workers in AI-exposed occupations). Senator data is sourced from the unitedstates/congress-legislators project (119th Congress). Local boards should verify data against their own records before finalizing submissions.
 </div>
 
 <div id="chamberToggle" style="display:flex;justify-content:center;gap:0;margin-bottom:18px">
@@ -1622,6 +1625,8 @@ function switchChamber(chamber){
     senateBtn.style.color = '#fff';
     document.getElementById('houseBanner').style.display = 'none';
     document.getElementById('senateBanner').style.display = 'block';
+    document.getElementById('houseDisclaimer').style.display = 'none';
+    document.getElementById('senateDisclaimer').style.display = 'block';
     document.getElementById('s_funding').classList.add('active');
     senateTabs.querySelectorAll('.tab-btn').forEach((b,i) => {
       b.classList.remove('active');
@@ -1638,6 +1643,8 @@ function switchChamber(chamber){
     senateBtn.style.color = '#1a365d';
     document.getElementById('houseBanner').style.display = 'block';
     document.getElementById('senateBanner').style.display = 'none';
+    document.getElementById('houseDisclaimer').style.display = 'block';
+    document.getElementById('senateDisclaimer').style.display = 'none';
     document.getElementById('funding').classList.add('active');
     houseTabs.querySelectorAll('.tab-btn').forEach((b,i) => {
       b.classList.remove('active');
