@@ -65,8 +65,11 @@ h4.sub{color:#1a365d;margin:22px 0 10px}
 </div>
 
 <div class="container">
-<div class="urgency-banner">
-DEADLINE: Member offices accepting programmatic funding requests through <u>Friday, March 6, 2026</u>. Committee deadline: <u>Friday, March 20, 2026</u>.
+<div class="urgency-banner" id="houseBanner">
+HOUSE DEADLINE: Member offices accepting programmatic funding requests through <u>Friday, March 6, 2026</u>. Committee deadline: <u>Friday, March 20, 2026</u>.
+</div>
+<div class="urgency-banner" id="senateBanner" style="display:none">
+SENATE DEADLINES: Vary by office — most between <u>mid-March and late April 2026</u>. Check each Senator's website for their specific deadline. Many offices close programmatic requests between March 18 and April 20.
 </div>
 
 <div class="disclaimer">
@@ -688,8 +691,8 @@ Similar requests submitted to: [LIST OTHER OFFICES]</div>
 <h2 class="section-title">Submit Your Senate Programmatic Funding Request</h2>
 
 <div class="deadline">
-Senate office deadlines vary by office — most between March 9 and April 20, 2026.<br>
-Check each Senator\'s website for their specific deadline.
+Senate office deadlines vary — most between <u>March 18 and April 20, 2026</u>.<br>
+Check each Senator\'s website for their specific programmatic request deadline.
 </div>
 
 <div class="info-box" style="margin-top:18px">
@@ -729,8 +732,8 @@ Check each Senator\'s website for their specific deadline.
 <h2 class="section-title">Senate Coordination Tracker & Deadlines</h2>
 
 <div class="deadline">
-Senate office deadlines vary — check each Senator\'s website for specifics.<br>
-Senate Appropriations Committee compiles requests after individual office deadlines close.
+Senate office deadlines vary — most between <u>March 18 and April 20, 2026</u>.<br>
+Check each Senator\'s website for their specific programmatic request deadline.
 </div>
 
 <h3 class="sub">Senate Appropriations Request Form Information</h3>
@@ -1617,6 +1620,8 @@ function switchChamber(chamber){
     houseBtn.style.color = '#1a365d';
     senateBtn.style.background = '#1a365d';
     senateBtn.style.color = '#fff';
+    document.getElementById('houseBanner').style.display = 'none';
+    document.getElementById('senateBanner').style.display = 'block';
     document.getElementById('s_funding').classList.add('active');
     senateTabs.querySelectorAll('.tab-btn').forEach((b,i) => {
       b.classList.remove('active');
@@ -1631,6 +1636,8 @@ function switchChamber(chamber){
     houseBtn.style.color = '#fff';
     senateBtn.style.background = '#f0f0f0';
     senateBtn.style.color = '#1a365d';
+    document.getElementById('houseBanner').style.display = 'block';
+    document.getElementById('senateBanner').style.display = 'none';
     document.getElementById('funding').classList.add('active');
     houseTabs.querySelectorAll('.tab-btn').forEach((b,i) => {
       b.classList.remove('active');
