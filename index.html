@@ -73,7 +73,12 @@ DEADLINE: Member offices accepting programmatic funding requests through <u>Frid
 <strong>Data Note:</strong> District-level data is derived from U.S. Census Bureau American Community Survey (ACS) 5-Year Estimates at the Congressional District level: SNAP participation (Table S2201), Medicaid/public coverage (Table S2704), occupational employment (Table S2401), and poverty rates (Table S1701). District-level estimates are calibrated to validated national totals from CBO (8.8M SNAP, 18.5M Medicaid individuals subject to work requirements) and Brookings Institution (37.1M workers in AI-exposed occupations). Representative names are sourced from the Office of the Clerk, U.S. House of Representatives (119th Congress). Local boards should verify data against their own records before finalizing submissions.
 </div>
 
-<div class="tabs">
+<div id="chamberToggle" style="display:flex;justify-content:center;gap:0;margin-bottom:18px">
+<button class="chamber-btn active" id="houseBtn" onclick="switchChamber('house')" style="padding:12px 36px;font-size:1.05em;font-weight:bold;border:2px solid #1a365d;background:#1a365d;color:#fff;border-radius:6px 0 0 6px;cursor:pointer;transition:all .3s">U.S. House</button>
+<button class="chamber-btn" id="senateBtn" onclick="switchChamber('senate')" style="padding:12px 36px;font-size:1.05em;font-weight:bold;border:2px solid #1a365d;background:#f0f0f0;color:#1a365d;border-radius:0 6px 6px 0;cursor:pointer;transition:all .3s">U.S. Senate</button>
+</div>
+
+<div class="tabs" id="houseTabs">
 <button class="tab-btn active" onclick="openTab(event,'funding')">Funding History</button>
 <button class="tab-btn" onclick="openTab(event,'districts')">District Lookup</button>
 <button class="tab-btn" onclick="openTab(event,'templates')">Advocacy Templates</button>
@@ -81,6 +86,16 @@ DEADLINE: Member offices accepting programmatic funding requests through <u>Frid
 <button class="tab-btn" onclick="openTab(event,'submit')">Submit Request</button>
 <button class="tab-btn" onclick="openTab(event,'tracker')">Coordination Tracker</button>
 </div>
+
+<div class="tabs" id="senateTabs" style="display:none">
+<button class="tab-btn active" onclick="openTab(event,'s_funding')">Funding History</button>
+<button class="tab-btn" onclick="openTab(event,'s_states')">State Impact Lookup</button>
+<button class="tab-btn" onclick="openTab(event,'s_templates')">Advocacy Templates</button>
+<button class="tab-btn" onclick="openTab(event,'s_generator')">Customization Tool</button>
+<button class="tab-btn" onclick="openTab(event,'s_submit')">Submit Request</button>
+<button class="tab-btn" onclick="openTab(event,'s_tracker')">Coordination Tracker</button>
+</div>
+
 
 <!-- FUNDING HISTORY -->
 <div id="funding" class="tab-content active">
@@ -484,6 +499,272 @@ Appropriations Committee deadline: COB Friday, March 20, 2026
 </div>
 </div>
 </div>
+
+
+<!-- ==================== SENATE CONTENT ==================== -->
+
+<!-- SENATE FUNDING HISTORY (shares same data as House) -->
+<div id="s_funding" class="tab-content senate-tab">
+<h2 class="section-title">WIOA Title I Funding History & Recommended Ask</h2>
+
+<h3 class="sub">FY2027 Coordinated Funding Request</h3>
+<table class="ftable">
+<thead><tr><th>Program</th><th>FY2026 Enacted</th><th>FY2027 Request</th><th>Change</th><th>Rationale</th></tr></thead>
+<tbody>
+<tr><td><strong>Adult</strong></td><td>$875,649,000</td><td><strong style="color:#1a6b1a">$1,500,000,000</strong></td><td>+71.3%</td><td>SNAP + Medicaid work requirements — immediate demand</td></tr>
+</tbody>
+</table>
+<div class="info-box" style="margin-top:12px;border-left-color:#1a365d">
+<p><strong>Why Adult Only?</strong> This coordinated national request focuses on the Adult program because expanded SNAP and Medicaid work requirements create immediate, quantifiable demand for adult employment and training services. Workforce boards are encouraged to also submit requests for Youth Activities and Dislocated Worker at current or increased levels, prioritized after the Adult request.</p>
+</div>
+
+<div class="info-box">
+<h4>Why Adult Program Funding Must Increase Now</h4>
+<p style="margin-top:8px">Two legislative mandates in the One Big Beautiful Bill Act (OBBBA) create immediate, quantifiable demand for adult workforce services:</p>
+<p style="margin-top:8px"><strong>1. SNAP Work Requirements (effective November 1, 2025):</strong> Expanded to ages 18-65 and parents with children 7+. CBO estimates <strong>8.8 million individuals</strong> are subject to expanded SNAP work requirements (6.5 million non-dependent adults ages 18-65 and 2.3 million parents with children ages 7+) (CBO, August 2025). These individuals must document 80 hours/month of work, training, or approved activities to maintain benefits.</p>
+<p style="margin-top:8px"><strong>2. Medicaid Work Requirements (effective January 1, 2027):</strong> CBO estimates <strong>18.5 million</strong> Medicaid expansion enrollees ages 19-64 will be subject to 80-hour/month community engagement requirements. States must verify compliance at application and every six months.</p>
+<p style="margin-top:8px"><strong>Critical context:</strong> According to the Kaiser Family Foundation, approximately <strong>64% of non-elderly Medicaid adults are already working</strong> (44% full-time, 20% part-time). USDA data shows roughly <strong>74% of non-disabled working-age SNAP participants work within a 12-month period</strong>. The Urban Institute finds that <strong>91% of Medicaid expansion adults</strong> ages 19-55 are either working, in school, caregiving, or have health barriers. The challenge is not motivation — it is documentation, compliance navigation, and connecting the remaining population to qualifying activities. Arkansas\'s 2018-2019 experience demonstrated this: over 18,000 people lost coverage despite the majority actually working, because they could not navigate the reporting system. The workforce system is the infrastructure that prevents this outcome at national scale.</p>
+<p style="margin-top:12px;font-weight:bold;color:#c00">The workforce system is the only public infrastructure positioned to help 27.3 million newly work-required individuals navigate compliance, access qualifying activities, and connect with employers.</p>
+</div>
+
+<h3 class="sub">WIOA Title I Adult Program Funding Trend (FY2015\u2013FY2026)</h3>
+<canvas id="senateFundingChart" width="900" height="380" style="max-width:100%;background:#fff;border:1px solid #ddd;border-radius:6px;margin:18px 0;padding:12px"></canvas>
+
+<h3 class="sub">WIOA Title I Adult Program Funding History (FY2015\u2013FY2026)</h3>
+<div class="info-box"><p><strong>Key takeaway:</strong> Adult program funding has been essentially flat since WIOA took effect, rising just 12.7% from $776.7M (FY2015) to $875.6M (FY2026) — well below inflation over the same period. In real terms, the system\'s purchasing power has declined significantly even as new federally-mandated responsibilities (SNAP/Medicaid work requirements) dramatically expand the population it must serve.</p></div>
+
+<table class="ftable" style="font-size:.88em">
+<thead><tr><th>Fiscal Year</th><th>Adult Enacted</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>FY2015</td><td>$776,736,000</td><td>First year under WIOA</td></tr>
+<tr><td>FY2016</td><td>$816,836,000</td><td></td></tr>
+<tr><td>FY2017</td><td>$816,836,000</td><td>Flat funded</td></tr>
+<tr><td>FY2018</td><td>$845,651,000</td><td></td></tr>
+<tr><td>FY2019</td><td>$845,651,000</td><td>Flat funded</td></tr>
+<tr><td>FY2020</td><td>$854,649,000</td><td></td></tr>
+<tr><td>FY2021*</td><td>$862,649,000</td><td></td></tr>
+<tr><td>FY2022*</td><td>$867,649,000</td><td></td></tr>
+<tr style="background:#e8f4e8"><td><strong>FY2023</strong></td><td><strong>$885,649,000</strong></td><td>Highest enacted level</td></tr>
+<tr><td>FY2024</td><td>$885,649,000</td><td>Flat funded</td></tr>
+<tr><td>FY2025 (CR)</td><td>$885,649,000</td><td>Continuing Resolution</td></tr>
+<tr style="background:#fff8e1"><td><strong>FY2026 (Enacted)</strong></td><td><strong>$875,649,000</strong></td><td>$10M cut from FY2025</td></tr>
+</tbody>
+</table>
+<p style="font-size:.82em;color:#666;margin-top:6px"><em>Sources: DOL ETA TEGLs, Federal Register allotment notices, CRS Report R44252, CRS IF11530. *FY2021-FY2022 are best estimates from available appropriations data; all other years are confirmed enacted levels.</em></p>
+</div>
+
+<!-- SENATE STATE IMPACT LOOKUP -->
+<div id="s_states" class="tab-content senate-tab">
+<h2 class="section-title">Statewide Impact Data (All 50 States)</h2>
+
+<div class="info-box">
+<p>Select a state to see statewide impact data and both U.S. Senators. Use this data to customize your Senate appropriations request. Click a state to auto-populate the Senate Customization Tool.</p>
+</div>
+
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div style="flex:0 0 260px">
+<label style="display:block;font-weight:600;margin-bottom:6px;font-size:.9em;color:#1a365d">Select a State:</label>
+<select id="senateStateDropdown" onchange="loadSenateState()" style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:4px;font-size:1em;background:#fff">
+<option value="">— Choose a state —</option>
+</select>
+</div>
+<div style="flex:1;min-width:300px">
+<div id="senateStateResults" class="district-results" style="max-height:600px"></div>
+</div>
+</div>
+</div>
+
+<!-- SENATE ADVOCACY TEMPLATES -->
+<div id="s_templates" class="tab-content senate-tab">
+<h2 class="section-title">Senate Advocacy Template Language</h2>
+
+<div class="info-box">
+<p>These templates are adapted for Senate offices. Senate programmatic requests use <strong>statewide impact data</strong> rather than district-level data. Copy text directly or use the Senate Customization Tool to auto-fill state-specific data.</p>
+</div>
+
+<h3 class="sub">Program Description — WIOA Adult Program (150-250 words)</h3>
+<div class="template-text">The WIOA Adult Program helps adults with barriers to employment gain new skills and find in-demand jobs in growth sectors. This funding is critical so that we can work locally with those individuals and connect them with employers. Services include career counseling and labor market information, skills assessments, occupational training aligned with in-demand industries, supportive services such as childcare and transportation assistance, and job placement and retention services. Local workforce development boards deliver these services through a network of America\'s Job Centers, utilizing partnerships with community colleges, training providers, and local employers.
+
+The Adult Program is the primary workforce development mechanism for helping low-income workers and others facing employment barriers access pathways to self-sufficiency and career advancement. With the expansion of SNAP work requirements under the One Big Beautiful Bill Act — now covering ages 18-65 and including parents with children ages 7 and older — and Medicaid work requirements taking effect January 1, 2027, the Adult Program is the frontline resource helping newly work-required individuals connect to qualifying activities that meet their federal obligations while building real skills for the labor market. Importantly, while roughly 64% of Medicaid adults and 74% of SNAP participants are already working (KFF; USDA), many work in unstable, part-time, or seasonal employment and need help documenting compliance and accessing pathways to more sustainable employment.</div>
+
+<h3 class="sub">Justification Template (500-750 words — Customize with Statewide Data)</h3>
+
+<h4 class="sub">Part A: SNAP Work Requirements Impact</h4>
+<div class="template-text">The One Big Beautiful Bill Act (H.R. 1), signed into law July 4, 2025, dramatically expanded SNAP work requirements effective November 1, 2025. The ABAWD age range was extended from 18-54 to 18-65, and parents with children ages 7 and older are now required to comply. The waiver threshold was raised to 10% unemployment, effectively eliminating area waivers in most communities. These individuals must document 80 hours per month of work, training, or approved work-related activities to maintain SNAP benefits.
+
+The Congressional Budget Office estimates 8.8 million individuals are subject to expanded SNAP work requirements nationally: 6.5 million non-dependent adults ages 18-65 and 2.3 million parents with children ages 7 and older (CBO, August 2025, based on SNAP Quality Control data FY2023). Across [STATE], an estimated [SNAP-AFFECTED-POPULATION] individuals are subject to these work requirements.
+
+Importantly, USDA data shows approximately 74% of non-disabled working-age SNAP participants work within a 12-month period, though in any given month only about 50% are employed — reflecting the unstable, seasonal, and part-time nature of their employment (CBPP/USDA ERS). The challenge is not that these individuals refuse to work — it is that they cycle in and out of employment and need help documenting compliance, stabilizing employment, and accessing pathways to sustainable careers.
+
+Local workforce development boards and their network of America\'s Job Centers are the primary public infrastructure available to help these individuals identify and access qualifying activities — including job search assistance, occupational training, and workfare placements. Without adequate WIOA Title I Adult funding, boards cannot expand capacity to meet this federally-created demand.</div>
+
+<h4 class="sub">Part B: Medicaid Work Requirements Impact</h4>
+<div class="template-text">Beginning January 1, 2027, Medicaid expansion enrollees ages 19-64 must demonstrate 80 hours per month of community engagement activities including employment, job training, education, or volunteering. The Congressional Budget Office estimates 18.5 million Medicaid expansion enrollees ages 19-64 will be subject to these work requirements annually across 41 expansion states plus DC (CBO). Verification is required at application and every six months, with states permitted to verify more frequently.
+
+Across [STATE], an estimated [MEDICAID-AFFECTED-ADULTS] adults are enrolled through Medicaid expansion and will be subject to these requirements.
+
+According to the Kaiser Family Foundation, approximately 64% of non-elderly Medicaid adults are already employed — 44% full-time and 20% part-time (KFF, 2024). The Urban Institute finds that 91% of Medicaid expansion adults ages 19-55 are either working, in school, caregiving for dependents, or have health barriers (Urban Institute, April 2025). The issue is not workforce participation — it is compliance navigation, documentation, and connecting the remaining population to qualifying activities.
+
+Evidence from Arkansas\'s 2018-2019 pilot demonstrates this critical point: over 18,000 people were unable to navigate the reporting system despite the majority actually working. Adequately funded workforce boards can serve as navigators, helping individuals document compliance while connecting them to sustainable employment — a win for individuals, employers, and the healthcare system.
+
+The public workforce system — through local boards and one-stop career centers — is the essential partner to help individuals meet these requirements through employment services, skills training, activity tracking, compliance documentation, and career coaching toward self-sufficiency.</div>
+
+<h4 class="sub">Part C: The Funding Ask</h4>
+<div class="template-text">[BOARD-NAME] respectfully requests that the Senate Appropriations Committee approve FY2027 funding for the WIOA Title I Adult Employment and Training Activities program under the Department of Labor\'s Training and Employment Services account at:
+
+$1,500,000,000 (a 71.3% increase from the $875,649,000 enacted in FY2026)
+
+This increase is driven by immediate, legislated demand:
+
+(1) Expanded SNAP work requirements (effective November 1, 2025) subject 8.8 million individuals to 80-hour/month documentation requirements. While approximately 74% work within a given year, many cycle in and out of employment and need workforce services to achieve stable compliance and sustainable careers.
+
+(2) Medicaid work requirements (effective January 1, 2027) subject 18.5 million expansion enrollees to community engagement requirements. While 64% are already employed, compliance verification infrastructure and services for the remaining population must be built rapidly.
+
+(3) A decade of flat funding has eroded the workforce system\'s capacity. The FY2026 enacted level of $875.6 million represents virtually no real increase since FY2016 ($816.8 million) — a period during which costs have risen substantially. Congress cannot simultaneously expand the system\'s mandate and starve its funding.
+
+The workforce development system cannot absorb 27.3 million newly work-required individuals without increased investment. Congress created this demand through the One Big Beautiful Bill Act — Congress must also fund the system that will deliver on those mandates.
+
+We also note that AI and automation continue to transform the labor market, and the launch of Workforce Pell Grants (July 2026) will further increase demand for workforce coordination services. These factors reinforce the urgency of this investment.
+
+Similar requests submitted to: [LIST OTHER OFFICES]</div>
+</div>
+
+<!-- SENATE CUSTOMIZATION TOOL -->
+<div id="s_generator" class="tab-content senate-tab">
+<h2 class="section-title">Senate Request Customization Tool</h2>
+
+<div class="info-box">
+<p>Enter your board information and statewide data below. Click a state in the State Impact Lookup tab to auto-populate fields. The tool generates customized justification text ready for your Senate appropriations request.</p>
+</div>
+
+<div style="background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;border:1px solid #ddd">
+<h3 class="sub" style="margin-top:0">Your Board Information</h3>
+<div class="form-grid">
+<div><label>Board Name:</label><input type="text" id="sBoardName" placeholder="e.g., Workforce Investment Board of Tulare County"></div>
+<div><label>Contact Name:</label><input type="text" id="sContactName"></div>
+<div><label>Contact Email:</label><input type="text" id="sContactEmail"></div>
+<div><label>Contact Phone:</label><input type="text" id="sContactPhone"></div>
+</div>
+
+<h3 class="sub">State Information</h3>
+<div class="form-grid">
+<div><label>State:</label><input type="text" id="sState" maxlength="2" placeholder="e.g., CA"></div>
+<div><label>Senator Name:</label><input type="text" id="sSenator" placeholder="e.g., Adam B. Schiff"></div>
+<div><label>State Population:</label><input type="number" id="sStatePop" placeholder="e.g., 38015387"></div>
+<div><label>Number of Congressional Districts:</label><input type="number" id="sDistCount" placeholder="e.g., 52"></div>
+</div>
+
+<h3 class="sub">Statewide Impact Data</h3>
+<div class="form-grid">
+<div><label>Individuals Subject to SNAP Work Requirements:</label><input type="number" id="sSnap" placeholder="e.g., 873968"></div>
+<div><label>Individuals Subject to Medicaid Work Requirements:</label><input type="number" id="sMedicaid" placeholder="e.g., 3085724"></div>
+<div><label>Workers in AI-Exposed Occupations:</label><input type="number" id="sAI" placeholder="e.g., 4500000"></div>
+</div>
+
+<h3 class="sub">Other Offices Receiving This Request</h3>
+<div class="form-grid">
+<div style="grid-column:1/-1"><label>List other offices (comma-separated):</label><input type="text" id="sOtherOffices" placeholder="e.g., Office of Sen. Padilla, Office of Rep. Valadao"></div>
+</div>
+
+<div class="btn-group" style="margin-top:22px">
+<button class="sbtn" onclick="generateSenateText()">Generate Customized Justification</button>
+<button class="sbtn gold" onclick="clearSenateForm()">Clear Form</button>
+</div>
+</div>
+
+<div id="senateCustomOutput" style="display:none">
+<h3 class="sub">Your Customized Senate Justification Text</h3>
+<p style="margin-bottom:10px;font-size:.9em;color:#666">Edit the text below as needed, then copy or print.</p>
+<textarea id="senateCustomTA"></textarea>
+<div class="btn-group">
+<button class="sbtn" onclick="copySenateText()">Copy to Clipboard</button>
+<button class="sbtn gold" onclick="window.print()">Print</button>
+</div>
+</div>
+</div>
+
+<!-- SENATE SUBMIT REQUEST -->
+<div id="s_submit" class="tab-content senate-tab">
+<h2 class="section-title">Submit Your Senate Programmatic Funding Request</h2>
+
+<div class="deadline">
+Senate office deadlines vary by office — most between March 9 and April 20, 2026.<br>
+Check each Senator\'s website for their specific deadline.
+</div>
+
+<div class="info-box" style="margin-top:18px">
+<p><strong>How it works:</strong> Each workforce board submits a <strong>programmatic funding request</strong> through their Senator\'s office. The Senator then submits it to the Senate Appropriations Committee. Select your state below to find both of your Senators\' websites, where you can locate their FY2027 appropriations request form — typically found under a "Services" or "Constituent Services" menu. Note: Senate requests use <strong>statewide</strong> impact data.</p>
+</div>
+
+<div class="info-box" style="border-left-color:#c00;margin-top:14px">
+<p><strong>Request Type:</strong> PROGRAMMATIC — not Congressionally Directed Spending (CDS). You are requesting a national funding level for WIOA Title I programs. When filling out the Senator\'s form, use: <strong>Subcommittee:</strong> Labor-HHS-Education &bull; <strong>Agency:</strong> Department of Labor &bull; <strong>Account:</strong> Training and Employment Services.</p>
+</div>
+
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin-top:22px">
+<div style="flex:0 0 260px">
+<label style="display:block;font-weight:600;margin-bottom:6px;font-size:.9em;color:#1a365d">Select a State:</label>
+<select id="senateSubmitDropdown" onchange="loadSenateSubmit()" style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:4px;font-size:1em;background:#fff">
+<option value="">— Choose a state —</option>
+</select>
+</div>
+<div style="flex:1;min-width:300px">
+<div id="senateSubmitCount" style="font-weight:600;margin-bottom:8px"></div>
+<div id="senateSubmitResults" class="district-results" style="max-height:600px"></div>
+</div>
+</div>
+
+<h3 class="sub">Tips for Finding the Senate Request Form</h3>
+<div class="info-box">
+<p>1. Click the link to your Senator\'s website above.<br>
+2. Look for <strong>"Services"</strong>, <strong>"Constituent Services"</strong>, or <strong>"Appropriations"</strong> in the navigation menu.<br>
+3. Search for <strong>"FY2027 Appropriations"</strong> or <strong>"Programmatic Request"</strong>. Some offices label it differently from CDS (Congressionally Directed Spending).<br>
+4. <strong>Important:</strong> Senate offices distinguish between <strong>CDS</strong> (project-specific) and <strong>Programmatic</strong> (national funding level) requests. You want the <strong>Programmatic</strong> option.<br>
+5. If you cannot find the form, call the DC office and ask for the appropriations staffer. They can provide a direct link or accept your request by email.<br>
+6. For DC office phone numbers, visit <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank" style="color:#1a365d">senate.gov/senators</a>.</p>
+</div>
+</div>
+
+<!-- SENATE COORDINATION TRACKER -->
+<div id="s_tracker" class="tab-content senate-tab">
+<h2 class="section-title">Senate Coordination Tracker & Deadlines</h2>
+
+<div class="deadline">
+Senate office deadlines vary — check each Senator\'s website for specifics.<br>
+Senate Appropriations Committee compiles requests after individual office deadlines close.
+</div>
+
+<h3 class="sub">Senate Appropriations Request Form Information</h3>
+<div class="info-box">
+<p><strong>Relevant Subcommittee:</strong> Labor, HHS, Education</p>
+<p><strong>Agency:</strong> Department of Labor</p>
+<p><strong>Account:</strong> Training and Employment Services</p>
+<p><strong>Request Type:</strong> PROGRAMMATIC (not Congressionally Directed Spending / CDS)</p>
+<p><strong>DC Lobbyist:</strong> Chris Andresen, Partner, Dutko Government Relations, 80 M St SE Suite 130, Washington, DC 20003</p>
+</div>
+
+<h3 class="sub">Action Checklist</h3>
+<ul class="checklist">
+<li><input type="checkbox"><span><strong>1. Identify Your Senators:</strong> Use the State Impact Lookup tab to confirm your state\'s two Senators and statewide impact data.</span></li>
+<li><input type="checkbox"><span><strong>2. Locate the Request Form:</strong> Visit each Senator\'s website — look for "FY27 Appropriations" or "Programmatic Requests" under Services. Note: This is different from CDS (Congressionally Directed Spending).</span></li>
+<li><input type="checkbox"><span><strong>3. Prepare Your Request:</strong> Use the Senate Advocacy Templates and Customization Tool to draft your program descriptions (150-250 words) and justification (500-750 words) with statewide data.</span></li>
+<li><input type="checkbox"><span><strong>4. Submit to Both Senators:</strong> Submit to each of your state\'s two Senators. Note the other Senator and any House offices on each form.</span></li>
+<li><input type="checkbox"><span><strong>5. Follow Up with DC Staff:</strong> Within 3-5 business days, call the DC office and ask for the Labor-HHS appropriations staffer. Confirm receipt and offer to provide additional information.</span></li>
+<li><input type="checkbox"><span><strong>6. Report Back:</strong> Track your submissions and share with your state workforce association and Chris Andresen for national coordination tracking.</span></li>
+</ul>
+
+<h3 class="sub">Sample DC Office Contact Script</h3>
+<div class="template-text">"Hello, I am calling from [Board Name], the local workforce development board serving [Area] in [State]. We submitted a programmatic funding request for FY2027 for the WIOA Title I Adult Employment and Training Activities program through your online appropriations request system on [date]. I wanted to confirm receipt and offer to provide any additional information Senator [Name]\'s team may need as the Labor-HHS subcommittee moves forward. May I speak with the staffer handling Labor-HHS appropriations requests?"</div>
+
+<h3 class="sub">Coordination Notes</h3>
+<div style="background:#fff;padding:18px;border-radius:8px;border:1px solid #ddd">
+<p style="margin-bottom:12px;font-size:.9em">Track your Senate submissions, contacts, and follow-ups:</p>
+<textarea id="senateCoordNotes" placeholder="Record dates, contacts, submission confirmations, and follow-up activities..." style="min-height:180px"></textarea>
+<div class="btn-group" style="margin-top:12px">
+<button class="sbtn gold" onclick="saveSenateNotes()">Save Notes (Browser Storage)</button>
+</div>
+</div>
+</div>
+
 
 <div style="text-align:center;padding:20px;color:#999;font-size:.85em">
 FY2027 Workforce Appropriations Toolkit — Prepared for coordinated national advocacy by local workforce development boards.<br>
@@ -998,6 +1279,7 @@ function loadStateDistricts(){
 document.addEventListener('DOMContentLoaded', function(){
   populateStateDropdown();
   populateSubmitDropdown();
+  populateSenateDropdowns();
 });
 
 function populateSubmitDropdown(){
@@ -1155,7 +1437,411 @@ function saveNotes(){
 
 window.addEventListener('DOMContentLoaded',function(){
   try{const n=localStorage.getItem('wioaNotes');if(n)document.getElementById('coordNotes').value=n;}catch(e){}
+  try{const sn=localStorage.getItem('wioaSenateNotes');if(sn)document.getElementById('senateCoordNotes').value=sn;}catch(e){}
 });
+
+
+// ====== SENATE FUNCTIONS ======
+
+const senators = [
+{state:'AK',name:'Dan Sullivan',party:'R',url:'https://www.sullivan.senate.gov',reqUrl:''},
+{state:'AK',name:'Lisa Murkowski',party:'R',url:'https://www.murkowski.senate.gov',reqUrl:'https://www.murkowski.senate.gov/fy27-appropriations-and-cds-requests'},
+{state:'AL',name:'Katie Boyd Britt',party:'R',url:'https://www.britt.senate.gov',reqUrl:'https://www.britt.senate.gov/priorities/appropriations-requests/'},
+{state:'AL',name:'Tommy Tuberville',party:'R',url:'https://www.tuberville.senate.gov',reqUrl:''},
+{state:'AR',name:'John Boozman',party:'R',url:'https://www.boozman.senate.gov/public',reqUrl:''},
+{state:'AR',name:'Tom Cotton',party:'R',url:'https://www.cotton.senate.gov',reqUrl:''},
+{state:'AZ',name:'Mark Kelly',party:'D',url:'https://www.kelly.senate.gov',reqUrl:''},
+{state:'AZ',name:'Ruben Gallego',party:'D',url:'https://www.gallego.senate.gov',reqUrl:''},
+{state:'CA',name:'Adam B. Schiff',party:'D',url:'https://www.schiff.senate.gov',reqUrl:'https://www.schiff.senate.gov/services/appropriations/'},
+{state:'CA',name:'Alex Padilla',party:'D',url:'https://www.padilla.senate.gov',reqUrl:'https://www.padilla.senate.gov/services/appropriations/'},
+{state:'CO',name:'John W. Hickenlooper',party:'D',url:'https://www.hickenlooper.senate.gov',reqUrl:''},
+{state:'CO',name:'Michael F. Bennet',party:'D',url:'https://www.bennet.senate.gov',reqUrl:''},
+{state:'CT',name:'Christopher Murphy',party:'D',url:'https://www.murphy.senate.gov',reqUrl:''},
+{state:'CT',name:'Richard Blumenthal',party:'D',url:'https://www.blumenthal.senate.gov',reqUrl:''},
+{state:'DE',name:'Christopher A. Coons',party:'D',url:'https://www.coons.senate.gov',reqUrl:''},
+{state:'DE',name:'Lisa Blunt Rochester',party:'D',url:'https://www.bluntrochester.senate.gov',reqUrl:''},
+{state:'FL',name:'Ashley Moody',party:'R',url:'https://www.moody.senate.gov',reqUrl:''},
+{state:'FL',name:'Rick Scott',party:'R',url:'https://www.rickscott.senate.gov',reqUrl:''},
+{state:'GA',name:'Jon Ossoff',party:'D',url:'https://www.ossoff.senate.gov',reqUrl:''},
+{state:'GA',name:'Raphael G. Warnock',party:'D',url:'https://www.warnock.senate.gov',reqUrl:'https://www.warnock.senate.gov/services/appropriations/'},
+{state:'HI',name:'Brian Schatz',party:'D',url:'https://www.schatz.senate.gov',reqUrl:''},
+{state:'HI',name:'Mazie K. Hirono',party:'D',url:'https://www.hirono.senate.gov',reqUrl:''},
+{state:'IA',name:'Chuck Grassley',party:'R',url:'https://www.grassley.senate.gov',reqUrl:''},
+{state:'IA',name:'Joni Ernst',party:'R',url:'https://www.ernst.senate.gov',reqUrl:''},
+{state:'ID',name:'James E. Risch',party:'R',url:'https://www.risch.senate.gov',reqUrl:''},
+{state:'ID',name:'Mike Crapo',party:'R',url:'https://www.crapo.senate.gov',reqUrl:''},
+{state:'IL',name:'Richard J. Durbin',party:'D',url:'https://www.durbin.senate.gov',reqUrl:''},
+{state:'IL',name:'Tammy Duckworth',party:'D',url:'https://www.duckworth.senate.gov',reqUrl:''},
+{state:'IN',name:'Jim Banks',party:'R',url:'https://www.banks.senate.gov',reqUrl:''},
+{state:'IN',name:'Todd Young',party:'R',url:'https://www.young.senate.gov',reqUrl:''},
+{state:'KS',name:'Jerry Moran',party:'R',url:'https://www.moran.senate.gov',reqUrl:''},
+{state:'KS',name:'Roger Marshall',party:'R',url:'https://www.marshall.senate.gov',reqUrl:''},
+{state:'KY',name:'Mitch McConnell',party:'R',url:'https://www.mcconnell.senate.gov',reqUrl:''},
+{state:'KY',name:'Rand Paul',party:'R',url:'https://www.paul.senate.gov',reqUrl:''},
+{state:'LA',name:'Bill Cassidy',party:'R',url:'https://www.cassidy.senate.gov',reqUrl:''},
+{state:'LA',name:'John Kennedy',party:'R',url:'https://www.kennedy.senate.gov/public',reqUrl:''},
+{state:'MA',name:'Edward J. Markey',party:'D',url:'https://www.markey.senate.gov',reqUrl:'https://www.markey.senate.gov/fy-2026-appropriations-requests'},
+{state:'MA',name:'Elizabeth Warren',party:'D',url:'https://www.warren.senate.gov',reqUrl:''},
+{state:'MD',name:'Angela D. Alsobrooks',party:'D',url:'https://www.alsobrooks.senate.gov',reqUrl:''},
+{state:'MD',name:'Chris Van Hollen',party:'D',url:'https://www.vanhollen.senate.gov',reqUrl:''},
+{state:'ME',name:'Angus S. King, Jr.',party:'I',url:'https://www.king.senate.gov',reqUrl:''},
+{state:'ME',name:'Susan M. Collins',party:'R',url:'https://www.collins.senate.gov',reqUrl:'https://www.collins.senate.gov/services/appropriations-request'},
+{state:'MI',name:'Elissa Slotkin',party:'D',url:'https://www.slotkin.senate.gov',reqUrl:''},
+{state:'MI',name:'Gary C. Peters',party:'D',url:'https://www.peters.senate.gov',reqUrl:'https://www.peters.senate.gov/fiscal-year-2027-appropriations-request'},
+{state:'MN',name:'Amy Klobuchar',party:'D',url:'https://www.klobuchar.senate.gov',reqUrl:''},
+{state:'MN',name:'Tina Smith',party:'D',url:'https://www.smith.senate.gov',reqUrl:''},
+{state:'MO',name:'Eric Schmitt',party:'R',url:'https://www.schmitt.senate.gov',reqUrl:''},
+{state:'MO',name:'Josh Hawley',party:'R',url:'https://www.hawley.senate.gov',reqUrl:''},
+{state:'MS',name:'Cindy Hyde-Smith',party:'R',url:'https://www.hydesmith.senate.gov',reqUrl:''},
+{state:'MS',name:'Roger F. Wicker',party:'R',url:'https://www.wicker.senate.gov',reqUrl:'https://www.wicker.senate.gov/fiscal-year-27-congressionally-directed-spending-requests'},
+{state:'MT',name:'Steve Daines',party:'R',url:'https://www.daines.senate.gov',reqUrl:''},
+{state:'MT',name:'Tim Sheehy',party:'R',url:'https://www.sheehy.senate.gov',reqUrl:''},
+{state:'NC',name:'Ted Budd',party:'R',url:'https://www.budd.senate.gov',reqUrl:'https://www.budd.senate.gov/constituent-services/ndaa-appropriations-requests/'},
+{state:'NC',name:'Thom Tillis',party:'R',url:'https://www.tillis.senate.gov',reqUrl:''},
+{state:'ND',name:'John Hoeven',party:'R',url:'https://www.hoeven.senate.gov',reqUrl:''},
+{state:'ND',name:'Kevin Cramer',party:'R',url:'https://www.cramer.senate.gov',reqUrl:''},
+{state:'NE',name:'Deb Fischer',party:'R',url:'https://www.fischer.senate.gov',reqUrl:''},
+{state:'NE',name:'Pete Ricketts',party:'R',url:'https://www.ricketts.senate.gov',reqUrl:''},
+{state:'NH',name:'Jeanne Shaheen',party:'D',url:'https://www.shaheen.senate.gov',reqUrl:''},
+{state:'NH',name:'Margaret Wood Hassan',party:'D',url:'https://www.hassan.senate.gov',reqUrl:''},
+{state:'NJ',name:'Andy Kim',party:'D',url:'https://www.kim.senate.gov',reqUrl:''},
+{state:'NJ',name:'Cory A. Booker',party:'D',url:'https://www.booker.senate.gov',reqUrl:''},
+{state:'NM',name:'Ben Ray Luján',party:'D',url:'https://www.lujan.senate.gov',reqUrl:''},
+{state:'NM',name:'Martin Heinrich',party:'D',url:'https://www.heinrich.senate.gov',reqUrl:''},
+{state:'NV',name:'Catherine Cortez Masto',party:'D',url:'https://www.cortezmasto.senate.gov',reqUrl:''},
+{state:'NV',name:'Jacky Rosen',party:'D',url:'https://www.rosen.senate.gov',reqUrl:''},
+{state:'NY',name:'Charles E. Schumer',party:'D',url:'https://www.schumer.senate.gov',reqUrl:'https://www.schumer.senate.gov/services/congressionally-directed-spending'},
+{state:'NY',name:'Kirsten E. Gillibrand',party:'D',url:'https://www.gillibrand.senate.gov',reqUrl:'https://www.gillibrand.senate.gov/appropriationsandndaa/'},
+{state:'OH',name:'Bernie Moreno',party:'R',url:'https://www.moreno.senate.gov',reqUrl:''},
+{state:'OH',name:'Jon Husted',party:'R',url:'https://www.husted.senate.gov',reqUrl:'https://www.husted.senate.gov/legislation/congressionally-directed-spending-and-programmatic-appropriations/'},
+{state:'OK',name:'James Lankford',party:'R',url:'https://www.lankford.senate.gov',reqUrl:''},
+{state:'OK',name:'Markwayne Mullin',party:'R',url:'https://www.mullin.senate.gov',reqUrl:''},
+{state:'OR',name:'Jeff Merkley',party:'D',url:'https://www.merkley.senate.gov',reqUrl:''},
+{state:'OR',name:'Ron Wyden',party:'D',url:'https://www.wyden.senate.gov',reqUrl:''},
+{state:'PA',name:'David McCormick',party:'R',url:'https://www.mccormick.senate.gov',reqUrl:'https://www.mccormick.senate.gov/helping-pennsylvania/legislative-assistance/appropriations-requests/'},
+{state:'PA',name:'John Fetterman',party:'D',url:'https://www.fetterman.senate.gov',reqUrl:'https://www.fetterman.senate.gov/appropriations/'},
+{state:'RI',name:'Jack Reed',party:'D',url:'https://www.reed.senate.gov',reqUrl:''},
+{state:'RI',name:'Sheldon Whitehouse',party:'D',url:'https://www.whitehouse.senate.gov',reqUrl:''},
+{state:'SC',name:'Lindsey Graham',party:'R',url:'https://www.lgraham.senate.gov/public',reqUrl:''},
+{state:'SC',name:'Tim Scott',party:'R',url:'https://www.scott.senate.gov',reqUrl:''},
+{state:'SD',name:'John Thune',party:'R',url:'https://www.thune.senate.gov',reqUrl:''},
+{state:'SD',name:'Mike Rounds',party:'R',url:'https://www.rounds.senate.gov',reqUrl:''},
+{state:'TN',name:'Bill Hagerty',party:'R',url:'https://www.hagerty.senate.gov',reqUrl:''},
+{state:'TN',name:'Marsha Blackburn',party:'R',url:'https://www.blackburn.senate.gov',reqUrl:''},
+{state:'TX',name:'John Cornyn',party:'R',url:'https://www.cornyn.senate.gov',reqUrl:''},
+{state:'TX',name:'Ted Cruz',party:'R',url:'https://www.cruz.senate.gov',reqUrl:''},
+{state:'UT',name:'John R. Curtis',party:'R',url:'https://www.curtis.senate.gov',reqUrl:''},
+{state:'UT',name:'Mike Lee',party:'R',url:'https://www.lee.senate.gov',reqUrl:''},
+{state:'VA',name:'Mark R. Warner',party:'D',url:'https://www.warner.senate.gov',reqUrl:'https://www.warner.senate.gov/public/index.cfm/fy2027-programmatic-appropriations_1'},
+{state:'VA',name:'Tim Kaine',party:'D',url:'https://www.kaine.senate.gov',reqUrl:'https://www.kaine.senate.gov/programmatic-requests'},
+{state:'VT',name:'Bernard Sanders',party:'I',url:'https://www.sanders.senate.gov',reqUrl:''},
+{state:'VT',name:'Peter Welch',party:'D',url:'https://www.welch.senate.gov',reqUrl:''},
+{state:'WA',name:'Maria Cantwell',party:'D',url:'https://www.cantwell.senate.gov',reqUrl:'https://www.cantwell.senate.gov/issues/fy2027-appropriations'},
+{state:'WA',name:'Patty Murray',party:'D',url:'https://www.murray.senate.gov',reqUrl:'https://www.murray.senate.gov/appropriations-requests/'},
+{state:'WI',name:'Ron Johnson',party:'R',url:'https://www.ronjohnson.senate.gov',reqUrl:''},
+{state:'WI',name:'Tammy Baldwin',party:'D',url:'https://www.baldwin.senate.gov',reqUrl:''},
+{state:'WV',name:'James C. Justice',party:'R',url:'https://www.justice.senate.gov',reqUrl:''},
+{state:'WV',name:'Shelley Moore Capito',party:'R',url:'https://www.capito.senate.gov',reqUrl:''},
+{state:'WY',name:'Cynthia M. Lummis',party:'R',url:'https://www.lummis.senate.gov',reqUrl:''},
+{state:'WY',name:'John Barrasso',party:'R',url:'https://www.barrasso.senate.gov',reqUrl:''}
+];
+
+const stateData = {
+'AK':{population:704133,snapSubject:16049,medicaidSubject:54745,poverty:10.2,aiWorkers:72328,districts:1},
+'AL':{population:4969866,snapSubject:157121,medicaidSubject:0,poverty:15.7,aiWorkers:464829,districts:7},
+'AR':{population:2977706,snapSubject:73151,medicaidSubject:273767,poverty:16.0,aiWorkers:263257,districts:4},
+'AZ':{population:7154961,snapSubject:166305,medicaidSubject:571584,poverty:12.8,aiWorkers:768326,districts:9},
+'CA':{population:38015387,snapSubject:873968,medicaidSubject:3085724,poverty:11.9,aiWorkers:4345161,districts:51},
+'CO':{population:5713803,snapSubject:109889,medicaidSubject:392771,poverty:9.4,aiWorkers:819993,districts:8},
+'CT':{population:3555703,snapSubject:97473,medicaidSubject:277155,poverty:10.0,aiWorkers:466637,districts:5},
+'DE':{population:992298,snapSubject:25302,medicaidSubject:83180,poverty:10.7,aiWorkers:114507,districts:1},
+'FL':{population:21591588,snapSubject:634579,medicaidSubject:0,poverty:12.6,aiWorkers:2257032,districts:28},
+'GA':{population:10627519,snapSubject:289133,medicaidSubject:0,poverty:13.5,aiWorkers:1155163,districts:14},
+'HI':{population:1386108,snapSubject:32320,medicaidSubject:111721,poverty:10.0,aiWorkers:137492,districts:2},
+'IA':{population:3149616,snapSubject:70358,medicaidSubject:242021,poverty:11.0,aiWorkers:353293,districts:4},
+'ID':{population:1866785,snapSubject:31951,medicaidSubject:136752,poverty:10.6,aiWorkers:187367,districts:2},
+'IL':{population:12522498,snapSubject:396085,medicaidSubject:906943,poverty:11.7,aiWorkers:1486249,districts:17},
+'IN':{population:6714911,snapSubject:141853,medicaidSubject:498879,poverty:12.2,aiWorkers:687430,districts:9},
+'KS':{population:2875799,snapSubject:47519,medicaidSubject:0,poverty:11.5,aiWorkers:331344,districts:4},
+'KY':{population:4429333,snapSubject:133403,medicaidSubject:412616,poverty:16.1,aiWorkers:416326,districts:6},
+'LA':{population:4523071,snapSubject:174609,medicaidSubject:434170,poverty:18.9,aiWorkers:408284,districts:6},
+'MA':{population:6926890,snapSubject:224949,medicaidSubject:538500,poverty:10.0,aiWorkers:1044460,districts:9},
+'MD':{population:6079418,snapSubject:151234,medicaidSubject:435549,poverty:9.4,aiWorkers:884613,districts:8},
+'ME':{population:1359807,snapSubject:40947,medicaidSubject:113111,poverty:10.8,aiWorkers:154900,districts:2},
+'MI':{population:9944298,snapSubject:310578,medicaidSubject:833254,poverty:13.0,aiWorkers:1071804,districts:13},
+'MN':{population:5652888,snapSubject:102043,medicaidSubject:404557,poverty:9.2,aiWorkers:758400,districts:8},
+'MO':{population:6062789,snapSubject:144878,medicaidSubject:422075,poverty:12.6,aiWorkers:673002,districts:8},
+'MS':{population:2884445,snapSubject:90714,medicaidSubject:0,poverty:19.1,aiWorkers:233651,districts:4},
+'MT':{population:1088176,snapSubject:22146,medicaidSubject:93010,poverty:12.0,aiWorkers:119075,districts:2},
+'NC':{population:10366704,snapSubject:308752,medicaidSubject:769373,poverty:13.2,aiWorkers:1166047,districts:14},
+'ND':{population:761569,snapSubject:12219,medicaidSubject:44847,poverty:10.6,aiWorkers:90259,districts:1},
+'NE':{population:1937542,snapSubject:37009,medicaidSubject:123923,poverty:10.3,aiWorkers:230437,districts:3},
+'NH':{population:1371503,snapSubject:19305,medicaidSubject:93119,poverty:7.1,aiWorkers:190796,districts:2},
+'NJ':{population:8408079,snapSubject:173191,medicaidSubject:590008,poverty:10.2,aiWorkers:1075607,districts:11},
+'NM':{population:2077871,snapSubject:90531,medicaidSubject:221638,poverty:18.1,aiWorkers:193193,districts:3},
+'NV':{population:3103042,snapSubject:85975,medicaidSubject:233083,poverty:12.6,aiWorkers:276738,districts:4},
+'NY':{population:19674246,snapSubject:677998,medicaidSubject:1708087,poverty:13.7,aiWorkers:2269931,districts:26},
+'OH':{population:11612784,snapSubject:352253,medicaidSubject:925084,poverty:13.2,aiWorkers:1294860,districts:15},
+'OK':{population:3906785,snapSubject:123355,medicaidSubject:302325,poverty:15.3,aiWorkers:368209,districts:5},
+'OR':{population:4196946,snapSubject:153668,medicaidSubject:355404,poverty:11.9,aiWorkers:487639,districts:6},
+'PA':{population:12800535,snapSubject:432191,medicaidSubject:1021251,poverty:11.8,aiWorkers:1510859,districts:17},
+'RI':{population:1078696,snapSubject:35965,medicaidSubject:85650,poverty:10.9,aiWorkers:130727,districts:2},
+'SC':{population:5113158,snapSubject:127632,medicaidSubject:0,poverty:14.2,aiWorkers:503007,districts:7},
+'SD':{population:879723,snapSubject:17029,medicaidSubject:56782,poverty:12.0,aiWorkers:101973,districts:1},
+'TN':{population:6888125,snapSubject:182370,medicaidSubject:0,poverty:13.8,aiWorkers:699885,districts:9},
+'TX':{population:29157945,snapSubject:721745,medicaidSubject:0,poverty:13.8,aiWorkers:3139047,districts:38},
+'UT':{population:3304468,snapSubject:34201,medicaidSubject:150731,poverty:8.6,aiWorkers:393687,districts:4},
+'VA':{population:8429141,snapSubject:172381,medicaidSubject:576481,poverty:9.9,aiWorkers:1162815,districts:11},
+'VT':{population:639109,snapSubject:16618,medicaidSubject:56654,poverty:10.3,aiWorkers:80458,districts:1},
+'WA':{population:7623297,snapSubject:201992,medicaidSubject:572350,poverty:9.9,aiWorkers:995099,districts:10},
+'WI':{population:5828067,snapSubject:154822,medicaidSubject:0,poverty:10.6,aiWorkers:674555,districts:8},
+'WV':{population:1750730,snapSubject:72785,medicaidSubject:174834,poverty:16.6,aiWorkers:145980,districts:2},
+'WY':{population:569723,snapSubject:6993,medicaidSubject:0,poverty:10.7,aiWorkers:57284,districts:1}
+};
+
+
+const nonExpansionStates = ['AL','FL','GA','KS','MS','SC','TN','TX','WI','WY'];
+
+function switchChamber(chamber){
+  const houseTabs = document.getElementById('houseTabs');
+  const senateTabs = document.getElementById('senateTabs');
+  const houseBtn = document.getElementById('houseBtn');
+  const senateBtn = document.getElementById('senateBtn');
+  
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  
+  if(chamber === 'senate'){
+    houseTabs.style.display = 'none';
+    senateTabs.style.display = 'flex';
+    houseBtn.style.background = '#f0f0f0';
+    houseBtn.style.color = '#1a365d';
+    senateBtn.style.background = '#1a365d';
+    senateBtn.style.color = '#fff';
+    document.getElementById('s_funding').classList.add('active');
+    senateTabs.querySelectorAll('.tab-btn').forEach((b,i) => {
+      b.classList.remove('active');
+      if(i===0) b.classList.add('active');
+    });
+    // Draw senate chart
+    setTimeout(drawSenateChart, 50);
+  } else {
+    houseTabs.style.display = 'flex';
+    senateTabs.style.display = 'none';
+    houseBtn.style.background = '#1a365d';
+    houseBtn.style.color = '#fff';
+    senateBtn.style.background = '#f0f0f0';
+    senateBtn.style.color = '#1a365d';
+    document.getElementById('funding').classList.add('active');
+    houseTabs.querySelectorAll('.tab-btn').forEach((b,i) => {
+      b.classList.remove('active');
+      if(i===0) b.classList.add('active');
+    });
+  }
+}
+
+function drawSenateChart(){
+  const cv = document.getElementById('senateFundingChart');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const pad = {top:50,right:30,bottom:70,left:90};
+  const cW = W - pad.left - pad.right;
+  const cH = H - pad.top - pad.bottom;
+  const years = ['FY15','FY16','FY17','FY18','FY19','FY20','FY21*','FY22*','FY23','FY24','FY25','FY26'];
+  const adult = [776.7,816.8,816.8,845.7,845.7,854.6,862.6,867.6,885.6,885.6,885.6,875.6];
+  const minV = 500, maxV = 950, range = maxV - minV, n = years.length;
+  function yPos(v){ return pad.top + cH - ((v - minV) / range) * cH; }
+  function xPos(i){ return pad.left + (i / (n-1)) * cW; }
+  ctx.fillStyle = '#fff'; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle = '#e8e8e8'; ctx.lineWidth = 1;
+  for(let v = 500; v <= 950; v += 50){ const y = yPos(v); ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke(); }
+  ctx.fillStyle = '#666'; ctx.font = '12px Segoe UI, sans-serif'; ctx.textAlign = 'right';
+  for(let v = 500; v <= 950; v += 100){ ctx.fillText('$' + v + 'M', pad.left - 8, yPos(v) + 4); }
+  ctx.textAlign = 'center'; ctx.font = '11px Segoe UI, sans-serif';
+  for(let i = 0; i < n; i++){ ctx.fillText(years[i], xPos(i), H - pad.bottom + 20); }
+  ctx.strokeStyle = '#2d8a5e'; ctx.lineWidth = 2.5; ctx.beginPath();
+  for(let i = 0; i < n; i++){ const x = xPos(i), y = yPos(adult[i]); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+  ctx.stroke();
+  for(let i = 0; i < n; i++){ ctx.beginPath(); ctx.arc(xPos(i), yPos(adult[i]), 4, 0, Math.PI*2); ctx.fillStyle = '#2d8a5e'; ctx.fill(); }
+  ctx.font = 'bold 11px Segoe UI, sans-serif'; ctx.fillStyle = '#2d8a5e';
+  ctx.textAlign = 'left'; ctx.fillText('$' + adult[0].toFixed(1) + 'M', xPos(0) + 8, yPos(adult[0]) - 10);
+  ctx.textAlign = 'left'; ctx.fillText('$' + adult[n-1].toFixed(1) + 'M', xPos(n-1) + 6, yPos(adult[n-1]) + 16);
+  ctx.fillStyle = '#1a365d'; ctx.font = 'bold 15px Segoe UI, sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('WIOA Title I Adult Program Funding (Millions)', W/2, 24);
+  const legY = H - 22; ctx.font = '12px Segoe UI, sans-serif'; ctx.fillStyle = '#2d8a5e';
+  ctx.fillRect(W/2 - 60, legY - 8, 14, 10); ctx.fillStyle = '#333'; ctx.textAlign = 'left'; ctx.fillText('Adult Enacted', W/2 - 42, legY);
+}
+
+function populateSenateDropdowns(){
+  const seen = new Set();
+  senators.forEach(s => seen.add(s.state));
+  const sorted = [...seen].sort();
+  ['senateStateDropdown','senateSubmitDropdown'].forEach(id => {
+    const dd = document.getElementById(id);
+    if(!dd) return;
+    sorted.forEach(st => {
+      const opt = document.createElement('option');
+      opt.value = st;
+      opt.textContent = st + ' \u2014 ' + (stateNames[st] || st);
+      dd.appendChild(opt);
+    });
+  });
+}
+
+function loadSenateState(){
+  const st = document.getElementById('senateStateDropdown').value;
+  const div = document.getElementById('senateStateResults');
+  if(!st){ div.innerHTML = '<div style="padding:30px;text-align:center;color:#999">Select a state to view statewide impact data and Senators.</div>'; return; }
+  const sd = stateData[st];
+  const stateSens = senators.filter(s => s.state === st);
+  const stateName = stateNames[st] || st;
+  const isNonExpansion = nonExpansionStates.includes(st);
+
+  let html = '<div style="padding:18px;background:#fff;border-bottom:1px solid #eee;cursor:pointer" onclick="selectSenateState(\'' + st + '\')">';
+  html += '<h3 style="color:#1a365d;margin-bottom:10px;font-size:1.2em">' + stateName + ' — Statewide Impact Data</h3>';
+  html += '<div class="stats-grid" style="margin:12px 0">';
+  html += '<div class="stat-box"><h4>Population</h4><div class="stat-val">' + sd.population.toLocaleString() + '</div></div>';
+  html += '<div class="stat-box"><h4>SNAP Individuals Subject to Work Reqs</h4><div class="stat-val" style="color:#c00">' + sd.snapSubject.toLocaleString() + '</div></div>';
+  html += '<div class="stat-box"><h4>Medicaid Individuals Subject to Work Reqs</h4><div class="stat-val" style="color:#c00">' + (isNonExpansion ? 'Non-expansion state' : sd.medicaidSubject.toLocaleString()) + '</div></div>';
+  html += '<div class="stat-box"><h4>Workers in AI-Exposed Occupations</h4><div class="stat-val" style="color:#1a365d">' + sd.aiWorkers.toLocaleString() + '</div></div>';
+  html += '<div class="stat-box"><h4>Avg. Poverty Rate</h4><div class="stat-val">' + sd.poverty + '%</div></div>';
+  html += '<div class="stat-box"><h4>Congressional Districts</h4><div class="stat-val">' + sd.districts + '</div></div>';
+  html += '</div>';
+  html += '<p style="font-size:.85em;color:#666;margin-top:8px"><em>Click this card to auto-populate the Senate Customization Tool.</em></p>';
+  html += '</div>';
+
+  html += '<div style="padding:14px 18px;background:#f9f9f9;border-bottom:1px solid #eee"><h3 style="color:#1a365d;margin-bottom:8px">U.S. Senators</h3></div>';
+  stateSens.forEach(s => {
+    html += '<div class="dcard" style="cursor:default"><h3>' + s.name + ' (' + s.party + ')</h3>';
+    if(s.url){ html += '<a href="' + s.url + '" target="_blank" style="display:inline-block;margin-top:6px;padding:6px 14px;background:#1a365d;color:#fff;border-radius:4px;text-decoration:none;font-size:.88em">Visit Website</a>'; }
+    html += '</div>';
+  });
+  div.innerHTML = html;
+}
+
+function selectSenateState(st){
+  const sd = stateData[st];
+  const stateSens = senators.filter(s => s.state === st);
+  document.getElementById('sState').value = st;
+  document.getElementById('sSenator').value = stateSens.map(s => s.name).join(' / ');
+  document.getElementById('sStatePop').value = sd.population;
+  document.getElementById('sDistCount').value = sd.districts;
+  document.getElementById('sSnap').value = sd.snapSubject;
+  document.getElementById('sMedicaid').value = sd.medicaidSubject;
+  document.getElementById('sAI').value = sd.aiWorkers;
+  // Switch to senate generator tab
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('s_generator').classList.add('active');
+  document.querySelectorAll('#senateTabs .tab-btn').forEach((b,i) => { b.classList.remove('active'); if(i===3) b.classList.add('active'); });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function loadSenateSubmit(){
+  const st = document.getElementById('senateSubmitDropdown').value;
+  const div = document.getElementById('senateSubmitResults');
+  const cnt = document.getElementById('senateSubmitCount');
+  if(!st){ div.innerHTML = '<div style="padding:30px;text-align:center;color:#999">Select a state to view Senators and submission links.</div>'; cnt.textContent = ''; return; }
+  const stateSens = senators.filter(s => s.state === st);
+  const stateName = stateNames[st] || st;
+  cnt.innerHTML = '<strong>' + stateName + '</strong> \u2014 ' + stateSens.length + ' Senator(s)';
+  div.innerHTML = stateSens.map(s => {
+    const hasReqUrl = s.reqUrl && s.reqUrl.length > 5;
+    const hasUrl = s.url && s.url.length > 5;
+    const senDomain = s.url ? new URL(s.url).hostname : 'senate.gov';
+    const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(s.name + ' FY2027 appropriations programmatic request form site:' + senDomain);
+    let linksHtml = '';
+    if(hasReqUrl){
+      linksHtml += '<a href="' + s.reqUrl + '" target="_blank" style="display:inline-block;margin-top:8px;padding:10px 20px;background:#2e7d32;color:#fff;border-radius:4px;text-decoration:none;font-weight:700;font-size:.95em;box-shadow:0 2px 4px rgba(0,0,0,.15)">Appropriations Request Page &rarr;</a>';
+      if(hasUrl){ linksHtml += ' <a href="' + s.url + '" target="_blank" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#f0f0f0;color:#1a365d;border-radius:4px;text-decoration:none;font-size:.88em;border:1px solid #ddd">Senator Website</a>'; }
+    } else if(hasUrl){
+      linksHtml += '<a href="' + s.url + '" target="_blank" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#1a365d;color:#fff;border-radius:4px;text-decoration:none;font-weight:600;font-size:.92em">Visit Website (search for Appropriations Requests) &rarr;</a>';
+      linksHtml += ' <a href="' + searchUrl + '" target="_blank" style="display:inline-block;margin-top:8px;padding:8px 14px;background:#f0f0f0;color:#666;border-radius:4px;text-decoration:none;font-size:.85em;border:1px solid #ddd">Google Search</a>';
+    }
+    const statusBadge = hasReqUrl
+      ? '<span style="display:inline-block;padding:2px 8px;background:#e8f5e9;color:#2e7d32;border-radius:3px;font-size:.78em;font-weight:600;margin-left:8px">DIRECT LINK</span>'
+      : '<span style="display:inline-block;padding:2px 8px;background:#fff3e0;color:#e65100;border-radius:3px;font-size:.78em;font-weight:600;margin-left:8px">SEARCH NEEDED</span>';
+    return '<div class="dcard" style="cursor:default"><h3>Sen. ' + s.name + ' (' + s.party + ')' + statusBadge + '</h3><div style="margin-top:6px">' + linksHtml + '</div></div>';
+  }).join('');
+}
+
+function generateSenateText(){
+  const bn = document.getElementById('sBoardName').value || '[Board Name]';
+  const st = document.getElementById('sState').value || '[State]';
+  const sen = document.getElementById('sSenator').value || '[Senator]';
+  const pop = document.getElementById('sStatePop').value;
+  const snap = document.getElementById('sSnap').value;
+  const med = document.getElementById('sMedicaid').value;
+  const ai = document.getElementById('sAI').value || '0';
+  const others = document.getElementById('sOtherOffices').value || '[List other offices]';
+  const sn = stateNames[st] || st;
+  const isNonExpansion = nonExpansionStates.includes(st);
+
+  const medText = med && parseInt(med) > 0 && !isNonExpansion
+    ? 'Across ' + sn + ', an estimated ' + parseInt(med).toLocaleString() + ' individuals are subject to Medicaid work requirements. Verification is required at application and every six months.'
+    : sn + ' has not expanded Medicaid. However, if ' + sn + ' expands Medicaid in the future, workforce boards will need capacity to serve that population. Workforce boards also serve individuals navigating healthcare access alongside employment barriers.';
+
+  let txt = `PROGRAMMATIC FUNDING REQUEST — FY2027 APPROPRIATIONS
+Submitted by: ${bn}
+To: Office of Senator ${sen} (${sn})
+Subcommittee: Labor, HHS, Education
+Agency: Department of Labor
+Account: Training and Employment Services
+
+\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
+PROGRAM: Adult Employment and Training Activities
+FY2026 Enacted: $875,649,000 | FY2027 Request: $1,500,000,000
+\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
+
+PROGRAM DESCRIPTION:
+
+The WIOA Adult Program helps adults with barriers to employment gain new skills and find in-demand jobs in growth sectors. This funding is critical so that we can work locally with those individuals and connect them with employers. Services include career counseling and labor market information, skills assessments, occupational training aligned with in-demand industries, supportive services such as childcare and transportation assistance, and job placement and retention services. Local workforce development boards deliver these services through a network of America's Job Centers, utilizing partnerships with community colleges, training providers, and local employers.
+
+The Adult Program is the primary workforce development mechanism for helping low-income workers and others facing employment barriers access pathways to self-sufficiency and career advancement. With the expansion of SNAP work requirements under the One Big Beautiful Bill Act — now covering ages 18-65 and including parents with children ages 7 and older — and Medicaid work requirements taking effect January 1, 2027, the Adult Program is the frontline resource helping newly work-required individuals connect to qualifying activities that meet their federal obligations while building real skills for the labor market.
+
+JUSTIFICATION FOR INCREASE:
+
+1. SNAP WORK REQUIREMENTS (effective November 1, 2025): The One Big Beautiful Bill Act (H.R. 1) dramatically expanded SNAP work requirements. The ABAWD age range was extended from 18-54 to 18-65, and parents with children ages 7 and older must now comply. Individuals must document 80 hours per month of work, training, or approved activities.
+
+The Congressional Budget Office estimates 8.8 million individuals nationally are subject to expanded work requirements: 6.5 million non-dependent adults ages 18-65 and 2.3 million parents with children ages 7+ (CBO, August 2025). Across ${sn}, an estimated ${snap ? parseInt(snap).toLocaleString() : '[X]'} individuals are subject to these requirements.
+
+Importantly, USDA data shows approximately 74% of non-disabled working-age SNAP participants work within a 12-month period, and about 50% are employed in any given month (CBPP/USDA ERS). The challenge is not that these individuals refuse to work — many cycle in and out of unstable, seasonal, or part-time employment and need help documenting compliance and accessing pathways to sustainable careers. The Adult Program is the primary infrastructure to deliver this.
+
+2. MEDICAID WORK REQUIREMENTS (effective January 1, 2027): Medicaid expansion enrollees ages 19-64 must demonstrate 80 hours per month of community engagement activities. CBO estimates 18.5 million individuals nationally are subject to these requirements across 41 expansion states plus DC. ${medText}
+
+According to the Kaiser Family Foundation, approximately 64% of non-elderly Medicaid adults are already employed — 44% full-time, 20% part-time (KFF, 2024). The Urban Institute finds 91% of expansion adults ages 19-55 are working, in school, caregiving, or have health barriers (Urban Institute, April 2025). Evidence from Arkansas's 2018-2019 pilot shows the real risk: over 18,000 people lost coverage despite the majority actually working, because they could not navigate the reporting system. Adequately funded workforce boards prevent this outcome by serving as navigators — helping individuals document compliance while connecting them to sustainable employment.
+
+3. FLAT FUNDING IS A CUT: The FY2026 enacted level of $875.6 million represents virtually no real increase since FY2016 ($816.8 million) — a period during which costs have risen substantially. Congress cannot simultaneously expand the system's mandate and starve its funding.
+
+We also note that AI and automation continue to accelerate workforce disruption, and the launch of Workforce Pell Grants (July 2026) will further increase demand for workforce coordination services — reinforcing the urgency of this investment.
+
+THE ASK:
+
+${bn} respectfully requests FY2027 funding for the WIOA Title I Adult Employment and Training Activities program at $1,500,000,000 — a 71.3% increase from the $875,649,000 enacted in FY2026.
+
+Congress created unprecedented new demand on the workforce system through the One Big Beautiful Bill Act: SNAP work requirements now affect 8.8 million individuals and Medicaid work requirements will affect 18.5 million. The majority of these individuals are already working but in unstable employment — they need workforce services to achieve stable compliance and sustainable careers, not just to find work, but to keep it and advance. Congress must fund the system that will deliver on these mandates.
+
+Similar requests submitted to: ${others}`;
+
+  document.getElementById('senateCustomTA').value = txt;
+  document.getElementById('senateCustomOutput').style.display = 'block';
+  document.getElementById('senateCustomOutput').scrollIntoView({behavior:'smooth'});
+}
+
+function copySenateText(){
+  const ta = document.getElementById('senateCustomTA');
+  ta.select(); ta.setSelectionRange(0,99999);
+  navigator.clipboard.writeText(ta.value).then(()=>alert('Copied to clipboard!')).catch(()=>{document.execCommand('copy');alert('Copied!');});
+}
+
+function clearSenateForm(){
+  ['sBoardName','sContactName','sContactEmail','sContactPhone','sState','sSenator','sStatePop','sDistCount','sSnap','sMedicaid','sAI','sOtherOffices'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('senateCustomOutput').style.display='none';
+}
+
+function saveSenateNotes(){
+  try{localStorage.setItem('wioaSenateNotes',document.getElementById('senateCoordNotes').value);alert('Notes saved!');}catch(e){alert('Could not save — try copying your notes manually.');}
+}
+
 </script>
 </body>
 </html>
